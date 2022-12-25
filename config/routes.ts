@@ -54,13 +54,13 @@ export default [
     name: '动态信息管理',
     icon: 'shake',
     path: '/news',
-    component: './CatMessage',
+    component: './News',
   },
   {
     name: '联系方式管理',
     icon: 'mail',
     path: '/contact-information',
-    component: './CatMessage',
+    component: './ContactInformation',
   },
   {
     path: '/',
