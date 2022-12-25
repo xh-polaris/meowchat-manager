@@ -1,43 +1,57 @@
-import {
-    CREATE_BY,
-    UPDATE_BY,
-    OPERATIONS,
-    CAT_NAME,
-    CONTENT_COLLECT,
-    DATE_AT,
-    CAT_STATUS,
-} from '@/pages/commonSettings';
+import { NAME } from '@/pages/commonSettings';
+import { ProColumns } from '@ant-design/pro-components';
+import { Badge, Space } from 'antd';
 
 const MAX_ORDER = 10;
 
+export const AVATAR_IMG: ProColumns = {
+  title: '缩略图',
+  dataIndex: 'avatarUrl',
+  hideInSearch: true,
+};
+
+export const COLOR: ProColumns = {
+  title: '颜色',
+  dataIndex: 'color',
+  hideInSearch: true,
+};
+
+export const AREA: ProColumns = {
+  title: '出没区域',
+  dataIndex: 'area',
+  hideInSearch: true,
+};
+
+export const IS_COLLECTED: ProColumns = {
+  title: '是否收录',
+  dataIndex: 'isCollected',
+  hideInSearch: true,
+  render: (_) => (
+    <Space>
+      <Badge status={_ ? 'success' : 'error'} text={_ ? '是' : '否'} />
+    </Space>
+  ),
+};
+
 export const CAT_MESSAGE_COLUMNS = [
-    {
-        order: MAX_ORDER - 10,
-        ...CAT_NAME,
-    },
-    {
-        order: MAX_ORDER - 8,
-        ...CREATE_BY,
-    },
-    {
-        order: MAX_ORDER - 6,
-        ...UPDATE_BY,
-    },
-    {
-        order: MAX_ORDER - 4,
-        ...DATE_AT,
-    },
-    {
-        order: MAX_ORDER - 2,
-        ...CAT_STATUS,
-    },
-    {
-        order: MAX_ORDER,
-        ...CONTENT_COLLECT,
-    },
-    {
-        order: MAX_ORDER + 2,
-        ...OPERATIONS,
-        render: () => <a>编辑</a>
-    },
-];  
+  {
+    order: MAX_ORDER - 10,
+    ...AVATAR_IMG,
+  },
+  {
+    order: MAX_ORDER - 8,
+    ...NAME,
+  },
+  {
+    order: MAX_ORDER - 6,
+    ...COLOR,
+  },
+  {
+    order: MAX_ORDER - 4,
+    ...AREA,
+  },
+  {
+    order: MAX_ORDER - 2,
+    ...IS_COLLECTED,
+  },
+];

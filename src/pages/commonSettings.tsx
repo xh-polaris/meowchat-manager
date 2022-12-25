@@ -19,9 +19,9 @@ export const OPERATIONS: ProColumns = {
   hideInSearch: true,
 };
 
-export const CAT_NAME: ProColumns = {
-  title: '猫咪名称',
-  dataIndex: 'cat_name',
+export const NAME: ProColumns = {
+  title: '名称',
+  dataIndex: 'name',
 };
 
 export const CONTENT_COLLECT: ProColumns = {
