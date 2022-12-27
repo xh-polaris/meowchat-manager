@@ -20,7 +20,26 @@ export const fetchCatList = async (
     params: {
       ...params,
       page: (params.current || 1) - 1,
-      // communityId: '637ce159b15d9764c31f9c84'
     },
     ...(options || {}),
   });
+
+/**
+ * 获取猫咪具体信息
+ * @param params
+ * @returns
+ */
+export const fetchCurrentCatInfo = async (
+  params: {
+    catId: string;
+  },
+  options?: { [key: string]: any },
+) => {
+  return request(`${DEFAULT_URL}/collection/get_cat_detail`, {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+};

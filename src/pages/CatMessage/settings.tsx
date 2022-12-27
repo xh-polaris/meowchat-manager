@@ -1,6 +1,6 @@
 import { NAME } from '@/pages/commonSettings';
 import { ProColumns } from '@ant-design/pro-components';
-import { Badge, Space } from 'antd';
+import { Avatar, Badge, Space } from 'antd';
 
 const MAX_ORDER = 10;
 
@@ -8,10 +8,11 @@ export const AVATAR_IMG: ProColumns = {
   title: '缩略图',
   dataIndex: 'avatarUrl',
   hideInSearch: true,
+  render: (_) => <Avatar src={_} size={40}></Avatar>,
 };
 
 export const COLOR: ProColumns = {
-  title: '颜色',
+  title: '花色',
   dataIndex: 'color',
   hideInSearch: true,
 };
@@ -50,8 +51,8 @@ export const CAT_MESSAGE_COLUMNS = [
     order: MAX_ORDER - 4,
     ...AREA,
   },
-  {
-    order: MAX_ORDER - 2,
-    ...IS_COLLECTED,
-  },
+  //   {
+  //     order: MAX_ORDER - 2,
+  //     ...IS_COLLECTED,
+  //   },
 ];
