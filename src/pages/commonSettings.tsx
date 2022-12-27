@@ -20,7 +20,7 @@ export const OPERATIONS: ProColumns = {
 };
 
 export const NAME: ProColumns = {
-  title: '名称',
+  title: '昵称',
   dataIndex: 'name',
 };
 
