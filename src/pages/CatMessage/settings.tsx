@@ -20,7 +20,6 @@ export const COLOR: ProColumns = {
 export const AREA: ProColumns = {
   title: '出没区域',
   dataIndex: 'area',
-  hideInSearch: true,
 };
 
 export const IS_COLLECTED: ProColumns = {
@@ -36,23 +35,23 @@ export const IS_COLLECTED: ProColumns = {
 
 export const CAT_MESSAGE_COLUMNS = [
   {
-    order: MAX_ORDER - 10,
+    order: MAX_ORDER + 10,
     ...AVATAR_IMG,
   },
   {
-    order: MAX_ORDER - 8,
+    order: MAX_ORDER + 8,
     ...NAME,
   },
   {
-    order: MAX_ORDER - 6,
+    order: MAX_ORDER + 6,
     ...COLOR,
   },
   {
-    order: MAX_ORDER - 4,
+    order: MAX_ORDER + 4,
     ...AREA,
   },
   //   {
-  //     order: MAX_ORDER - 2,
+  //     order: MAX_ORDER + 2,
   //     ...IS_COLLECTED,
   //   },
 ];
