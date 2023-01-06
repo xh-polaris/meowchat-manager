@@ -43,3 +43,48 @@ export const fetchCurrentCatInfo = async (
     ...(options || {}),
   });
 };
+
+/**
+ * 新增猫咪
+ * @param params
+ * @returns
+ */
+export const createCatInfo = async (data: any, options?: { [key: string]: any }) => {
+  return request(`${DEFAULT_URL}/collection/new_cat`, {
+    method: 'POST',
+    data: {
+      ...data,
+    },
+    ...(options || {}),
+  });
+};
+
+/**
+ * 删除猫咪
+ * @param params
+ * @returns
+ */
+export const deleteCatInfo = async (data: any, options?: { [key: string]: any }) => {
+  return request(`${DEFAULT_URL}/collection/delete_cat`, {
+    method: 'POST',
+    data: {
+      ...data,
+    },
+    ...(options || {}),
+  });
+};
+
+/**
+ * 编辑猫咪
+ * @param params
+ * @returns
+ */
+export const editCatInfo = async (data: any, options?: { [key: string]: any }) => {
+  return request(`${DEFAULT_URL}/collection/new_cat`, {
+    method: 'POST',
+    data: {
+      ...data,
+    },
+    ...(options || {}),
+  });
+};
