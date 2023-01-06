@@ -5,11 +5,11 @@ import { FooterToolbar, PageContainer, ProTable } from '@ant-design/pro-componen
 import { Button } from 'antd';
 import React, { useRef, useState } from 'react';
 import { OPERATIONS } from '../commonSettings';
+import Create from './components/Create';
+import Delete from './components/Delete';
+import Edit from './components/Edit';
 import View from './components/View';
 import { CAT_MESSAGE_COLUMNS } from './settings';
-
-// const handleAdd = async (fields: API.RuleListItem) => {
-// };
 
 const handleRemove = async (selectedRows: API.RuleListItem[]) => {
   console.log(selectedRows);
@@ -20,6 +20,9 @@ const CatMessage: React.FC = () => {
   const [selectedRowsState, setSelectedRows] = useState<API.RuleListItem[]>([]);
   const [currentCat, setCurrentCat] = useState('');
   const [viewVisible, setViewVisible] = useState(false);
+  const [createVisible, setCreateVisible] = useState(false);
+  const [deleteVisible, setDeleteVisible] = useState(false);
+  const [editVisible, setEditVisible] = useState(false);
 
   const fetchCommunityInfo = () => {
     return '637ce159b15d9764c31f9c84';
@@ -32,6 +35,7 @@ const CatMessage: React.FC = () => {
     },
   ) => {
     const msg = await fetchCatList({
+      ...params,
       current: params.current,
       pageSize: params.pageSize,
       communityId: fetchCommunityInfo(),
@@ -54,8 +58,8 @@ const CatMessage: React.FC = () => {
             size="small"
             key="edit"
             onClick={() => {
-              console.log(currentCat);
-              console.log(viewVisible);
+              setCurrentCat(record.id);
+              setEditVisible(true);
             }}
           >
             编辑
@@ -71,7 +75,16 @@ const CatMessage: React.FC = () => {
           >
             查看
           </Button>
-          <Button type="link" size="small" danger key="delete">
+          <Button
+            type="link"
+            size="small"
+            danger
+            key="delete"
+            onClick={() => {
+              setCurrentCat(record.id);
+              setDeleteVisible(true);
+            }}
+          >
             删除
           </Button>
         </>
@@ -89,7 +102,13 @@ const CatMessage: React.FC = () => {
           labelWidth: 120,
         }}
         toolBarRender={() => [
-          <Button type="primary" key="primary">
+          <Button
+            type="primary"
+            key="primary"
+            onClick={() => {
+              setCreateVisible(true);
+            }}
+          >
             <PlusOutlined />
             新建
           </Button>,
@@ -103,6 +122,19 @@ const CatMessage: React.FC = () => {
         }}
       />
       <View open={viewVisible} setViewVisible={setViewVisible} currentCat={currentCat} />
+      <Create open={createVisible} setCreateVisible={setCreateVisible} actionRef={actionRef} />
+      <Delete
+        open={deleteVisible}
+        setDeleteVisible={setDeleteVisible}
+        actionRef={actionRef}
+        currentCat={currentCat}
+      />
+      <Edit
+        open={editVisible}
+        setEditVisible={setEditVisible}
+        actionRef={actionRef}
+        currentCat={currentCat}
+      />
       {selectedRowsState?.length > 0 && (
         <FooterToolbar
           extra={
