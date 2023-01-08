@@ -3,7 +3,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { FooterToolbar, PageContainer, ProTable } from '@ant-design/pro-components';
 import { Button } from 'antd';
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { OPERATIONS } from '../commonSettings';
 import Create from './components/Create';
 import Delete from './components/Delete';
@@ -11,9 +11,9 @@ import Edit from './components/Edit';
 import View from './components/View';
 import { CAT_MESSAGE_COLUMNS } from './settings';
 
-const handleRemove = async (selectedRows: API.RuleListItem[]) => {
-  console.log(selectedRows);
-};
+// const handleRemove = async (selectedRows: API.RuleListItem[]) => {
+//   console.log(selectedRows);
+// };
 
 const CatMessage: React.FC = () => {
   const actionRef = useRef<ActionType>();
@@ -145,15 +145,16 @@ const CatMessage: React.FC = () => {
           }
         >
           <Button
-            onClick={async () => {
-              await handleRemove(selectedRowsState);
-              setSelectedRows([]);
-              actionRef.current?.reloadAndRest?.();
-            }}
+            // onClick={async () => {
+            //   await handleRemove(selectedRowsState);
+            //   setSelectedRows([]);
+            //   actionRef.current?.reloadAndRest?.();
+            // }}
+            type="primary"
+            danger
           >
             批量删除
           </Button>
-          <Button type="primary">批量审批</Button>
         </FooterToolbar>
       )}
     </PageContainer>
