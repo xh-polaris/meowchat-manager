@@ -43,7 +43,7 @@ const CatMessage: React.FC = () => {
     return {
       data: msg.cats,
       success: true,
-      total: msg?.cats?.length,
+      total: msg.total,
     };
   };
 
@@ -119,6 +119,9 @@ const CatMessage: React.FC = () => {
           onChange: (_, selectedRows) => {
             setSelectedRows(selectedRows);
           },
+        }}
+        pagination={{
+          pageSize: 10,
         }}
       />
       <View open={viewVisible} setViewVisible={setViewVisible} currentCat={currentCat} />
