@@ -33,9 +33,9 @@ const News = () => {
       communityId: '637ce159b15d9764c31f9c84',
     });
     return {
-      data: msg?.moments,
+      data: msg.moments,
       success: true,
-      total: msg?.moments?.length,
+      total: msg.total,
     };
   };
 
@@ -115,6 +115,9 @@ const News = () => {
           onChange: (_, selectedRows) => {
             setSelectedRows(selectedRows);
           },
+        }}
+        pagination={{
+          pageSize: 10,
         }}
       />
       <View open={viewVisible} setViewVisible={setViewVisible} currentNew={currentNew} />
