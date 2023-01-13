@@ -19,9 +19,7 @@ export default defineConfig({
    * @description 设置 ie11 不一定完美兼容，需要检查自己使用的所有依赖
    * @doc https://umijs.org/docs/api/config#targets
    */
-  targets: {
-    ie: 11,
-  },
+  targets: {},
   /**
    * @name 路由的配置，不在路由中引入的文件不会编译
    * @description 只支持 path，component，routes，redirect，wrappers，title 的配置
@@ -100,7 +98,7 @@ export default defineConfig({
   //================ pro 插件配置 =================
   presets: ['umi-presets-pro'],
   mfsu: {
-    exclude :['@playwright/test']
+    exclude: ['@playwright/test'],
   },
-  favicons: ['https://static.xhpolaris.com/cat_world.jpg']
+  favicons: ['https://static.xhpolaris.com/cat_world.jpg'],
 });
