@@ -31,3 +31,15 @@ export async function login(body: API.LoginParams, options?: { [key: string]: an
     ...(options || {}),
   });
 }
+
+/**
+ * 退出登录接口
+ * @param params
+ * @returns
+ */
+export async function outLogin() {
+  return {
+    data: {},
+    success: true,
+  };
+}
