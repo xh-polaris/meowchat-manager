@@ -1,8 +1,7 @@
 {
   "name": "meowchat-manager",
-  "version": "6.0.0-beta.1",
+  "version": "1.0.0",
   "private": true,
-  "description": "An out-of-box UI solution for enterprise applications",
   "scripts": {
     "analyze": "cross-env ANALYZE=1 max build",
     "build": "max build",
@@ -21,6 +20,7 @@
     "playwright": "playwright install && playwright test",
     "prepare": "husky install",
     "prettier": "prettier -c --write \"src/**/*\"",
+    "release": "release-it",
     "serve": "umi-serve",
     "start": "cross-env UMI_ENV=dev max dev",
     "start:dev": "cross-env REACT_APP_ENV=dev MOCK=none UMI_ENV=dev max dev",
@@ -61,6 +61,7 @@
   "devDependencies": {
     "@ant-design/pro-cli": "^2.1.0",
     "@playwright/test": "^1.26.1",
+    "@release-it/conventional-changelog": "^5.1.1",
     "@types/classnames": "^2.3.1",
     "@types/express": "^4.17.14",
     "@types/history": "^4.7.11",
@@ -80,6 +81,7 @@
     "lint-staged": "^10.0.0",
     "mockjs": "^1.1.0",
     "prettier": "^2.7.1",
+    "release-it": "^15.6.0",
     "swagger-ui-dist": "^4.14.2",
     "typescript": "^4.8.4",
     "umi-presets-pro": "^1.0.5",
