@@ -11,7 +11,7 @@ const Edit = ({ open, setEditVisible, actionRef, currentNew }: any) => {
       ...value,
       id: currentNew,
       communityId: '637ce159b15d9764c31f9c84',
-      avatars: ['https://static.xhpolaris.com/cat_world.jpg'],
+      photos: ['https://static.xhpolaris.com/cat_world.jpg'],
     };
     const success = await editNewInfo(data);
     if (success) {
