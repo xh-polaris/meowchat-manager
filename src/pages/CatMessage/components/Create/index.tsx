@@ -1,3 +1,4 @@
+import UploadImagesFormItem from '@/components/UploadImagesFormItem';
 import { createCatInfo } from '@/services/cat';
 import {
   DrawerForm,
@@ -7,6 +8,7 @@ import {
   ProFormText,
   ProFormTextArea,
 } from '@ant-design/pro-components';
+import { Form } from 'antd';
 
 const Create = ({ open, setCreateVisible, actionRef }: any) => {
   const handleCreate = async (value: any) => {
@@ -145,6 +147,18 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
           },
         ]}
       />
+      <Form.Item
+        name="avatars"
+        label="照片"
+        rules={[
+          {
+            required: true,
+            message: '此条必填',
+          },
+        ]}
+      >
+        <UploadImagesFormItem></UploadImagesFormItem>
+      </Form.Item>
     </DrawerForm>
   );
 };
