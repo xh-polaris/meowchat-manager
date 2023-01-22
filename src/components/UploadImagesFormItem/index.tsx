@@ -2,7 +2,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import type { RcFile, UploadProps } from 'antd/es/upload';
 import type { UploadFile } from 'antd/es/upload/interface';
 import { Modal, Upload } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { applySignedUrl } from '@/services/cos';
 import { request } from '@umijs/max';
 
@@ -25,7 +25,19 @@ const UploadImagesFormItem = ({ value = [], onChange }: any) => {
   const [url, setUrl] = useState<string>('');
   const [sessionToken, setSessionToken] = useState<string>('');
   const [contentType, setContentType] = useState<string>('');
-  const [callbackUrl, setCallbackUrl] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (value) {
+      const newFileList: any = [];
+      value.map((item: string) => {
+        newFileList.push({
+          uid: item,
+          url: item,
+        });
+      });
+      setFileList([...newFileList]);
+    }
+  }, [value]);
 
   const handleCancel = () => setPreviewOpen(false);
 
@@ -40,18 +52,22 @@ const UploadImagesFormItem = ({ value = [], onChange }: any) => {
 
   const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {
     setFileList(newFileList);
-    if (newFileList[newFileList.length - 1]?.status === 'done') {
-      // 去除url内的param
-      let newUrl = url.substring(0, url.lastIndexOf('?'));
-      // 将url的host替换为CDN域名
-      newUrl = newUrl.replace(/(https:\/\/|http:\/\/)(.*?)(\/.*)/, `$1${CDN}$3`);
-      setCallbackUrl([...callbackUrl, newUrl]);
-      onChange?.([...value, newUrl]);
-    }
+    const urlList: any = [];
+    newFileList.map((item: any) => {
+      if (item?.uid !== item?.url) {
+        if (item?.status === 'done' || item?.status === 'uploading') {
+          // 去除url内的param
+          let newUrl = url.substring(0, url.lastIndexOf('?'));
+          // 将url的host替换为CDN域名
+          newUrl = newUrl.replace(/(https:\/\/|http:\/\/)(.*?)(\/.*)/, `$1${CDN}$3`);
+          urlList.push(newUrl);
+        }
+      } else {
+        urlList.push(item?.url);
+      }
+    });
+    onChange?.(urlList);
   };
-
-  // 打印图片在线 url
-  console.log('callbackUrl: ', callbackUrl);
 
   const beforeUpload = async (file: any): Promise<any> => {
     const { name, type } = file;
@@ -72,9 +88,9 @@ const UploadImagesFormItem = ({ value = [], onChange }: any) => {
 
   const handleRequest = async (options: any) => {
     const { onSuccess, onError, file } = options;
-    const binaryString: string = await new Promise((resolve, reject) => {
+    const arrayBuffer: string = await new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.readAsBinaryString(file);
+      reader.readAsArrayBuffer(file);
       reader.onload = () => resolve(reader.result as string);
       reader.onerror = (error) => reject(error);
     });
@@ -87,7 +103,7 @@ const UploadImagesFormItem = ({ value = [], onChange }: any) => {
     try {
       const res = await request(url, {
         method: 'PUT',
-        data: binaryString,
+        data: arrayBuffer,
         ...config,
       });
       onSuccess(res);

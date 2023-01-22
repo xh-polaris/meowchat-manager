@@ -1,4 +1,3 @@
-import UploadImagesFormItem from '@/components/UploadImagesFormItem';
 import { PageContainer } from '@ant-design/pro-components';
 import { Card } from 'antd';
 import React from 'react';
@@ -34,7 +33,6 @@ const Welcome: React.FC = () => {
           </div>
         </div>
       </Card>
-      <UploadImagesFormItem />
     </PageContainer>
   );
 };

@@ -16,7 +16,6 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
       ...value,
       id: '',
       communityId: '637ce159b15d9764c31f9c84',
-      avatars: ['https://static.xhpolaris.com/cat_world.jpg'],
     };
     const success = await createCatInfo(data);
     if (success) {
@@ -157,7 +156,7 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
           },
         ]}
       >
-        <UploadImagesFormItem></UploadImagesFormItem>
+        <UploadImagesFormItem />
       </Form.Item>
     </DrawerForm>
   );

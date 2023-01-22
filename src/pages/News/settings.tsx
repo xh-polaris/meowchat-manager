@@ -1,5 +1,6 @@
+import PhotoAlbum from '@/components/ PhotoAlbum';
 import { ProColumns } from '@ant-design/pro-components';
-import { Avatar, Image, Space } from 'antd';
+import { Avatar, Space } from 'antd';
 
 const MAX_ORDER = 10;
 
@@ -33,8 +34,13 @@ export const PHOTOS: ProColumns = {
   title: '图片',
   dataIndex: 'photos',
   hideInSearch: true,
-  width: 120,
-  render: (_) => <Image src={_?.[0]} />,
+  width: 200,
+  render: (_: any) => (
+    <Space>
+      <PhotoAlbum photos={_} />
+      <div>共 {_?.length ?? ''} 张</div>
+    </Space>
+  ),
 };
 
 export const NEWS_COLUMNS = [
