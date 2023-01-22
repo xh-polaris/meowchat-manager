@@ -1,3 +1,4 @@
+import UploadImagesFormItem from '@/components/UploadImagesFormItem';
 import { editCatInfo, fetchCurrentCatInfo } from '@/services/cat';
 import {
   DrawerForm,
@@ -18,7 +19,6 @@ const Edit = ({ open, setEditVisible, actionRef, currentCat }: any) => {
       ...value,
       id: currentCat,
       communityId: '637ce159b15d9764c31f9c84',
-      avatars: ['https://static.xhpolaris.com/cat_world.jpg'],
     };
     const success = await editCatInfo(data);
     if (success) {
@@ -159,6 +159,18 @@ const Edit = ({ open, setEditVisible, actionRef, currentCat }: any) => {
           },
         ]}
       />
+      <Form.Item
+        name="avatars"
+        label="照片"
+        rules={[
+          {
+            required: true,
+            message: '此条必填',
+          },
+        ]}
+      >
+        <UploadImagesFormItem />
+      </Form.Item>
     </DrawerForm>
   );
 };

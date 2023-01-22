@@ -1,5 +1,7 @@
+import UploadImagesFormItem from '@/components/UploadImagesFormItem';
 import { createNewInfo } from '@/services/news';
 import { DrawerForm, ProFormText, ProFormTextArea } from '@ant-design/pro-components';
+import { Form } from 'antd';
 
 const Create = ({ open, setCreateVisible, actionRef }: any) => {
   const handleCreate = async (value: any) => {
@@ -7,7 +9,6 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
       ...value,
       id: '',
       communityId: '637ce159b15d9764c31f9c84',
-      photos: ['https://static.xhpolaris.com/cat_world.jpg'],
     };
     const success = await createNewInfo(data);
     if (success) {
@@ -49,6 +50,18 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
           },
         ]}
       />
+      <Form.Item
+        name="photos"
+        label="图片"
+        rules={[
+          {
+            required: true,
+            message: '此条必填',
+          },
+        ]}
+      >
+        <UploadImagesFormItem />
+      </Form.Item>
     </DrawerForm>
   );
 };

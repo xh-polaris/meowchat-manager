@@ -1,3 +1,4 @@
+import UploadImagesFormItem from '@/components/UploadImagesFormItem';
 import { editNewInfo, fetchCurrentNewInfo } from '@/services/news';
 import { DrawerForm, ProFormText, ProFormTextArea } from '@ant-design/pro-components';
 import { Form } from 'antd';
@@ -11,7 +12,6 @@ const Edit = ({ open, setEditVisible, actionRef, currentNew }: any) => {
       ...value,
       id: currentNew,
       communityId: '637ce159b15d9764c31f9c84',
-      photos: ['https://static.xhpolaris.com/cat_world.jpg'],
     };
     const success = await editNewInfo(data);
     if (success) {
@@ -63,6 +63,18 @@ const Edit = ({ open, setEditVisible, actionRef, currentNew }: any) => {
           },
         ]}
       />
+      <Form.Item
+        name="photos"
+        label="图片"
+        rules={[
+          {
+            required: true,
+            message: '此条必填',
+          },
+        ]}
+      >
+        <UploadImagesFormItem />
+      </Form.Item>
     </DrawerForm>
   );
 };
