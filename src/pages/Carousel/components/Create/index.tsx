@@ -1,6 +1,6 @@
 import UploadImagesFormItem from '@/components/UploadImagesFormItem';
-import { createNewInfo } from '@/services/news';
-import { DrawerForm, ProFormText, ProFormTextArea } from '@ant-design/pro-components';
+import { createCarousel } from '@/services/carousel';
+import { DrawerForm, ProFormText } from '@ant-design/pro-components';
 import { Form } from 'antd';
 
 const Create = ({ open, setCreateVisible, actionRef }: any) => {
@@ -9,8 +9,9 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
       ...value,
       id: '',
       communityId: '637ce159b15d9764c31f9c84',
+      imageUrl: value?.imageUrl?.[0],
     };
-    const success = await createNewInfo(data);
+    const success = await createCarousel(data);
     if (success) {
       setCreateVisible(false);
       if (actionRef.current) {
@@ -21,7 +22,7 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
 
   return (
     <DrawerForm
-      title="新增动态"
+      title="新增轮播图"
       width="600px"
       open={open}
       onOpenChange={setCreateVisible}
@@ -37,21 +38,21 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
             message: '此条必填',
           },
         ]}
-        name="title"
-        label="标题"
+        name="linkUrl"
+        label="跳转链接"
       />
-      <ProFormTextArea
-        name="text"
-        label="内容"
+      <ProFormText
         rules={[
           {
             required: true,
             message: '此条必填',
           },
         ]}
+        name="type"
+        label="公示类型"
       />
       <Form.Item
-        name="photos"
+        name="imageUrl"
         label="图片"
         rules={[
           {
@@ -60,7 +61,7 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
           },
         ]}
       >
-        <UploadImagesFormItem limit={9} />
+        <UploadImagesFormItem limit={1} />
       </Form.Item>
     </DrawerForm>
   );

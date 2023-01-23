@@ -156,7 +156,7 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
           },
         ]}
       >
-        <UploadImagesFormItem />
+        <UploadImagesFormItem limit={9} />
       </Form.Item>
     </DrawerForm>
   );

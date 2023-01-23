@@ -1,17 +1,6 @@
 import type { ProColumns } from '@ant-design/pro-table';
 import { formatTime } from '@/scripts/utils';
-
-export const CREATE_BY: ProColumns = {
-  title: '创建人',
-  dataIndex: 'create_by',
-  hideInSearch: true,
-};
-
-export const UPDATE_BY: ProColumns = {
-  title: '更新人',
-  dataIndex: 'update_by',
-  hideInSearch: true,
-};
+import { Avatar, Space } from 'antd';
 
 export const OPERATIONS: ProColumns = {
   title: '操作',
@@ -24,20 +13,23 @@ export const NAME: ProColumns = {
   dataIndex: 'name',
 };
 
-export const CONTENT_COLLECT: ProColumns = {
-  title: '发布内容',
-  dataIndex: 'content_collect',
+export const CREATE_AT: ProColumns = {
+  title: '创建时间',
+  dataIndex: 'createAt',
   hideInSearch: true,
-};
-
-export const DATE_AT: ProColumns = {
-  title: '日期',
-  dataIndex: 'date_at',
-  hideInSearch: true,
+  width: 100,
   renderText: (text) => formatTime(text),
 };
 
-export const CAT_STATUS: ProColumns = {
-  title: '猫咪状态',
-  dataIndex: 'cat_status',
+export const USER: ProColumns = {
+  title: '发布者',
+  dataIndex: 'user',
+  hideInSearch: true,
+  width: 120,
+  render: (_: any) => (
+    <Space>
+      <Avatar src={_?.avatarUrl} size={30}></Avatar>
+      {_?.nickname}
+    </Space>
+  ),
 };
