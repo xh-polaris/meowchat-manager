@@ -45,22 +45,28 @@ export default [
   //   component: './TableList',
   // },
   {
-    name: '猫咪信息管理',
+    name: '猫咪管理',
     icon: 'profile',
     path: '/cat-message',
     component: './CatMessage',
   },
   {
-    name: '动态信息管理',
+    name: '动态管理',
     icon: 'shake',
     path: '/news',
     component: './News',
   },
   {
     name: '轮播图管理',
-    icon: 'pictureOutlined',
+    icon: 'picture',
     path: '/carousel',
     component: './Carousel',
+  },
+  {
+    name: '公告管理',
+    icon: 'notification',
+    path: '/notice',
+    component: './Notice',
   },
   // {
   //   name: '联系方式管理',

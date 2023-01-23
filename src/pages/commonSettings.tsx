@@ -18,7 +18,7 @@ export const CREATE_AT: ProColumns = {
   dataIndex: 'createAt',
   hideInSearch: true,
   width: 100,
-  renderText: (text) => formatTime(text),
+  renderText: (text) => <>{formatTime(text)}</>,
 };
 
 export const USER: ProColumns = {
