@@ -1,4 +1,4 @@
-import PhotoAlbum from '@/components/ PhotoAlbum';
+import PhotoAlbum from '@/components/PhotoAlbum';
 import { formatTime } from '@/scripts/utils';
 import { fetchCurrentNewInfo } from '@/services/news';
 import { Avatar, Button, Descriptions, Modal, Space } from 'antd';

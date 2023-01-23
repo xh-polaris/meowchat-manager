@@ -17,7 +17,7 @@ const getBase64 = (file: RcFile): Promise<string> => {
   });
 };
 
-const UploadImagesFormItem = ({ value = [], onChange }: any) => {
+const UploadImagesFormItem = ({ value = [], onChange, limit = 1 }: any) => {
   const [previewOpen, setPreviewOpen] = useState<boolean>(false);
   const [previewImage, setPreviewImage] = useState<string>('');
   const [previewTitle, setPreviewTitle] = useState<string>('');
@@ -131,7 +131,7 @@ const UploadImagesFormItem = ({ value = [], onChange }: any) => {
         method="PUT"
         customRequest={handleRequest}
       >
-        {fileList.length >= 9 ? null : uploadButton}
+        {fileList.length >= limit ? null : uploadButton}
       </Upload>
       <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
         <img alt="example" style={{ width: '100%' }} src={previewImage} />

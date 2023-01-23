@@ -1,4 +1,4 @@
-import PhotoAlbum from '@/components/ PhotoAlbum';
+import PhotoAlbum from '@/components/PhotoAlbum';
 import { fetchCurrentCatInfo } from '@/services/cat';
 import { Button, Descriptions, Modal, Space } from 'antd';
 import { useEffect, useState } from 'react';

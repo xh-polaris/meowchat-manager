@@ -57,11 +57,17 @@ export default [
     component: './News',
   },
   {
-    name: '联系方式管理',
-    icon: 'mail',
-    path: '/contact-information',
-    component: './ContactInformation',
+    name: '轮播图管理',
+    icon: 'pictureOutlined',
+    path: '/carousel',
+    component: './Carousel',
   },
+  // {
+  //   name: '联系方式管理',
+  //   icon: 'mail',
+  //   path: '/contact-information',
+  //   component: './ContactInformation',
+  // },
   {
     path: '/',
     redirect: '/welcome',

@@ -169,7 +169,7 @@ const Edit = ({ open, setEditVisible, actionRef, currentCat }: any) => {
           },
         ]}
       >
-        <UploadImagesFormItem />
+        <UploadImagesFormItem limit={9} />
       </Form.Item>
     </DrawerForm>
   );

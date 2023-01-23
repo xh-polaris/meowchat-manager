@@ -1,21 +1,9 @@
-import PhotoAlbum from '@/components/ PhotoAlbum';
+import PhotoAlbum from '@/components/PhotoAlbum';
 import { ProColumns } from '@ant-design/pro-components';
-import { Avatar, Space } from 'antd';
+import { Space } from 'antd';
+import { USER } from '../commonSettings';
 
 const MAX_ORDER = 10;
-
-export const USER: ProColumns = {
-  title: '发布者',
-  dataIndex: 'user',
-  hideInSearch: true,
-  width: 120,
-  render: (_: any) => (
-    <Space>
-      <Avatar src={_?.avatarUrl} size={30}></Avatar>
-      {_?.nickname}
-    </Space>
-  ),
-};
 
 export const TITLE: ProColumns = {
   title: '标题',
