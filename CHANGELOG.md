@@ -1,3 +1,12 @@
+## [1.2.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.1.0...v1.2.0) (2023-01-23)
+
+### ✨ Features | 新功能
+
+- 公告信息增改 ([#10](https://github.com/xh-polaris/meowchat-manager/issues/10)) ([825aeec](https://github.com/xh-polaris/meowchat-manager/commit/825aeecfd7e4abd2f7184af53755d831c62cfbc0))
+- 轮播图信息增删改 ([#9](https://github.com/xh-polaris/meowchat-manager/issues/9)) ([22fcbdc](https://github.com/xh-polaris/meowchat-manager/commit/22fcbdc6ddeab45532cae44037ffaee18a9fe559))
+- 新增上传图片功能,优化图片展示 ([#8](https://github.com/xh-polaris/meowchat-manager/issues/8)) ([6025bd4](https://github.com/xh-polaris/meowchat-manager/commit/6025bd43fbe7d5255cbb7c32e6d62a157372570b))
+- 新增上传图片组件 ([#7](https://github.com/xh-polaris/meowchat-manager/issues/7)) ([7c3412e](https://github.com/xh-polaris/meowchat-manager/commit/7c3412e717e391c46e78fb013f0597041787e233))
+
 ## [1.1.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.0.0...v1.1.0) (2023-01-17)
 
 ### ✨ Features | 新功能
