@@ -80,6 +80,7 @@ const Notice: React.FC = () => {
         columns={columns}
         pagination={{
           pageSize: 20,
+          showSizeChanger: false,
         }}
       />
       <Create open={createVisible} setCreateVisible={setCreateVisible} actionRef={actionRef} />

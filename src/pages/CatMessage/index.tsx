@@ -51,6 +51,7 @@ const CatMessage: React.FC = () => {
     ...CAT_MESSAGE_COLUMNS,
     {
       ...OPERATIONS,
+      width: 150,
       render: (_, record) => (
         <>
           <Button
@@ -122,6 +123,7 @@ const CatMessage: React.FC = () => {
         }}
         pagination={{
           pageSize: 10,
+          showSizeChanger: false,
         }}
       />
       <View open={viewVisible} setViewVisible={setViewVisible} currentCat={currentCat} />

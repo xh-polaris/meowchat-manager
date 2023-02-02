@@ -118,6 +118,7 @@ const News = () => {
         }}
         pagination={{
           pageSize: 10,
+          showSizeChanger: false,
         }}
       />
       <View open={viewVisible} setViewVisible={setViewVisible} currentNew={currentNew} />
