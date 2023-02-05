@@ -1,4 +1,3 @@
-import { CREATE_AT, USER } from '@/pages/commonSettings';
 import { ProColumns } from '@ant-design/pro-components';
 import { Image } from 'antd';
 
@@ -33,10 +32,6 @@ export const TYPE: ProColumns = {
 
 export const CAROUSEL_COLUMNS = [
   {
-    order: MAX_ORDER + 10,
-    ...USER,
-  },
-  {
     order: MAX_ORDER + 8,
     ...IMAGE_URL,
   },
@@ -47,9 +42,5 @@ export const CAROUSEL_COLUMNS = [
   {
     order: MAX_ORDER + 4,
     ...TYPE,
-  },
-  {
-    order: MAX_ORDER + 2,
-    ...CREATE_AT,
   },
 ];

@@ -1,21 +1,24 @@
-import { fetchNoticeList } from '@/services/notice';
+import { fetchMomentList } from '@/services/moments';
 import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
-import { PageContainer, ProTable } from '@ant-design/pro-components';
+import { FooterToolbar, PageContainer, ProTable } from '@ant-design/pro-components';
 import { Button } from 'antd';
 import { useRef, useState } from 'react';
 import { OPERATIONS } from '../commonSettings';
 import Create from './components/Create';
 import Delete from './components/Delete';
 import Edit from './components/Edit';
-import { NOTICE_COLUMNS } from './settings';
+import View from './components/View';
+import { MOMENTS_COLUMNS } from './settings';
 
-const Notice: React.FC = () => {
+const Moments = () => {
   const actionRef = useRef<ActionType>();
-  const [currentNotice, setCurrentNotice] = useState({});
+  const [selectedRowsState, setSelectedRows] = useState<API.RuleListItem[]>([]);
+  const [currentMoment, setCurrentMoment] = useState('');
+  const [viewVisible, setViewVisible] = useState(false);
   const [createVisible, setCreateVisible] = useState(false);
-  const [editVisible, setEditVisible] = useState(false);
   const [deleteVisible, setDeleteVisible] = useState(false);
+  const [editVisible, setEditVisible] = useState(false);
 
   const requestTable = async (
     params: any & {
@@ -23,24 +26,24 @@ const Notice: React.FC = () => {
       current: number;
     },
   ) => {
-    const msg = await fetchNoticeList({
+    const msg = await fetchMomentList({
       ...params,
       current: params.current,
       pageSize: params.pageSize,
       communityId: '637ce159b15d9764c31f9c84',
     });
     return {
-      data: msg.notices,
+      data: msg.moments,
       success: true,
-      total: msg.notices.length,
+      total: msg.total,
     };
   };
 
   const columns: ProColumns[] = [
-    ...NOTICE_COLUMNS,
+    ...MOMENTS_COLUMNS,
     {
       ...OPERATIONS,
-      width: 100,
+      width: 200,
       render: (_, record) => (
         <>
           <Button
@@ -48,7 +51,7 @@ const Notice: React.FC = () => {
             size="small"
             key="edit"
             onClick={() => {
-              setCurrentNotice(record);
+              setCurrentMoment(record.id);
               setEditVisible(true);
             }}
           >
@@ -57,10 +60,21 @@ const Notice: React.FC = () => {
           <Button
             type="link"
             size="small"
+            key="view"
+            onClick={() => {
+              setCurrentMoment(record.id);
+              setViewVisible(true);
+            }}
+          >
+            查看
+          </Button>
+          <Button
+            type="link"
+            size="small"
             danger
             key="delete"
             onClick={() => {
-              setCurrentNotice(record.id);
+              setCurrentMoment(record.id);
               setDeleteVisible(true);
             }}
           >
@@ -74,10 +88,12 @@ const Notice: React.FC = () => {
   return (
     <PageContainer>
       <ProTable<API.RuleListItem, API.PageParams>
-        headerTitle={'公告信息'}
+        headerTitle={'动态信息'}
         actionRef={actionRef}
         rowKey="id"
-        search={false}
+        search={{
+          labelWidth: 120,
+        }}
         toolBarRender={() => [
           <Button
             type="primary"
@@ -92,26 +108,44 @@ const Notice: React.FC = () => {
         ]}
         request={requestTable}
         columns={columns}
+        rowSelection={{
+          onChange: (_, selectedRows) => {
+            setSelectedRows(selectedRows);
+          },
+        }}
         pagination={{
-          pageSize: 20,
+          pageSize: 10,
           showSizeChanger: false,
         }}
       />
+      <View open={viewVisible} setViewVisible={setViewVisible} currentMoment={currentMoment} />
       <Create open={createVisible} setCreateVisible={setCreateVisible} actionRef={actionRef} />
-      <Edit
-        open={editVisible}
-        setEditVisible={setEditVisible}
-        actionRef={actionRef}
-        currentNotice={currentNotice}
-      />
       <Delete
         open={deleteVisible}
         setDeleteVisible={setDeleteVisible}
         actionRef={actionRef}
-        currentNotice={currentNotice}
+        currentMoment={currentMoment}
       />
+      <Edit
+        open={editVisible}
+        setEditVisible={setEditVisible}
+        actionRef={actionRef}
+        currentMoment={currentMoment}
+      />
+      {selectedRowsState?.length > 0 && (
+        <FooterToolbar
+          extra={
+            <div>
+              已选择
+              <a style={{ fontWeight: 600 }}>{selectedRowsState.length}</a> 项
+            </div>
+          }
+        >
+          <Button type="primary">批量审批</Button>
+        </FooterToolbar>
+      )}
     </PageContainer>
   );
 };
 
-export default Notice;
+export default Moments;

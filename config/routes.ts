@@ -47,14 +47,14 @@ export default [
   {
     name: '猫咪管理',
     icon: 'profile',
-    path: '/cat-message',
-    component: './CatMessage',
+    path: '/cat',
+    component: './Cat',
   },
   {
     name: '动态管理',
     icon: 'shake',
-    path: '/news',
-    component: './News',
+    path: '/moments',
+    component: './Moments',
   },
   {
     name: '轮播图管理',
@@ -68,12 +68,12 @@ export default [
     path: '/notice',
     component: './Notice',
   },
-  // {
-  //   name: '联系方式管理',
-  //   icon: 'mail',
-  //   path: '/contact-information',
-  //   component: './ContactInformation',
-  // },
+  {
+    name: '联系人管理',
+    icon: 'mail',
+    path: '/contact',
+    component: './Contact',
+  },
   {
     path: '/',
     redirect: '/welcome',

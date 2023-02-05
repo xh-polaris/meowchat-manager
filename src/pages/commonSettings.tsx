@@ -33,3 +33,10 @@ export const USER: ProColumns = {
     </Space>
   ),
 };
+
+export const AVATAR_IMG: ProColumns = {
+  title: '缩略图',
+  dataIndex: 'avatarUrl',
+  hideInSearch: true,
+  render: (_) => <Avatar src={_} size={40}></Avatar>,
+};

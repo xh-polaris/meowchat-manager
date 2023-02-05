@@ -1,4 +1,4 @@
-import { fetchNoticeList } from '@/services/notice';
+import { fetchContactList } from '@/services/contact';
 import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
@@ -8,14 +8,14 @@ import { OPERATIONS } from '../commonSettings';
 import Create from './components/Create';
 import Delete from './components/Delete';
 import Edit from './components/Edit';
-import { NOTICE_COLUMNS } from './settings';
+import { CONTACT_COLUMNS } from './settings';
 
-const Notice: React.FC = () => {
+const Contact = () => {
   const actionRef = useRef<ActionType>();
-  const [currentNotice, setCurrentNotice] = useState({});
+  const [currentContact, setCurrentContact] = useState('');
   const [createVisible, setCreateVisible] = useState(false);
-  const [editVisible, setEditVisible] = useState(false);
   const [deleteVisible, setDeleteVisible] = useState(false);
+  const [editVisible, setEditVisible] = useState(false);
 
   const requestTable = async (
     params: any & {
@@ -23,24 +23,24 @@ const Notice: React.FC = () => {
       current: number;
     },
   ) => {
-    const msg = await fetchNoticeList({
+    const msg = await fetchContactList({
       ...params,
       current: params.current,
       pageSize: params.pageSize,
       communityId: '637ce159b15d9764c31f9c84',
     });
     return {
-      data: msg.notices,
+      data: msg.admins,
       success: true,
-      total: msg.notices.length,
+      total: msg.admins.length,
     };
   };
 
   const columns: ProColumns[] = [
-    ...NOTICE_COLUMNS,
+    ...CONTACT_COLUMNS,
     {
       ...OPERATIONS,
-      width: 100,
+      width: 150,
       render: (_, record) => (
         <>
           <Button
@@ -48,7 +48,7 @@ const Notice: React.FC = () => {
             size="small"
             key="edit"
             onClick={() => {
-              setCurrentNotice(record);
+              setCurrentContact(record);
               setEditVisible(true);
             }}
           >
@@ -60,7 +60,7 @@ const Notice: React.FC = () => {
             danger
             key="delete"
             onClick={() => {
-              setCurrentNotice(record.id);
+              setCurrentContact(record);
               setDeleteVisible(true);
             }}
           >
@@ -74,7 +74,7 @@ const Notice: React.FC = () => {
   return (
     <PageContainer>
       <ProTable<API.RuleListItem, API.PageParams>
-        headerTitle={'公告信息'}
+        headerTitle={'联系人信息'}
         actionRef={actionRef}
         rowKey="id"
         search={false}
@@ -93,25 +93,25 @@ const Notice: React.FC = () => {
         request={requestTable}
         columns={columns}
         pagination={{
-          pageSize: 20,
+          pageSize: 10,
           showSizeChanger: false,
         }}
       />
       <Create open={createVisible} setCreateVisible={setCreateVisible} actionRef={actionRef} />
-      <Edit
-        open={editVisible}
-        setEditVisible={setEditVisible}
-        actionRef={actionRef}
-        currentNotice={currentNotice}
-      />
       <Delete
         open={deleteVisible}
         setDeleteVisible={setDeleteVisible}
         actionRef={actionRef}
-        currentNotice={currentNotice}
+        currentContact={currentContact}
+      />
+      <Edit
+        open={editVisible}
+        setEditVisible={setEditVisible}
+        actionRef={actionRef}
+        currentContact={currentContact}
       />
     </PageContainer>
   );
 };
 
-export default Notice;
+export default Contact;

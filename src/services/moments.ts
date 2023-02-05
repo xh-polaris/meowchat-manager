@@ -3,11 +3,11 @@ import { request } from '@umijs/max';
 const DEFAULT_URL = 'https://meowchat.xhpolaris.com';
 
 /**
- * 获取猫咪信息列表
+ * 获取动态信息列表
  * @param params
  * @returns
  */
-export const fetchCatList = async (
+export const fetchMomentList = async (
   params: {
     current?: number;
     pageSize?: number;
@@ -15,7 +15,7 @@ export const fetchCatList = async (
   },
   options?: { [key: string]: any },
 ) =>
-  request(`${DEFAULT_URL}/collection/get_cat_previews`, {
+  request(`${DEFAULT_URL}/moment/get_moment_previews`, {
     method: 'GET',
     params: {
       ...params,
@@ -25,17 +25,17 @@ export const fetchCatList = async (
   });
 
 /**
- * 获取猫咪具体信息
+ * 获取动态具体信息
  * @param params
  * @returns
  */
-export const fetchCurrentCat = async (
+export const fetchCurrentMoment = async (
   params: {
-    catId: string;
+    momentId: string;
   },
   options?: { [key: string]: any },
 ) => {
-  return request(`${DEFAULT_URL}/collection/get_cat_detail`, {
+  return request(`${DEFAULT_URL}/moment/get_moment_detail`, {
     method: 'GET',
     params: {
       ...params,
@@ -45,12 +45,12 @@ export const fetchCurrentCat = async (
 };
 
 /**
- * 新增猫咪
+ * 新增动态
  * @param params
  * @returns
  */
-export const createCat = async (data: any, options?: { [key: string]: any }) => {
-  return request(`${DEFAULT_URL}/collection/new_cat`, {
+export const createMoment = async (data: any, options?: { [key: string]: any }) => {
+  return request(`${DEFAULT_URL}/moment/new_moment`, {
     method: 'POST',
     data: {
       ...data,
@@ -60,12 +60,12 @@ export const createCat = async (data: any, options?: { [key: string]: any }) => 
 };
 
 /**
- * 删除猫咪
+ * 删除动态
  * @param params
  * @returns
  */
-export const deleteCat = async (data: any, options?: { [key: string]: any }) => {
-  return request(`${DEFAULT_URL}/collection/delete_cat`, {
+export const deleteMoment = async (data: any, options?: { [key: string]: any }) => {
+  return request(`${DEFAULT_URL}/moment/delete_moment`, {
     method: 'POST',
     data: {
       ...data,
@@ -75,12 +75,12 @@ export const deleteCat = async (data: any, options?: { [key: string]: any }) => 
 };
 
 /**
- * 编辑猫咪
+ * 编辑动态
  * @param params
  * @returns
  */
-export const editCat = async (data: any, options?: { [key: string]: any }) => {
-  return request(`${DEFAULT_URL}/collection/new_cat`, {
+export const editMoment = async (data: any, options?: { [key: string]: any }) => {
+  return request(`${DEFAULT_URL}/moment/new_moment`, {
     method: 'POST',
     data: {
       ...data,
