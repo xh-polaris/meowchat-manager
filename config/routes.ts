@@ -63,6 +63,12 @@ export default [
     component: './Carousel',
   },
   {
+    name: '社区管理',
+    icon: 'bank',
+    path: '/community',
+    component: './Community',
+  },
+  {
     name: '公告管理',
     icon: 'notification',
     path: '/notice',
