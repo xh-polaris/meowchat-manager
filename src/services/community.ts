@@ -30,19 +30,21 @@ export const fetchCommunityList = async (
  */
 export const createOrUpdateCommunity = async (
   data: {
-    id: string;
+    id?: string;
     name: string;
     parentId?: string;
   },
   options?: Record<string, any>,
-) =>
-  request(`${DEFAULT_URL}/community/new_community`, {
+) => {
+  console.log('here');
+  return request(`${DEFAULT_URL}/community/new_community`, {
     method: 'POST',
     data: {
       ...data,
     },
     ...(options || {}),
   });
+};
 
 /**
  * 删除社区

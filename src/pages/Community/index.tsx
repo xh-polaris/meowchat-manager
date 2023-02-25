@@ -1,13 +1,22 @@
-// import type { ActionType } from '@ant-design/pro-components';
+import type { ActionType } from '@ant-design/pro-components';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { fetchCommunityList } from '@/services/community';
 import { Table, Button } from 'antd';
-// import { useRef, useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-table';
 import { COMMUNITY_COLUMNS } from '@/pages/Community/settings';
 import { OPERATIONS } from '@/pages/commonSettings';
+import Create from './components/Create';
+import Delete from './components/Delete';
+import Edit from './components/Edit';
+import { useRef, useState } from 'react';
 const Community: React.FC = () => {
+  const actionRef = useRef<ActionType>();
+  const [currentUniversity, setCurrentUniversity] = useState({});
+  const [editVisible, setEditVisible] = useState(false);
+  const [createVisible, setCreateVisible] = useState(false);
+  const [deleteVisible, setDeleteVisible] = useState(false);
+
   const expandedRowRender = (record: object) => {
     console.log('record', record);
     const columns = [
@@ -18,17 +27,18 @@ const Community: React.FC = () => {
       },
       {
         ...OPERATIONS,
-        width: 400,
+        width: '40%',
         render: () => {
           return <>(开发中)</>;
         },
       },
     ];
-    const data = [];
+    const data: any[] = [];
 
     // @ts-ignore
     record.campuses.map((item) => data.push(item));
 
+    // @ts-ignore
     return <Table columns={columns} dataSource={data} pagination={false} />;
   };
 
@@ -36,16 +46,39 @@ const Community: React.FC = () => {
     ...COMMUNITY_COLUMNS,
     {
       ...OPERATIONS,
-      width: 400,
-      render: () => {
+      width: '40%',
+      render: (_, record) => {
         // (_, record) 这里record返回的就是每个university数据，一个record是一个university
-        return <>(开发中)</>;
+        return (
+          <>
+            <Button
+              type="link"
+              size="small"
+              key="edit"
+              onClick={() => {
+                setCurrentUniversity(record);
+                setEditVisible(true);
+              }}
+            >
+              编辑
+            </Button>
+            <Button
+              type="link"
+              size="small"
+              danger
+              key="delete"
+              onClick={() => {
+                setCurrentUniversity(record);
+                setDeleteVisible(true);
+              }}
+            >
+              删除
+            </Button>
+          </>
+        );
       },
     },
   ];
-
-  // const actionRef = useRef<ActionType>();
-  // const [createVisible, setCreateVisible] = useState(false);
 
   const requestTable = async () => {
     const communityList: any[] = (await fetchCommunityList({})).communities;
@@ -90,7 +123,7 @@ const Community: React.FC = () => {
           expandedRowRender,
         }}
         headerTitle={'社区信息'}
-        // actionRef={actionRef}
+        actionRef={actionRef} //有这个才会在比如edit后刷新数据
         rowKey="id" //这里对应data那里的id
         search={false}
         toolBarRender={() => [
@@ -107,13 +140,24 @@ const Community: React.FC = () => {
         ]}
         request={requestTable}
         columns={columns}
-        // dataSource={data}
         pagination={{
           pageSize: 20,
           showSizeChanger: false,
         }}
       />
-      {/*<Create open={createVisible} setCreateVisible={setCreateVisible} actionRef={actionRef}/>*/}
+      <Create open={createVisible} setCreateVisible={setCreateVisible} actionRef={actionRef} />
+      <Edit
+        open={editVisible}
+        setEditVisible={setEditVisible}
+        actionRef={actionRef}
+        currentUniversity={currentUniversity}
+      />
+      <Delete
+        open={deleteVisible}
+        setDeleteVisible={setDeleteVisible}
+        actionRef={actionRef}
+        currentUniversity={currentUniversity}
+      />
     </PageContainer>
   );
 };
