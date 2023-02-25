@@ -1,22 +1,67 @@
-import type { ActionType } from '@ant-design/pro-components';
+// import type { ActionType } from '@ant-design/pro-components';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { fetchCommunityList } from '@/services/community';
-import { Table, Space, Button } from 'antd';
-import { useRef, useState } from 'react';
-import { fetchNoticeList } from '@/services/notice';
+import { Table, Button } from 'antd';
+// import { useRef, useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
-import Create from '@/pages/Notice/components/Create';
+import type { ProColumns } from '@ant-design/pro-table';
+import { COMMUNITY_COLUMNS } from '@/pages/Community/settings';
+import { OPERATIONS } from '@/pages/commonSettings';
 const Community: React.FC = () => {
-  fetchCommunityList({}).then((data) => {
-    const communityList: any[] = data.communities;
+  const expandedRowRender = (record: object) => {
+    console.log('record', record);
+    const columns = [
+      {
+        title: '校区',
+        dataIndex: 'campus',
+        key: 'campus',
+      },
+      {
+        ...OPERATIONS,
+        width: 400,
+        render: () => {
+          return <>(开发中)</>;
+        },
+      },
+    ];
+    const data = [];
+
+    // @ts-ignore
+    record.campuses.map((item) => data.push(item));
+
+    return <Table columns={columns} dataSource={data} pagination={false} />;
+  };
+
+  const columns: ProColumns[] = [
+    ...COMMUNITY_COLUMNS,
+    {
+      ...OPERATIONS,
+      width: 400,
+      render: () => {
+        // (_, record) 这里record返回的就是每个university数据，一个record是一个university
+        return <>(开发中)</>;
+      },
+    },
+  ];
+
+  // const actionRef = useRef<ActionType>();
+  // const [createVisible, setCreateVisible] = useState(false);
+
+  const requestTable = async () => {
+    const communityList: any[] = (await fetchCommunityList({})).communities;
     const universityList: any[] = [];
     const campusList: any[] = [];
     communityList.map((community) => {
       if (community.parentId) {
-        campusList.push(community);
+        campusList.push({
+          campus: community.name,
+          id: community.id,
+          parentId: community.parentId,
+        });
       } else {
         universityList.push({
-          ...community,
+          university: community.name,
+          id: community.id,
           campuses: [],
         });
       }
@@ -28,79 +73,13 @@ const Community: React.FC = () => {
           university.campuses.push(campus);
         });
     });
+
     console.log(universityList);
-  });
 
-  const expandedRowRender = () => {
-    const columns = [
-      {
-        title: '校区',
-        dataIndex: 'campus',
-        key: 'campus',
-      },
-      {
-        title: '操作',
-        dataIndex: 'operation',
-        key: 'operation',
-        render: () => (
-          <Space size="middle">
-            <a>编辑</a>
-          </Space>
-        ),
-      },
-    ];
-    const data = [];
-
-    for (let i = 0; i < 3; ++i) {
-      data.push({
-        key: i,
-        campus: '闵行校区',
-      });
-    }
-
-    return <Table columns={columns} dataSource={data} pagination={false} />;
-  };
-
-  const columns = [
-    {
-      title: '学校',
-      dataIndex: 'university',
-      key: 'university',
-    },
-    {
-      title: '操作',
-      key: 'operation',
-      render: () => <a>编辑</a>,
-    },
-  ];
-  const data = [];
-
-  for (let i = 0; i < 3; ++i) {
-    data.push({
-      key: Math.random(),
-      university: '华东师范大学',
-    });
-  }
-
-  const actionRef = useRef<ActionType>();
-  const [createVisible, setCreateVisible] = useState(false);
-
-  const requestTable = async (
-    params: any & {
-      pageSize: number;
-      current: number;
-    },
-  ) => {
-    const msg = await fetchNoticeList({
-      ...params,
-      current: params.current,
-      pageSize: params.pageSize,
-      communityId: '637ce159b15d9764c31f9c84',
-    });
     return {
-      data: msg.notices,
+      data: universityList,
       success: true,
-      total: msg.notices.length,
+      total: universityList.length,
     };
   };
 
@@ -111,8 +90,8 @@ const Community: React.FC = () => {
           expandedRowRender,
         }}
         headerTitle={'社区信息'}
-        actionRef={actionRef}
-        rowKey="key" //这里对应data那里 也可以换成id啥的
+        // actionRef={actionRef}
+        rowKey="id" //这里对应data那里的id
         search={false}
         toolBarRender={() => [
           <Button
@@ -128,19 +107,14 @@ const Community: React.FC = () => {
         ]}
         request={requestTable}
         columns={columns}
-        dataSource={data}
+        // dataSource={data}
         pagination={{
           pageSize: 20,
           showSizeChanger: false,
         }}
       />
-      <Create open={createVisible} setCreateVisible={setCreateVisible} actionRef={actionRef} />
+      {/*<Create open={createVisible} setCreateVisible={setCreateVisible} actionRef={actionRef}/>*/}
     </PageContainer>
   );
 };
 export default Community;
-
-// import React from 'react';
-// import 'antd/dist/antd.css';
-// import './index.css';
-// import { Badge, Space, Table } from 'antd';
