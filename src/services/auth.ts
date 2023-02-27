@@ -17,6 +17,18 @@ export async function currentUser(options?: { [key: string]: any }) {
 }
 
 /**
+ * 获取当前的用户权限
+ * @param params
+ * @returns
+ */
+export async function currentUserAccess(options?: { [key: string]: any }) {
+  return request(`${DEFAULT_URL}/role/get_user_roles`, {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/**
  * 登录接口
  * @param params
  * @returns

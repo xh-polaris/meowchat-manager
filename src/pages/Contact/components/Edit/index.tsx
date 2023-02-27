@@ -11,7 +11,7 @@ const Edit = ({ open, setEditVisible, actionRef, currentContact }: any) => {
     const data = {
       ...value,
       id: currentContact.id,
-      communityId: '637ce159b15d9764c31f9c84',
+      communityId: localStorage.getItem('communityId'),
     };
     const success = await editContact(data);
     if (success) {

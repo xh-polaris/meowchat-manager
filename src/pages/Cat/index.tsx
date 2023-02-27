@@ -1,7 +1,7 @@
 import { fetchCatList } from '@/services/cat';
 import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
-import { FooterToolbar, PageContainer, ProTable } from '@ant-design/pro-components';
+import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { Button } from 'antd';
 import { useRef, useState } from 'react';
 import { OPERATIONS } from '../commonSettings';
@@ -17,16 +17,12 @@ import { CAT_COLUMNS } from './settings';
 
 const Cat: React.FC = () => {
   const actionRef = useRef<ActionType>();
-  const [selectedRowsState, setSelectedRows] = useState<API.RuleListItem[]>([]);
+  // const [selectedRowsState, setSelectedRows] = useState<API.RuleListItem[]>([]);
   const [currentCat, setCurrentCat] = useState('');
   const [viewVisible, setViewVisible] = useState(false);
   const [createVisible, setCreateVisible] = useState(false);
   const [deleteVisible, setDeleteVisible] = useState(false);
   const [editVisible, setEditVisible] = useState(false);
-
-  const fetchCommunityInfo = () => {
-    return '637ce159b15d9764c31f9c84';
-  };
 
   const requestTable = async (
     params: any & {
@@ -38,7 +34,7 @@ const Cat: React.FC = () => {
       ...params,
       current: params.current,
       pageSize: params.pageSize,
-      communityId: fetchCommunityInfo(),
+      communityId: localStorage.getItem('communityId'),
     });
     return {
       data: msg.cats,
@@ -99,9 +95,7 @@ const Cat: React.FC = () => {
         headerTitle={'猫咪信息'}
         actionRef={actionRef}
         rowKey="id"
-        search={{
-          labelWidth: 120,
-        }}
+        search={false}
         toolBarRender={() => [
           <Button
             type="primary"
@@ -116,11 +110,11 @@ const Cat: React.FC = () => {
         ]}
         request={requestTable}
         columns={columns}
-        rowSelection={{
-          onChange: (_, selectedRows) => {
-            setSelectedRows(selectedRows);
-          },
-        }}
+        // rowSelection={{
+        //   onChange: (_, selectedRows) => {
+        //     setSelectedRows(selectedRows);
+        //   },
+        // }}
         pagination={{
           pageSize: 10,
           showSizeChanger: false,
@@ -140,7 +134,7 @@ const Cat: React.FC = () => {
         actionRef={actionRef}
         currentCat={currentCat}
       />
-      {selectedRowsState?.length > 0 && (
+      {/* {selectedRowsState?.length > 0 && (
         <FooterToolbar
           extra={
             <div>
@@ -150,18 +144,18 @@ const Cat: React.FC = () => {
           }
         >
           <Button
-            // onClick={async () => {
-            //   await handleRemove(selectedRowsState);
-            //   setSelectedRows([]);
-            //   actionRef.current?.reloadAndRest?.();
-            // }}
+            onClick={async () => {
+              await handleRemove(selectedRowsState);
+              setSelectedRows([]);
+              actionRef.current?.reloadAndRest?.();
+            }}
             type="primary"
             danger
           >
             批量删除
           </Button>
         </FooterToolbar>
-      )}
+      )} */}
     </PageContainer>
   );
 };

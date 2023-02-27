@@ -6,7 +6,7 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
     const data = {
       ...value,
       id: '',
-      communityId: '637ce159b15d9764c31f9c84',
+      communityId: localStorage.getItem('communityId'),
     };
     const success = await createNotice(data);
     if (success) {

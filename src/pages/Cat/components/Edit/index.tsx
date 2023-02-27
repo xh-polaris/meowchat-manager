@@ -18,7 +18,7 @@ const Edit = ({ open, setEditVisible, actionRef, currentCat }: any) => {
     const data = {
       ...value,
       id: currentCat,
-      communityId: '637ce159b15d9764c31f9c84',
+      communityId: localStorage.getItem('communityId'),
     };
     const success = await editCat(data);
     if (success) {

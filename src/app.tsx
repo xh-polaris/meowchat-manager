@@ -6,7 +6,11 @@ import type { RunTimeLayoutConfig } from '@umijs/max';
 import { history } from '@umijs/max';
 import defaultSettings from '../config/defaultSettings';
 import { errorConfig } from './requestErrorConfig';
-import { currentUser as queryCurrentUser } from './services/auth';
+import {
+  currentUser as queryCurrentUser,
+  currentUserAccess as queryCurrentUserAccess,
+} from './services/auth';
+import { fetchCommunityList } from './services/community';
 
 const loginPath = '/login';
 
@@ -24,7 +28,30 @@ export async function getInitialState(): Promise<{
       const msg = await queryCurrentUser({
         skipErrorHandler: true,
       });
-      return msg.user;
+      const userAccess = await queryCurrentUserAccess();
+      const roles = userAccess.roles[0];
+      if (roles.roleType === 'superAdmin') {
+        const communityList = (await fetchCommunityList({})).communities;
+        for (let i = communityList.length - 1; i >= 0; i--) {
+          const community = communityList[i];
+          if (
+            community.parentId === '' ||
+            community.parentId === undefined ||
+            community.parentId === null
+          ) {
+            continue;
+          }
+          localStorage.setItem('communityId', community.id);
+        }
+      } else {
+        localStorage.setItem('communityId', roles.communityId);
+      }
+      localStorage.setItem('access', roles.roleType);
+      const user = {
+        ...msg.user,
+        ...roles,
+      };
+      return user;
     } catch (error) {
       history.push(loginPath);
     }

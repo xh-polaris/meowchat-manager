@@ -21,29 +21,6 @@ export default [
     icon: 'smile',
     component: './Welcome',
   },
-  // {
-  //   path: '/admin',
-  //   name: 'admin',
-  //   icon: 'crown',
-  //   access: 'canAdmin',
-  //   routes: [
-  //     {
-  //       path: '/admin',
-  //       redirect: '/admin/sub-page',
-  //     },
-  //     {
-  //       path: '/admin/sub-page',
-  //       name: 'sub-page',
-  //       component: './Admin',
-  //     },
-  //   ],
-  // },
-  // {
-  //   name: 'list.table-list',
-  //   icon: 'table',
-  //   path: '/list',
-  //   component: './TableList',
-  // },
   {
     name: '猫咪管理',
     icon: 'profile',
@@ -63,12 +40,6 @@ export default [
     component: './Carousel',
   },
   {
-    name: '社区管理',
-    icon: 'bank',
-    path: '/community',
-    component: './Community',
-  },
-  {
     name: '公告管理',
     icon: 'notification',
     path: '/notice',
@@ -79,6 +50,42 @@ export default [
     icon: 'mail',
     path: '/contact',
     component: './Contact',
+  },
+  {
+    name: '超级管理员功能',
+    icon: 'crown',
+    path: 'super-admin',
+    access: 'canSuperAdmin',
+    routes: [
+      {
+        path: '/super-admin',
+        redirect: '/super-admin/community',
+      },
+      {
+        name: '社区管理',
+        icon: 'bank',
+        path: '/super-admin/community',
+        component: './SuperAdmin/Community',
+      },
+      {
+        name: '管理员管理',
+        icon: 'bank',
+        path: '/super-admin/admin',
+        component: './SuperAdmin/Community',
+      },
+      {
+        name: '社区管理员管理',
+        icon: 'bank',
+        path: '/super-admin/community-admin',
+        component: './SuperAdmin/Community',
+      },
+      {
+        name: '超级管理员管理',
+        icon: 'bank',
+        path: '/super-admin/super-admin',
+        component: './SuperAdmin/Community',
+      },
+    ],
   },
   {
     path: '/',

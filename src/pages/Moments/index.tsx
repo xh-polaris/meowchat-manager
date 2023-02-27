@@ -1,7 +1,7 @@
 import { fetchMomentList } from '@/services/moments';
 import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
-import { FooterToolbar, PageContainer, ProTable } from '@ant-design/pro-components';
+import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { Button } from 'antd';
 import { useRef, useState } from 'react';
 import { OPERATIONS } from '../commonSettings';
@@ -13,7 +13,7 @@ import { MOMENTS_COLUMNS } from './settings';
 
 const Moments = () => {
   const actionRef = useRef<ActionType>();
-  const [selectedRowsState, setSelectedRows] = useState<API.RuleListItem[]>([]);
+  // const [selectedRowsState, setSelectedRows] = useState<API.RuleListItem[]>([]);
   const [currentMoment, setCurrentMoment] = useState('');
   const [viewVisible, setViewVisible] = useState(false);
   const [createVisible, setCreateVisible] = useState(false);
@@ -30,7 +30,7 @@ const Moments = () => {
       ...params,
       current: params.current,
       pageSize: params.pageSize,
-      communityId: '637ce159b15d9764c31f9c84',
+      communityId: localStorage.getItem('communityId'),
     });
     return {
       data: msg.moments,
@@ -91,9 +91,7 @@ const Moments = () => {
         headerTitle={'动态信息'}
         actionRef={actionRef}
         rowKey="id"
-        search={{
-          labelWidth: 120,
-        }}
+        search={false}
         toolBarRender={() => [
           <Button
             type="primary"
@@ -108,11 +106,11 @@ const Moments = () => {
         ]}
         request={requestTable}
         columns={columns}
-        rowSelection={{
-          onChange: (_, selectedRows) => {
-            setSelectedRows(selectedRows);
-          },
-        }}
+        // rowSelection={{
+        //   onChange: (_, selectedRows) => {
+        //     setSelectedRows(selectedRows);
+        //   },
+        // }}
         pagination={{
           pageSize: 10,
           showSizeChanger: false,
@@ -132,7 +130,7 @@ const Moments = () => {
         actionRef={actionRef}
         currentMoment={currentMoment}
       />
-      {selectedRowsState?.length > 0 && (
+      {/* {selectedRowsState?.length > 0 && (
         <FooterToolbar
           extra={
             <div>
@@ -143,7 +141,7 @@ const Moments = () => {
         >
           <Button type="primary">批量审批</Button>
         </FooterToolbar>
-      )}
+      )} */}
     </PageContainer>
   );
 };

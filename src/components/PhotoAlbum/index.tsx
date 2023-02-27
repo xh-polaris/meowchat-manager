@@ -17,7 +17,7 @@ const PhotoAlbum = (props: any) => {
       <div style={{ display: 'none' }}>
         <Image.PreviewGroup preview={{ visible, onVisibleChange: (vis) => setVisible(vis) }}>
           {photos.map((photo: string) => (
-            <Image src={photo} />
+            <Image src={photo} key={photo} />
           ))}
         </Image.PreviewGroup>
       </div>

@@ -4,7 +4,7 @@ import { fetchCommunityList } from '@/services/community';
 import { Table, Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-table';
-import { COMMUNITY_COLUMNS } from '@/pages/Community/settings';
+import { COMMUNITY_COLUMNS } from '@/pages/SuperAdmin/Community/settings';
 import { OPERATIONS } from '@/pages/commonSettings';
 import Create from './components/Create';
 import Delete from './components/Delete';
@@ -18,7 +18,6 @@ const Community: React.FC = () => {
   const [deleteVisible, setDeleteVisible] = useState(false);
 
   const expandedRowRender = (record: object) => {
-    console.log('record', record);
     const columns = [
       {
         title: '校区',
@@ -106,8 +105,6 @@ const Community: React.FC = () => {
           university.campuses.push(campus);
         });
     });
-
-    console.log(universityList);
 
     return {
       data: universityList,

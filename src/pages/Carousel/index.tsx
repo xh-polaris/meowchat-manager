@@ -27,7 +27,7 @@ const Carousel: React.FC = () => {
       ...params,
       current: params.current,
       pageSize: params.pageSize,
-      communityId: '637ce159b15d9764c31f9c84',
+      communityId: localStorage.getItem('communityId'),
     });
     return {
       data: msg.news,
