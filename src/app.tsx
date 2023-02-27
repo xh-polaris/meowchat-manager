@@ -14,6 +14,44 @@ import { fetchCommunityList } from './services/community';
 
 const loginPath = '/login';
 
+function setDefaultCommunityId(communityList: any[]) {
+  for (let i = communityList.length - 1; i >= 0; i--) {
+    const community = communityList[i];
+    if (
+      community.parentId === '' ||
+      community.parentId === undefined ||
+      community.parentId === null
+    ) {
+      continue;
+    }
+    localStorage.setItem('communityId', community.id);
+  }
+}
+
+function arrayToTree(array: any[]) {
+  const result: any[] = [];
+  const map = {};
+
+  if (!Array.isArray(array)) {
+    return [];
+  }
+
+  array.forEach((item) => {
+    map[item.id] = item;
+  });
+
+  array.forEach((item) => {
+    const parent = map[item.parentId];
+    if (parent) {
+      (parent.children || (parent.children = [])).push(item);
+    } else {
+      result.push(item);
+    }
+  });
+
+  return result;
+}
+
 /**
  * @see  https://umijs.org/zh-CN/plugins/plugin-initial-state
  * */
@@ -30,23 +68,15 @@ export async function getInitialState(): Promise<{
       });
       const userAccess = await queryCurrentUserAccess();
       const roles = userAccess.roles[0];
+      const communityList = (await fetchCommunityList({})).communities;
       if (roles.roleType === 'superAdmin') {
-        const communityList = (await fetchCommunityList({})).communities;
-        for (let i = communityList.length - 1; i >= 0; i--) {
-          const community = communityList[i];
-          if (
-            community.parentId === '' ||
-            community.parentId === undefined ||
-            community.parentId === null
-          ) {
-            continue;
-          }
-          localStorage.setItem('communityId', community.id);
-        }
+        setDefaultCommunityId(communityList);
       } else {
         localStorage.setItem('communityId', roles.communityId);
       }
       localStorage.setItem('access', roles.roleType);
+      // console.log(arrayToTree(communityList));
+      localStorage.setItem('communityList', JSON.stringify(arrayToTree(communityList)));
       const user = {
         ...msg.user,
         ...roles,

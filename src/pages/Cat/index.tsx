@@ -1,3 +1,4 @@
+import CommunitySelector from '@/components/CommunitySelector';
 import { fetchCatList } from '@/services/cat';
 import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
@@ -89,8 +90,15 @@ const Cat: React.FC = () => {
     },
   ];
 
+  const access = localStorage.getItem('access');
+
   return (
     <PageContainer>
+      {access === 'superAdmin' || access === 'communityAdmin' ? (
+        <CommunitySelector actionRef={actionRef} />
+      ) : (
+        <></>
+      )}
       <ProTable<API.RuleListItem, API.PageParams>
         headerTitle={'猫咪信息'}
         actionRef={actionRef}

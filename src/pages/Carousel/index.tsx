@@ -1,3 +1,4 @@
+import CommunitySelector from '@/components/CommunitySelector';
 import { fetchCarouselList } from '@/services/carousel';
 import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
@@ -71,8 +72,15 @@ const Carousel: React.FC = () => {
     },
   ];
 
+  const access = localStorage.getItem('access');
+
   return (
     <PageContainer>
+      {access === 'superAdmin' || access === 'communityAdmin' ? (
+        <CommunitySelector actionRef={actionRef} />
+      ) : (
+        <></>
+      )}
       <ProTable<API.RuleListItem, API.PageParams>
         headerTitle={'轮播图信息'}
         actionRef={actionRef}

@@ -1,3 +1,4 @@
+import CommunitySelector from '@/components/CommunitySelector';
 import { fetchMomentList } from '@/services/moments';
 import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
@@ -85,8 +86,15 @@ const Moments = () => {
     },
   ];
 
+  const access = localStorage.getItem('access');
+
   return (
     <PageContainer>
+      {access === 'superAdmin' || access === 'communityAdmin' ? (
+        <CommunitySelector actionRef={actionRef} />
+      ) : (
+        <></>
+      )}
       <ProTable<API.RuleListItem, API.PageParams>
         headerTitle={'动态信息'}
         actionRef={actionRef}
