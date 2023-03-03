@@ -1,14 +1,7 @@
 import Footer from '@/components/Footer';
 import { login } from '@/services/auth';
-import {
-  LockOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
-import {
-  LoginForm,
-  ProFormCheckbox,
-  ProFormText,
-} from '@ant-design/pro-components';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { LoginForm, ProFormCheckbox, ProFormText } from '@ant-design/pro-components';
 import { history, useModel } from '@umijs/max';
 import { message, Tabs } from 'antd';
 import { flushSync } from 'react-dom';
@@ -77,11 +70,11 @@ const Login: React.FC = () => {
               size: 'large',
               prefix: <UserOutlined className={styles.prefixIcon} />,
             }}
-            placeholder={'用户名: test@test.com'}
+            placeholder={'用户名'}
             rules={[
               {
                 required: true,
-                message: "请输入用户名!",
+                message: '请输入用户名!',
               },
             ]}
           />
@@ -91,11 +84,11 @@ const Login: React.FC = () => {
               size: 'large',
               prefix: <LockOutlined className={styles.prefixIcon} />,
             }}
-            placeholder={'密码: demo'}
+            placeholder={'密码'}
             rules={[
               {
                 required: true,
-                message: "请输入密码！",
+                message: '请输入密码！',
               },
             ]}
           />
