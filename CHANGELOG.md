@@ -76,5 +76,5 @@
 
 ### 🐛 Bug Fixes | Bug 修复
 
-- 修复退出登录问题 ([#6](https://github.com/xh-polaris/meowchat-manager/issues/6)) ([220be3b](https://github.com/xh-polaris/meowchat-manager/commit/220be3b768e7d0f2c4e1d722f9cd4818cae1e789))
+- 修复退出登录的问题 ([#6](https://github.com/xh-polaris/meowchat-manager/issues/6)) ([220be3b](https://github.com/xh-polaris/meowchat-manager/commit/220be3b768e7d0f2c4e1d722f9cd4818cae1e789))
 - 修正表格总数显示 ([#5](https://github.com/xh-polaris/meowchat-manager/issues/5)) ([7ed7544](https://github.com/xh-polaris/meowchat-manager/commit/7ed75449b2165121465994b3d09734174dd8870a))
