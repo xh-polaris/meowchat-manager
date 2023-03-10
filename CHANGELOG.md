@@ -1,3 +1,9 @@
+### [1.5.1](https://github.com/xh-polaris/meowchat-manager/compare/v1.5.0...v1.5.1) (2023-03-10)
+
+### ✨ Features | 新功能
+
+- 打开页面时显示 title ([a45f812](https://github.com/xh-polaris/meowchat-manager/commit/a45f8123ebda077a5c8e8ffc0cc7f1a574140e29))
+
 ## [1.5.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.4.1...v1.5.0) (2023-03-10)
 
 ### ✨ Features | 新功能
