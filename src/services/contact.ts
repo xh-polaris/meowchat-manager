@@ -1,6 +1,5 @@
 import { request } from '@umijs/max';
-
-const DEFAULT_URL = 'https://meowchat.xhpolaris.com';
+import { DEFAULT_URL } from '.';
 
 /**
  * 获取联系人信息列表

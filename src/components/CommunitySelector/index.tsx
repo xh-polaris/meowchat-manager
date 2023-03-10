@@ -1,3 +1,4 @@
+import { findCommunityName } from '@/scripts/utils';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Card, Cascader, Space, Tooltip, Typography } from 'antd';
 import { useEffect, useState } from 'react';
@@ -50,20 +51,7 @@ const CommunitySelector = (props: any) => {
     const communityId = localStorage.getItem('communityId');
     let name = '';
     if (communityId) {
-      for (let i = 0; i < communityList.length; i++) {
-        if (communityList[i].id === communityId) {
-          name = communityList[i].name;
-          break;
-        } else {
-          for (let j = 0; j < communityList[i].children.length; j++) {
-            if (communityList[i].children[j].id === communityId) {
-              name = communityList[i].children[j].name;
-              break;
-            }
-          }
-        }
-        break;
-      }
+      name = findCommunityName(communityId);
     }
     setCurrentCommunity(name);
   }, []);

@@ -5,7 +5,7 @@ import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { Button } from 'antd';
 import { useRef, useState } from 'react';
-import { OPERATIONS } from '../commonSettings';
+import { OPERATIONS } from '@/pages/commonSettings';
 import Create from './components/Create';
 import Delete from './components/Delete';
 import Edit from './components/Edit';
@@ -76,13 +76,9 @@ const Carousel: React.FC = () => {
 
   return (
     <PageContainer>
-      {access === 'superAdmin' || access === 'communityAdmin' ? (
-        <CommunitySelector actionRef={actionRef} />
-      ) : (
-        <></>
-      )}
+      {access === 'superAdmin' ? <CommunitySelector actionRef={actionRef} /> : <></>}
       <ProTable<API.RuleListItem, API.PageParams>
-        headerTitle={'轮播图信息'}
+        headerTitle="轮播图信息"
         actionRef={actionRef}
         rowKey="id"
         search={false}

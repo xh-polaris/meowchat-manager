@@ -3,6 +3,24 @@ import { Image } from 'antd';
 
 const MAX_ORDER = 10;
 
+const transferType = (type: string) => {
+  let newType;
+  switch (type) {
+    case 'article':
+      newType = '外部跳转';
+      break;
+    case 'inner':
+      newType = '内部跳转';
+      break;
+    case 'picture':
+      newType = '无跳转';
+      break;
+    default:
+      newType = '';
+  }
+  return newType;
+};
+
 export const IMAGE_URL: ProColumns = {
   title: '图片',
   dataIndex: 'imageUrl',
@@ -28,6 +46,8 @@ export const TYPE: ProColumns = {
   dataIndex: 'type',
   hideInSearch: true,
   width: 80,
+  tooltip: '外部跳转链接请联系管理团队认证域名',
+  render: (_: any) => <>{transferType(_)}</>,
 };
 
 export const CAROUSEL_COLUMNS = [
