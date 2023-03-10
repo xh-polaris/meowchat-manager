@@ -75,7 +75,6 @@ export async function getInitialState(): Promise<{
         localStorage.setItem('communityId', roles.communityId);
       }
       localStorage.setItem('access', roles.roleType);
-      // console.log(arrayToTree(communityList));
       localStorage.setItem('communityList', JSON.stringify(arrayToTree(communityList)));
       const user = {
         ...msg.user,
