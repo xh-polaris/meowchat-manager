@@ -23,7 +23,7 @@ export const fetchSuperAdminList = async (
   });
 
 /**
- * 新增公告
+ * 新增管理员
  * @param params
  * @returns
  */

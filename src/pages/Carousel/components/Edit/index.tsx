@@ -1,6 +1,6 @@
 import UploadImagesFormItem from '@/components/UploadImagesFormItem';
 import { editCarousel } from '@/services/carousel';
-import { DrawerForm, ProFormText } from '@ant-design/pro-components';
+import { DrawerForm, ProFormSelect, ProFormText } from '@ant-design/pro-components';
 import { Form } from 'antd';
 import { useEffect } from 'react';
 
@@ -9,6 +9,7 @@ const Edit = ({ open, setEditVisible, actionRef, currentCarousel }: any) => {
 
   const handleEdit = async (value: any) => {
     const data = {
+      linkUrl: '',
       ...value,
       id: currentCarousel?.id,
       communityId: '',
@@ -45,23 +46,19 @@ const Edit = ({ open, setEditVisible, actionRef, currentCarousel }: any) => {
       onFinish={handleEdit}
       form={form}
     >
-      <ProFormText
+      <ProFormText name="linkUrl" label="跳转链接" />
+      <ProFormSelect
         rules={[
           {
             required: true,
             message: '此条必填',
           },
         ]}
-        name="linkUrl"
-        label="跳转链接"
-      />
-      <ProFormText
-        rules={[
-          {
-            required: true,
-            message: '此条必填',
-          },
-        ]}
+        valueEnum={{
+          article: '外部跳转',
+          inner: '内部跳转',
+          picture: '无跳转',
+        }}
         name="type"
         label="公示类型"
       />
