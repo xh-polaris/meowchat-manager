@@ -1,3 +1,9 @@
+### [1.5.2](https://github.com/xh-polaris/meowchat-manager/compare/v1.5.1...v1.5.2) (2023-03-11)
+
+### 🐛 Bug Fixes | Bug 修复
+
+- 修改轮播图提交项 ([37220a9](https://github.com/xh-polaris/meowchat-manager/commit/37220a964a3586975463139eeaf56f3c5011be4a))
+
 ### [1.5.1](https://github.com/xh-polaris/meowchat-manager/compare/v1.5.0...v1.5.1) (2023-03-10)
 
 ### ✨ Features | 新功能
