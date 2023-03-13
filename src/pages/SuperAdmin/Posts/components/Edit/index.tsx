@@ -1,19 +1,28 @@
 import UploadImagesFormItem from '@/components/UploadImagesFormItem';
-import { editMoment, fetchCurrentMoment } from '@/services/moments';
+import { getPostDetail } from '@/services/posts';
 import { DrawerForm, ProFormText, ProFormTextArea } from '@ant-design/pro-components';
 import { Form } from 'antd';
 import { useEffect } from 'react';
+import { newPost } from '@/services/posts';
 
-const Edit = ({ open, setEditVisible, actionRef, currentMoment }: any) => {
+const Edit = ({ open, setEditVisible, actionRef, currentPost }: any) => {
   const [form] = Form.useForm();
 
   const handleEdit = async (value: any) => {
+    const tags = [value.tag1];
+    if (value.tag2 !== undefined) tags.push(value.tag2);
+    if (value.tag3 !== undefined) tags.push(value.tag3);
+    if (value.tag4 !== undefined) tags.push(value.tag4);
+    if (value.tag5 !== undefined) tags.push(value.tag5);
     const data = {
-      ...value,
-      id: currentMoment,
-      communityId: localStorage.getItem('communityId'),
+      title: value.title,
+      text: value.text,
+      coverUrl: undefined,
+      tags: tags,
+      id: '',
     };
-    const success = await editMoment(data);
+    if (value.photos !== undefined) data.coverUrl = value.photos[0];
+    const success = await newPost(data);
     if (success) {
       setEditVisible(false);
       if (actionRef.current) {
@@ -24,16 +33,27 @@ const Edit = ({ open, setEditVisible, actionRef, currentMoment }: any) => {
 
   useEffect(() => {
     (async () => {
-      if (currentMoment) {
-        const data = await fetchCurrentMoment({ momentId: currentMoment });
-        form.setFieldsValue(data?.moment);
+      if (currentPost) {
+        const data = await getPostDetail({ postId: currentPost });
+        const post = data.post;
+        const fieldsValue = {
+          title: post.title,
+          text: post.text,
+          photos: [post.coverUrl],
+          tag1: post.tags[0],
+          tag2: post.tags.length >= 1 ? post.tags[1] : undefined,
+          tag3: post.tags.length >= 2 ? post.tags[2] : undefined,
+          tag4: post.tags.length >= 3 ? post.tags[3] : undefined,
+          tag5: post.tags.length >= 4 ? post.tags[4] : undefined,
+        };
+        form.setFieldsValue(fieldsValue);
       }
     })();
-  }, [currentMoment]);
+  }, [currentPost]);
 
   return (
     <DrawerForm
-      title="编辑动态"
+      title="编辑帖子"
       width="600px"
       open={open}
       onOpenChange={setEditVisible}
@@ -55,7 +75,7 @@ const Edit = ({ open, setEditVisible, actionRef, currentMoment }: any) => {
       />
       <ProFormTextArea
         name="text"
-        label="内容"
+        label="详细内容"
         rules={[
           {
             required: true,
@@ -63,17 +83,24 @@ const Edit = ({ open, setEditVisible, actionRef, currentMoment }: any) => {
           },
         ]}
       />
-      <Form.Item
-        name="photos"
-        label="图片"
-        rules={[
-          {
-            required: true,
-            message: '此条必填',
-          },
-        ]}
-      >
-        <UploadImagesFormItem limit={9} />
+      <Form.Item name="photos" label="封面">
+        <UploadImagesFormItem limit={1} />
+      </Form.Item>
+      <Form.Item name="tags" label="标签">
+        <ProFormText
+          name="tag1"
+          label="1"
+          rules={[
+            {
+              required: true,
+              message: '此条必填',
+            },
+          ]}
+        />
+        <ProFormText name="tag2" label="2" />
+        <ProFormText name="tag3" label="3" />
+        <ProFormText name="tag4" label="4" />
+        <ProFormText name="tag5" label="5" />
       </Form.Item>
     </DrawerForm>
   );
