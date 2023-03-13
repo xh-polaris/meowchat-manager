@@ -1,10 +1,10 @@
 import PhotoAlbum from '@/components/PhotoAlbum';
 import { formatTime } from '@/scripts/utils';
-import { fetchCurrentMoment } from '@/services/moments';
+import { getPostDetail } from '@/services/posts';
 import { Avatar, Button, Descriptions, Modal, Space } from 'antd';
 import { useEffect, useState } from 'react';
 
-const View = ({ open, setViewVisible, currentMoment }: any) => {
+const View = ({ open, setViewVisible, currentPost }: any) => {
   const [data, setData] = useState<any>({});
 
   const handleOk = () => {
@@ -17,12 +17,12 @@ const View = ({ open, setViewVisible, currentMoment }: any) => {
 
   useEffect(() => {
     if (open) {
-      fetchCurrentMoment({ momentId: currentMoment }).then((res) => setData(res));
+      getPostDetail({ postId: currentPost }).then((res) => setData(res));
     }
   }, [open]);
 
-  const { moment = {} } = data;
-  const { createAt, title, text, user = {}, photos } = moment;
+  const { post = {} } = data;
+  const { createAt, title, text, user = {}, coverUrl } = post;
   const { nickname, avatarUrl } = user;
 
   const footer = [
@@ -32,7 +32,7 @@ const View = ({ open, setViewVisible, currentMoment }: any) => {
   ];
 
   return (
-    <Modal title="动态详情" open={open} onCancel={handleCancel} footer={footer}>
+    <Modal title="帖子详情" open={open} onCancel={handleCancel} footer={footer}>
       <Descriptions column={2}>
         <Descriptions.Item label="头像">
           <Avatar src={avatarUrl ?? ''} />
@@ -40,11 +40,14 @@ const View = ({ open, setViewVisible, currentMoment }: any) => {
         <Descriptions.Item label="发布者">{nickname ?? ''}</Descriptions.Item>
         <Descriptions.Item label="发布时间">{formatTime(createAt ?? '')}</Descriptions.Item>
         <Descriptions.Item label="标题">{title ?? ''}</Descriptions.Item>
-        <Descriptions.Item label="图片">
-          <Space>
-            <PhotoAlbum photos={photos} />
-            <div>共 {photos?.length ?? ''} 张</div>
-          </Space>
+        <Descriptions.Item label="封面">
+          {coverUrl === '' ? (
+            <div>无</div>
+          ) : (
+            <Space>
+              <PhotoAlbum photos={[coverUrl]} />
+            </Space>
+          )}
         </Descriptions.Item>
         <Descriptions.Item label="发布内容">{text ?? ''}</Descriptions.Item>
       </Descriptions>

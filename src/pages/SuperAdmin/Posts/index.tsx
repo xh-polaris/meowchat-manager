@@ -54,17 +54,17 @@ const Post = () => {
           >
             编辑
           </Button>
-          {/*<Button*/}
-          {/*  type="link"*/}
-          {/*  size="small"*/}
-          {/*  key="view"*/}
-          {/*  onClick={() => {*/}
-          {/*    setCurrentPost(record.id);*/}
-          {/*    setViewVisible(true);*/}
-          {/*  }}*/}
-          {/*>*/}
-          {/*  查看*/}
-          {/*</Button>*/}
+          <Button
+            type="link"
+            size="small"
+            key="view"
+            onClick={() => {
+              setCurrentPost(record.id);
+              setViewVisible(true);
+            }}
+          >
+            查看
+          </Button>
           <Button
             type="link"
             size="small"
