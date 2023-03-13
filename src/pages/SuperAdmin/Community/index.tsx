@@ -13,6 +13,7 @@ import type { SetStateAction } from 'react';
 import { useRef, useState } from 'react';
 import CreateCampus from '@/pages/SuperAdmin/Community/components/CreateCampus';
 import EditCampus from '@/pages/SuperAdmin/Community/components/EditCampus';
+import DeleteCampus from '@/pages/SuperAdmin/Community/components/DeleteCampus';
 const Community: React.FC = () => {
   const actionRef = useRef<ActionType>();
   const [currentUniversity, setCurrentUniversity] = useState({});
@@ -22,7 +23,7 @@ const Community: React.FC = () => {
   const [deleteUniversityVisible, setDeleteUniversityVisible] = useState(false);
   const [createCampusVisible, setCreateCampusVisible] = useState(false);
   const [editCampusVisible, setEditCampusVisible] = useState(false);
-  // const [deleteCampusVisible, setDeleteCampusVisible] = useState(false);
+  const [deleteCampusVisible, setDeleteCampusVisible] = useState(false);
 
   const expandedRowRender = (universityRecord: object) => {
     const columns = [
@@ -57,7 +58,7 @@ const Community: React.FC = () => {
                 onClick={() => {
                   setCurrentUniversity(universityRecord);
                   setCurrentCampus(campusRecord);
-                  // setDeleteCampusVisible(true);
+                  setDeleteCampusVisible(true);
                 }}
               >
                 删除
@@ -214,6 +215,12 @@ const Community: React.FC = () => {
       <EditCampus
         open={editCampusVisible}
         setEditVisible={setEditCampusVisible}
+        actionRef={actionRef}
+        currentCampus={currentCampus}
+      />
+      <DeleteCampus
+        open={deleteCampusVisible}
+        setDeleteVisible={setDeleteCampusVisible}
         actionRef={actionRef}
         currentCampus={currentCampus}
       />
