@@ -7,7 +7,7 @@ import { OPERATIONS } from '@/pages/commonSettings';
 // import { fetchSuperAdminList } from '@/services/super-admin';
 import { SUPER_ADMIN_COLUMNS } from './settings';
 import Create from './components/Create';
-// import Delete from './components/Delete';
+// import DeleteUniversity from './components/DeleteUniversity';
 
 const Notice: React.FC = () => {
   const actionRef = useRef<ActionType>();
@@ -81,7 +81,7 @@ const Notice: React.FC = () => {
         }}
       />
       <Create open={createVisible} setCreateVisible={setCreateVisible} actionRef={actionRef} />
-      {/* <Delete
+      {/* <DeleteUniversity
         open={deleteVisible}
         setDeleteVisible={setDeleteVisible}
         actionRef={actionRef}

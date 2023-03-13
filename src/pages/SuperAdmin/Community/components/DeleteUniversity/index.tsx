@@ -2,7 +2,7 @@ import { deleteCommunity } from '@/services/community';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Modal, Space } from 'antd';
 
-const Delete = ({ open, setDeleteVisible, actionRef, currentUniversity }: any) => {
+const DeleteUniversity = ({ open, setDeleteVisible, actionRef, currentUniversity }: any) => {
   const handleDelete = async () => {
     const success = await deleteCommunity({ id: currentUniversity.id });
     if (success) {
@@ -38,4 +38,4 @@ const Delete = ({ open, setDeleteVisible, actionRef, currentUniversity }: any) =
   );
 };
 
-export default Delete;
+export default DeleteUniversity;

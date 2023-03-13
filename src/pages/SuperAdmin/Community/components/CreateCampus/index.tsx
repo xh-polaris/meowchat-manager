@@ -1,10 +1,11 @@
 import { createOrUpdateCommunity } from '@/services/community';
 import { DrawerForm, ProFormTextArea } from '@ant-design/pro-components';
 
-const Create = ({ open, setCreateVisible, actionRef }: any) => {
+const CreateCampus = ({ open, setCreateVisible, actionRef, currentUniversity }: any) => {
   const handleCreate = async (newData: any) => {
     const data = {
-      name: newData.university,
+      name: newData.campus,
+      parentId: currentUniversity.id,
     };
     const success = await createOrUpdateCommunity(data);
     if (success) {
@@ -17,7 +18,7 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
 
   return (
     <DrawerForm
-      title="新增学校"
+      title="新增校区"
       width="600px"
       open={open}
       onOpenChange={setCreateVisible}
@@ -27,8 +28,8 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
       onFinish={handleCreate}
     >
       <ProFormTextArea
-        name="university"
-        label="学校名"
+        name="campus"
+        label="校区名"
         rules={[
           {
             required: true,
@@ -40,4 +41,4 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
   );
 };
 
-export default Create;
+export default CreateCampus;

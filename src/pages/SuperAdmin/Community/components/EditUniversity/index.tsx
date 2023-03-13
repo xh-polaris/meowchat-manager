@@ -2,7 +2,7 @@ import { Form } from 'antd';
 import { createOrUpdateCommunity } from '@/services/community';
 import { useEffect } from 'react';
 import { DrawerForm, ProFormTextArea } from '@ant-design/pro-components';
-const Edit = ({ open, setEditVisible, actionRef, currentUniversity }: any) => {
+const EditUniversity = ({ open, setEditVisible, actionRef, currentUniversity }: any) => {
   const [form] = Form.useForm();
   const handleEdit = async (newData: any) => {
     // newData才是edit后的新的要提交的一些数据
@@ -52,4 +52,4 @@ const Edit = ({ open, setEditVisible, actionRef, currentUniversity }: any) => {
   );
 };
 
-export default Edit;
+export default EditUniversity;
