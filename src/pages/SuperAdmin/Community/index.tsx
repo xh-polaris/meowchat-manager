@@ -12,16 +12,19 @@ import EditUniversity from './components/EditUniversity';
 import type { SetStateAction } from 'react';
 import { useRef, useState } from 'react';
 import CreateCampus from '@/pages/SuperAdmin/Community/components/CreateCampus';
+import EditCampus from '@/pages/SuperAdmin/Community/components/EditCampus';
 const Community: React.FC = () => {
   const actionRef = useRef<ActionType>();
   const [currentUniversity, setCurrentUniversity] = useState({});
-  // const [currentCampus, setCurrentCampus] = useState({})
+  const [currentCampus, setCurrentCampus] = useState({});
   const [editUniversityVisible, setEditUniversityVisible] = useState(false);
   const [createUniversityVisible, setCreateUniversityVisible] = useState(false);
   const [deleteUniversityVisible, setDeleteUniversityVisible] = useState(false);
   const [createCampusVisible, setCreateCampusVisible] = useState(false);
+  const [editCampusVisible, setEditCampusVisible] = useState(false);
+  // const [deleteCampusVisible, setDeleteCampusVisible] = useState(false);
 
-  const expandedRowRender = (record: object) => {
+  const expandedRowRender = (universityRecord: object) => {
     const columns = [
       {
         title: '校区',
@@ -39,8 +42,9 @@ const Community: React.FC = () => {
                 size="small"
                 key="edit"
                 onClick={() => {
-                  setCurrentUniversity(campusRecord);
-                  setEditUniversityVisible(true);
+                  setCurrentUniversity(universityRecord);
+                  setCurrentCampus(campusRecord);
+                  setEditCampusVisible(true);
                 }}
               >
                 编辑
@@ -51,8 +55,9 @@ const Community: React.FC = () => {
                 danger
                 key="delete"
                 onClick={() => {
-                  setCurrentUniversity(campusRecord);
-                  setDeleteUniversityVisible(true);
+                  setCurrentUniversity(universityRecord);
+                  setCurrentCampus(campusRecord);
+                  // setDeleteCampusVisible(true);
                 }}
               >
                 删除
@@ -65,7 +70,7 @@ const Community: React.FC = () => {
     const data: any[] = [];
 
     // @ts-ignore
-    record.campuses.map((item) => data.push(item));
+    universityRecord.campuses.map((item) => data.push(item));
 
     // @ts-ignore
     return <Table columns={columns} dataSource={data} pagination={false} />;
@@ -205,6 +210,12 @@ const Community: React.FC = () => {
         setCreateVisible={setCreateCampusVisible}
         actionRef={actionRef}
         currentUniversity={currentUniversity}
+      />
+      <EditCampus
+        open={editCampusVisible}
+        setEditVisible={setEditCampusVisible}
+        actionRef={actionRef}
+        currentCampus={currentCampus}
       />
     </PageContainer>
   );
