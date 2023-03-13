@@ -2,7 +2,7 @@
 /* eslint-disable */
 import { request } from '@umijs/max';
 
-/** Create user This can only be done by the logged in user. POST /user */
+/** CreateUniversity user This can only be done by the logged in user. POST /user */
 export async function createUser(body: API.User, options?: { [key: string]: any }) {
   return request<any>('/user', {
     method: 'POST',
@@ -41,7 +41,7 @@ export async function updateUser(
   });
 }
 
-/** Delete user This can only be done by the logged in user. DELETE /user/${param0} */
+/** DeleteUniversity user This can only be done by the logged in user. DELETE /user/${param0} */
 export async function deleteUser(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.deleteUserParams,

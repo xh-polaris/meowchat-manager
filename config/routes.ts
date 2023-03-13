@@ -82,6 +82,11 @@ export default [
         path: '/super-admin/carousel',
         component: './Carousel',
       },
+      {
+        name: '帖子管理',
+        path: '/super-admin/post',
+        component: './SuperAdmin/Posts',
+      },
       // {
       //   name: '管理员管理',
       //   icon: 'bank',

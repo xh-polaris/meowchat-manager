@@ -33,7 +33,7 @@ export async function getOrderById(
   });
 }
 
-/** Delete purchase order by ID For valid response try integer IDs with positive integer value.         Negative or non-integer values will generate API errors DELETE /store/order/${param0} */
+/** DeleteUniversity purchase order by ID For valid response try integer IDs with positive integer value.         Negative or non-integer values will generate API errors DELETE /store/order/${param0} */
 export async function deleteOrder(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.deleteOrderParams,

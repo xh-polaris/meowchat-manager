@@ -1,10 +1,10 @@
-import { deleteCommunity } from '@/services/community';
+import { deletePost } from '@/services/posts';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Modal, Space } from 'antd';
 
-const Delete = ({ open, setDeleteVisible, actionRef, currentUniversity }: any) => {
+const Delete = ({ open, setDeleteVisible, actionRef, currentPost }: any) => {
   const handleDelete = async () => {
-    const success = await deleteCommunity({ id: currentUniversity.id });
+    const success = await deletePost({ id: currentPost });
     if (success) {
       setDeleteVisible(false);
       if (actionRef.current) {
@@ -22,7 +22,7 @@ const Delete = ({ open, setDeleteVisible, actionRef, currentUniversity }: any) =
       title={
         <Space>
           <ExclamationCircleOutlined />
-          删除学校
+          删除帖子
         </Space>
       }
       open={open}
@@ -33,7 +33,7 @@ const Delete = ({ open, setDeleteVisible, actionRef, currentUniversity }: any) =
       onOk={handleDelete}
       onCancel={handleCancel}
     >
-      确定删除该学校吗？
+      确定删除这条帖子吗？
     </Modal>
   );
 };
