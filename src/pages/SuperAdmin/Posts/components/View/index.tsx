@@ -22,7 +22,7 @@ const View = ({ open, setViewVisible, currentPost }: any) => {
   }, [open]);
 
   const { post = {} } = data;
-  const { createAt, title, text, user = {}, coverUrl } = post;
+  const { createAt, title, text, user = {}, coverUrl, tags } = post;
   const { nickname, avatarUrl } = user;
 
   const footer = [
@@ -50,6 +50,9 @@ const View = ({ open, setViewVisible, currentPost }: any) => {
           )}
         </Descriptions.Item>
         <Descriptions.Item label="发布内容">{text ?? ''}</Descriptions.Item>
+        <Descriptions.Item label="标签">
+          {tags ? tags.map((tag: string) => tag + ' ') : '[无]'}
+        </Descriptions.Item>
       </Descriptions>
     </Modal>
   );
