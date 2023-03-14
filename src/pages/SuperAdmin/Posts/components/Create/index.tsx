@@ -6,7 +6,8 @@ import { Form } from 'antd';
 const Create = ({ open, setCreateVisible, actionRef }: any) => {
   const handleCreate = async (value: any) => {
     // 太晚了 后面再查这个有什么其他办法做。。。
-    const tags = [value.tag1];
+    const tags = [];
+    if (value.tag1 !== undefined) tags.push(value.tag1);
     if (value.tag2 !== undefined) tags.push(value.tag2);
     if (value.tag3 !== undefined) tags.push(value.tag3);
     if (value.tag4 !== undefined) tags.push(value.tag4);
@@ -63,16 +64,7 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
         <UploadImagesFormItem limit={1} />
       </Form.Item>
       <Form.Item name="tags" label="标签">
-        <ProFormText
-          name="tag1"
-          label="1"
-          rules={[
-            {
-              required: true,
-              message: '此条必填',
-            },
-          ]}
-        />
+        <ProFormText name="tag1" label="1" />
         <ProFormText name="tag2" label="2" />
         <ProFormText name="tag3" label="3" />
         <ProFormText name="tag4" label="4" />

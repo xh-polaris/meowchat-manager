@@ -9,7 +9,8 @@ const Edit = ({ open, setEditVisible, actionRef, currentPost }: any) => {
   const [form] = Form.useForm();
 
   const handleEdit = async (value: any) => {
-    const tags = [value.tag1];
+    const tags = [];
+    if (value.tag1 !== undefined) tags.push(value.tag1);
     if (value.tag2 !== undefined) tags.push(value.tag2);
     if (value.tag3 !== undefined) tags.push(value.tag3);
     if (value.tag4 !== undefined) tags.push(value.tag4);
@@ -36,15 +37,23 @@ const Edit = ({ open, setEditVisible, actionRef, currentPost }: any) => {
       if (currentPost) {
         const data = await getPostDetail({ postId: currentPost });
         const post = data.post;
+        // eslint-disable-next-line prefer-const
+        let tags = [undefined, undefined, undefined, undefined, undefined];
+        if (post.tags) {
+          post.tags.map((tag: string, index: number) => {
+            // @ts-ignore
+            tags[index] = tag;
+          });
+        }
         const fieldsValue = {
           title: post.title,
           text: post.text,
           photos: [post.coverUrl],
-          tag1: post.tags[0],
-          tag2: post.tags.length >= 1 ? post.tags[1] : undefined,
-          tag3: post.tags.length >= 2 ? post.tags[2] : undefined,
-          tag4: post.tags.length >= 3 ? post.tags[3] : undefined,
-          tag5: post.tags.length >= 4 ? post.tags[4] : undefined,
+          tag1: tags[0],
+          tag2: tags[1],
+          tag3: tags[2],
+          tag4: tags[3],
+          tag5: tags[4],
         };
         form.setFieldsValue(fieldsValue);
       }
@@ -87,16 +96,7 @@ const Edit = ({ open, setEditVisible, actionRef, currentPost }: any) => {
         <UploadImagesFormItem limit={1} />
       </Form.Item>
       <Form.Item name="tags" label="标签">
-        <ProFormText
-          name="tag1"
-          label="1"
-          rules={[
-            {
-              required: true,
-              message: '此条必填',
-            },
-          ]}
-        />
+        <ProFormText name="tag1" label="1" />
         <ProFormText name="tag2" label="2" />
         <ProFormText name="tag3" label="3" />
         <ProFormText name="tag4" label="4" />
