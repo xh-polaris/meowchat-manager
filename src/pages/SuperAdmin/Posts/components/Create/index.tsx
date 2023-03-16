@@ -1,6 +1,6 @@
 import UploadImagesFormItem from '@/components/UploadImagesFormItem';
 import { newPost } from '@/services/posts';
-import { DrawerForm, ProFormRadio, ProFormText, ProFormTextArea } from '@ant-design/pro-components';
+import { DrawerForm, ProFormText, ProFormTextArea } from '@ant-design/pro-components';
 import { Form } from 'antd';
 
 const Create = ({ open, setCreateVisible, actionRef }: any) => {
@@ -13,7 +13,6 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
     if (value.tag5 !== undefined) tags.push(value.tag5);
     const data = {
       title: value.title,
-      isOfficial: value.isOfficial,
       text: value.text,
       coverUrl: undefined,
       tags: tags,
@@ -49,26 +48,6 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
         ]}
         name="title"
         label="标题"
-      />
-      <ProFormRadio.Group
-        rules={[
-          {
-            required: true,
-            message: '此条必填',
-          },
-        ]}
-        name="isOfficial"
-        label="是否官方"
-        options={[
-          {
-            label: '是',
-            value: true,
-          },
-          {
-            label: '否',
-            value: false,
-          },
-        ]}
       />
       <ProFormTextArea
         name="text"

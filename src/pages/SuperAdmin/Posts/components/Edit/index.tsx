@@ -1,6 +1,6 @@
 import UploadImagesFormItem from '@/components/UploadImagesFormItem';
 import { getPostDetail } from '@/services/posts';
-import { DrawerForm, ProFormRadio, ProFormText, ProFormTextArea } from '@ant-design/pro-components';
+import { DrawerForm, ProFormText, ProFormTextArea } from '@ant-design/pro-components';
 import { Form } from 'antd';
 import { useEffect } from 'react';
 import { newPost } from '@/services/posts';
@@ -18,10 +18,9 @@ const Edit = ({ open, setEditVisible, actionRef, currentPost }: any) => {
     const data = {
       title: value.title,
       text: value.text,
-      isOfficial: value.isOfficial,
       coverUrl: undefined,
       tags: tags,
-      id: '',
+      id: currentPost,
     };
     if (value.photos !== undefined) data.coverUrl = value.photos[0];
     const success = await newPost(data);
@@ -83,26 +82,6 @@ const Edit = ({ open, setEditVisible, actionRef, currentPost }: any) => {
         ]}
         name="title"
         label="标题"
-      />
-      <ProFormRadio.Group
-        rules={[
-          {
-            required: true,
-            message: '此条必填',
-          },
-        ]}
-        name="isOfficial"
-        label="是否官方"
-        options={[
-          {
-            label: '是',
-            value: true,
-          },
-          {
-            label: '否',
-            value: false,
-          },
-        ]}
       />
       <ProFormTextArea
         name="text"
