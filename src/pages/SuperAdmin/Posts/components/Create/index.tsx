@@ -5,7 +5,6 @@ import { Form } from 'antd';
 
 const Create = ({ open, setCreateVisible, actionRef }: any) => {
   const handleCreate = async (value: any) => {
-    // 太晚了 后面再查这个有什么其他办法做。。。
     const tags = [];
     if (value.tag1 !== undefined) tags.push(value.tag1);
     if (value.tag2 !== undefined) tags.push(value.tag2);

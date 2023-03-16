@@ -9,6 +9,7 @@ import View from '@/pages/SuperAdmin/Posts/components/View';
 import Create from '@/pages/SuperAdmin/Posts/components/Create';
 import Delete from '@/pages/SuperAdmin/Posts/components/Delete';
 import Edit from '@/pages/SuperAdmin/Posts/components/Edit';
+import ToggleOfficial from '@/pages/SuperAdmin/Posts/components/ToggleOfficial';
 import { getPostPreviews } from '@/services/posts';
 const Post = () => {
   const actionRef = useRef<ActionType>();
@@ -17,6 +18,8 @@ const Post = () => {
   const [createVisible, setCreateVisible] = useState(false);
   const [deleteVisible, setDeleteVisible] = useState(false);
   const [editVisible, setEditVisible] = useState(false);
+  const [toggleOfficialVisible, setToggleOfficialVisible] = useState(false);
+  const [data, setData] = useState({});
 
   const requestTable = async (
     params: any & {
@@ -40,7 +43,7 @@ const Post = () => {
     ...POSTS_COLUMNS,
     {
       ...OPERATIONS,
-      width: 200,
+      width: 300,
       render: (_, record) => (
         <>
           <Button
@@ -53,6 +56,20 @@ const Post = () => {
             }}
           >
             编辑
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            key="toggleOfficial"
+            onClick={() => {
+              setCurrentPost(record.id);
+              setData({
+                isOfficial: record.isOfficial,
+              });
+              setToggleOfficialVisible(true);
+            }}
+          >
+            {record.isOfficial ? '不设为官方' : '设为官方'}
           </Button>
           <Button
             type="link"
@@ -120,6 +137,13 @@ const Post = () => {
         setEditVisible={setEditVisible}
         actionRef={actionRef}
         currentPost={currentPost}
+      />
+      <ToggleOfficial
+        open={toggleOfficialVisible}
+        setToggleOfficialVisible={setToggleOfficialVisible}
+        actionRef={actionRef}
+        currentPost={currentPost}
+        data={data}
       />
     </PageContainer>
   );

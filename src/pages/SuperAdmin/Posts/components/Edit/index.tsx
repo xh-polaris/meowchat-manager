@@ -20,7 +20,7 @@ const Edit = ({ open, setEditVisible, actionRef, currentPost }: any) => {
       text: value.text,
       coverUrl: undefined,
       tags: tags,
-      id: '',
+      id: currentPost,
     };
     if (value.photos !== undefined) data.coverUrl = value.photos[0];
     const success = await newPost(data);
@@ -47,6 +47,7 @@ const Edit = ({ open, setEditVisible, actionRef, currentPost }: any) => {
         }
         const fieldsValue = {
           title: post.title,
+          isOfficial: post.isOfficial,
           text: post.text,
           photos: [post.coverUrl],
           tag1: tags[0],

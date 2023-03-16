@@ -22,7 +22,7 @@ const View = ({ open, setViewVisible, currentPost }: any) => {
   }, [open]);
 
   const { post = {} } = data;
-  const { createAt, title, text, user = {}, coverUrl, tags } = post;
+  const { createAt, title, isOfficial, text, user = {}, coverUrl, tags } = post;
   const { nickname, avatarUrl } = user;
 
   const footer = [
@@ -40,6 +40,7 @@ const View = ({ open, setViewVisible, currentPost }: any) => {
         <Descriptions.Item label="发布者">{nickname ?? ''}</Descriptions.Item>
         <Descriptions.Item label="发布时间">{formatTime(createAt ?? '')}</Descriptions.Item>
         <Descriptions.Item label="标题">{title ?? ''}</Descriptions.Item>
+        <Descriptions.Item label="是否官方">{isOfficial ? '官方' : '否'}</Descriptions.Item>
         <Descriptions.Item label="封面">
           {coverUrl === '' ? (
             <div>无</div>
