@@ -1,10 +1,20 @@
-### [1.5.2](https://github.com/xh-polaris/meowchat-manager/compare/v1.5.1...v1.5.2) (2023-03-11)
+
+
+## [1.6.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.5.2...v1.6.0) (2023-03-16)
+
+### ✨ Features | 新功能
+
+- 对接新的帖子接口 实现帖子设置官方功能 ([#17](https://github.com/xh-polaris/meowchat-manager/issues/17)) ([ce0c392](https://github.com/xh-polaris/meowchat-manager/commit/ce0c392897e887c2c80cb214621fb81d5edc1b3c))
+- 实现了社区管理页面校区增删查改 实现了帖子管理页面增删查改 ([#15](https://github.com/xh-polaris/meowchat-manager/issues/15)) ([ff90417](https://github.com/xh-polaris/meowchat-manager/commit/ff904176b528465ff4abdd866c760dc62a56f0fb))
+- 实现帖子查看时显示标签 ([#16](https://github.com/xh-polaris/meowchat-manager/issues/16)) ([c073e9f](https://github.com/xh-polaris/meowchat-manager/commit/c073e9f03cd97d9524a10540bfee458a0ea87a9e))
+
+## [1.5.2](https://github.com/xh-polaris/meowchat-manager/compare/v1.5.1...v1.5.2) (2023-03-11)
 
 ### 🐛 Bug Fixes | Bug 修复
 
 - 修改轮播图提交项 ([37220a9](https://github.com/xh-polaris/meowchat-manager/commit/37220a964a3586975463139eeaf56f3c5011be4a))
 
-### [1.5.1](https://github.com/xh-polaris/meowchat-manager/compare/v1.5.0...v1.5.1) (2023-03-10)
+## [1.5.1](https://github.com/xh-polaris/meowchat-manager/compare/v1.5.0...v1.5.1) (2023-03-10)
 
 ### ✨ Features | 新功能
 
@@ -16,7 +26,7 @@
 
 - 近期功能优化 ([23a31f1](https://github.com/xh-polaris/meowchat-manager/commit/23a31f16ab8a3b998e21f1bca83935a68f522486))
 
-### [1.4.1](https://github.com/xh-polaris/meowchat-manager/compare/v1.1.0...v1.4.1) (2023-03-03)
+## [1.4.1](https://github.com/xh-polaris/meowchat-manager/compare/v1.1.0...v1.4.1) (2023-03-03)
 
 ### 🐛 Bug Fixes | Bug 修复
 
