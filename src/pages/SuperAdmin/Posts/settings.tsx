@@ -10,7 +10,13 @@ export const TITLE: ProColumns = {
   dataIndex: 'title',
   width: 120,
 };
-
+export const IS_OFFICIAL: ProColumns = {
+  title: '是否官方',
+  dataIndex: 'isOfficial',
+  hideInSearch: true,
+  width: 120,
+  render: (_: any) => <div>{_ ? '官方' : '否'}</div>,
+};
 export const TEXT: ProColumns = {
   title: '发布内容',
   dataIndex: 'text',
@@ -39,6 +45,10 @@ export const POSTS_COLUMNS = [
   {
     order: MAX_ORDER + 8,
     ...TITLE,
+  },
+  {
+    order: MAX_ORDER + 6,
+    ...IS_OFFICIAL,
   },
   {
     order: MAX_ORDER + 4,
