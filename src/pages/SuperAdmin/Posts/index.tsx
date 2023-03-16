@@ -43,7 +43,7 @@ const Post = () => {
     ...POSTS_COLUMNS,
     {
       ...OPERATIONS,
-      width: 200,
+      width: 300,
       render: (_, record) => (
         <>
           <Button
