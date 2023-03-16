@@ -9,11 +9,16 @@ export const getPostPreviews = async (
   options?: Record<string, any>,
 ) =>
   request(`${DEFAULT_URL}/post/get_post_previews`, {
-    method: 'GET',
-    params: {
+    // method: 'GET',
+    method: 'POST',
+    data: {
       ...params,
       page: (params.current || 1) - 1,
     },
+    // params: {
+    //   ...params,
+    //   page: (params.current || 1) - 1,
+    // },
     ...(options || {}),
   });
 
