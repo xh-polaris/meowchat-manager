@@ -32,7 +32,7 @@ export async function currentUserAccess(options?: Record<string, any>) {
  * @param params
  * @returns
  */
-export async function login(body: API.LoginParams, options?: Record<string, any>) {
+export async function accountLogin(body: API.LoginParams, options?: Record<string, any>) {
   return request<API.LoginResult>(`${DEFAULT_URL}/auth/sign_in`, {
     method: 'POST',
     data: {
