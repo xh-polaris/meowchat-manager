@@ -19,6 +19,7 @@ const Login: React.FC = () => {
     const fetchUserInfo = async () => {
       const userInfo = await initialState?.fetchUserInfo?.();
       if (userInfo) {
+        console.log(userInfo);
         flushSync(() => {
           setInitialState((s) => ({
             ...s,
@@ -47,6 +48,9 @@ const Login: React.FC = () => {
         const defaultLoginFailureMessage = '登录失败，请重试！';
         console.log(error);
         message.error(defaultLoginFailureMessage);
+        history.replace({
+          pathname: '/',
+        });
       }
     };
     handleSubmit();
