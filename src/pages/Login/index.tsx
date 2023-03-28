@@ -13,13 +13,11 @@ const Login: React.FC = () => {
   const { initialState, setInitialState } = useModel('@@initialState');
 
   const code: string = queryString.parse(location.search).code as string;
-  console.log(code);
 
-  if (code !== undefined) {
+  if (code) {
     const fetchUserInfo = async () => {
       const userInfo = await initialState?.fetchUserInfo?.();
       if (userInfo) {
-        console.log(userInfo);
         flushSync(() => {
           setInitialState((s) => ({
             ...s,
@@ -33,7 +31,6 @@ const Login: React.FC = () => {
       try {
         // 登录
         const msg = await weixinLogin(code);
-        console.log(msg);
         if (msg.code === 0) {
           localStorage.setItem('accessToken', `${msg.accessToken}`);
           const defaultLoginSuccessMessage = '登录成功！';
@@ -43,10 +40,8 @@ const Login: React.FC = () => {
           history.push(urlParams.get('redirect') || '/');
           return;
         }
-        console.log(msg);
       } catch (error) {
         const defaultLoginFailureMessage = '登录失败，请重试！';
-        console.log(error);
         message.error(defaultLoginFailureMessage);
         history.replace({
           pathname: '/',
