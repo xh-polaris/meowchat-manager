@@ -6,7 +6,7 @@ import { DEFAULT_URL } from '.';
  * @param params
  * @returns
  */
-export async function currentUser(options?: { [key: string]: any }) {
+export async function currentUser(options?: Record<string, any>) {
   return request<{
     user: API.CurrentUser;
   }>(`${DEFAULT_URL}/user/get_user_info`, {
@@ -20,7 +20,7 @@ export async function currentUser(options?: { [key: string]: any }) {
  * @param params
  * @returns
  */
-export async function currentUserAccess(options?: { [key: string]: any }) {
+export async function currentUserAccess(options?: Record<string, any>) {
   return request(`${DEFAULT_URL}/role/get_user_roles`, {
     method: 'GET',
     ...(options || {}),
@@ -32,7 +32,7 @@ export async function currentUserAccess(options?: { [key: string]: any }) {
  * @param params
  * @returns
  */
-export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
+export async function accountLogin(body: API.LoginParams, options?: Record<string, any>) {
   return request<API.LoginResult>(`${DEFAULT_URL}/auth/sign_in`, {
     method: 'POST',
     data: {
@@ -53,4 +53,24 @@ export async function outLogin() {
     data: {},
     success: true,
   };
+}
+
+/**
+ * 微信登录接口
+ * code是微信登录扫二维码后微信官方返回的code
+ */
+export async function weixinLogin(code: string, options?: Record<string, any>) {
+  return request<{
+    accessToken: any;
+    code: number;
+    user: API.CurrentUser;
+  }>(`${DEFAULT_URL}/auth/sign_in`, {
+    method: 'POST',
+    data: {
+      authType: 'wechat',
+      params: [code, 'manager'],
+      authId: 'authId', //这个随便填 没用的
+    },
+    ...(options || {}),
+  });
 }

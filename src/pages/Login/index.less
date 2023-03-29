@@ -41,3 +41,44 @@
     color: @primary-color;
   }
 }
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 6vh;
+
+  .title {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 32px;
+    transform: translateX(-6px);
+
+    img {
+      width: 60px;
+      height: 60px;
+      margin-right: 8px;
+      border-radius: 30px;
+    }
+  }
+
+  .weixinLoginFrame {
+    box-sizing: border-box;
+    width: 390px;
+    text-align: center;
+
+    .link {
+      line-height: 40px;
+    }
+  }
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
