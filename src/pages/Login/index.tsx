@@ -1,12 +1,20 @@
 import Footer from '@/components/Footer';
 import { weixinLogin, accountLogin } from '@/services/auth';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { LockOutlined, UserOutlined, WechatOutlined } from '@ant-design/icons';
 import { LoginForm, ProFormCheckbox, ProFormText } from '@ant-design/pro-components';
 import { history, useModel } from '@umijs/max';
-import { message, Tabs } from 'antd';
+import { Divider, message, Space, Tabs } from 'antd';
 import { flushSync } from 'react-dom';
 import queryString from 'query-string';
 import styles from './index.less';
+import { CSSProperties } from 'react';
+
+const iconStyles: CSSProperties = {
+  color: 'rgba(0, 0, 0, 0.2)',
+  fontSize: '18px',
+  verticalAlign: 'middle',
+  cursor: 'pointer',
+};
 
 const Login: React.FC = () => {
   const { initialState, setInitialState } = useModel('@@initialState');
@@ -70,24 +78,6 @@ const Login: React.FC = () => {
               centered
               items={[
                 {
-                  key: 'weixin',
-                  label: '微信登录',
-                  children: (
-                    <>
-                      <div className={styles.weixinLoginFrame}>
-                        <a
-                          href={
-                            'https://open.weixin.qq.com/connect/qrconnect?appid=wx40ab73e6ebd6e636&redirect_uri=https://manager.meowchat.cn/login&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect'
-                          }
-                          className={styles.link}
-                        >
-                          点击进入微信登录
-                        </a>
-                      </div>
-                    </>
-                  ),
-                },
-                {
                   key: 'account',
                   label: '账户密码登录',
                   children: (
@@ -96,6 +86,24 @@ const Login: React.FC = () => {
                         onFinish={async (values) => {
                           await handleSubmit('account', values as API.LoginParams);
                         }}
+                        actions={
+                          <div className={styles.actions}>
+                            <Divider plain>
+                              <span>其他登录方式</span>
+                            </Divider>
+                            <Space align="center" size={24}>
+                              <div className={styles.others}>
+                                <a
+                                  href={
+                                    'https://open.weixin.qq.com/connect/qrconnect?appid=wx40ab73e6ebd6e636&redirect_uri=https://manager.meowchat.cn/login&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect'
+                                  }
+                                >
+                                  <WechatOutlined style={{ ...iconStyles, color: '#66dd7a' }} />
+                                </a>
+                              </div>
+                            </Space>
+                          </div>
+                        }
                       >
                         <ProFormText
                           name="authId"
