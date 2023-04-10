@@ -11,6 +11,7 @@ import Delete from '@/pages/SuperAdmin/Posts/components/Delete';
 import Edit from '@/pages/SuperAdmin/Posts/components/Edit';
 import ToggleOfficial from '@/pages/SuperAdmin/Posts/components/ToggleOfficial';
 import { getPostPreviews } from '@/services/posts';
+
 const Post = () => {
   const actionRef = useRef<ActionType>();
   const [currentPost, setCurrentPost] = useState('');
@@ -31,6 +32,7 @@ const Post = () => {
       ...params,
       current: params.current,
       pageSize: params.pageSize,
+      offset: (params.current - 1) * params.pageSize,
     });
     return {
       data: msg.posts,
@@ -69,7 +71,7 @@ const Post = () => {
               setToggleOfficialVisible(true);
             }}
           >
-            {record.isOfficial ? '不设为官方' : '设为官方'}
+            {record.isOfficial ? '取消官方' : '设为官方'}
           </Button>
           <Button
             type="link"
@@ -148,4 +150,5 @@ const Post = () => {
     </PageContainer>
   );
 };
+
 export default Post;

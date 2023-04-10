@@ -12,7 +12,6 @@ export const getPostPreviews = async (
     method: 'POST',
     data: {
       ...params,
-      page: (params.current || 1) - 1,
     },
     ...(options || {}),
   });

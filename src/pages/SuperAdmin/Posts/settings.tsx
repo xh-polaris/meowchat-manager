@@ -1,6 +1,6 @@
-// import PhotoAlbum from '@/components/PhotoAlbum';
+import Unfold from '@/components/Unfold';
 import type { ProColumns } from '@ant-design/pro-components';
-// import { Space } from 'antd';
+import { Tag } from 'antd';
 import { USER } from '../../commonSettings';
 
 const MAX_ORDER = 10;
@@ -10,32 +10,22 @@ export const TITLE: ProColumns = {
   dataIndex: 'title',
   width: 120,
 };
+
 export const IS_OFFICIAL: ProColumns = {
-  title: '是否官方',
+  title: '发布方',
   dataIndex: 'isOfficial',
   hideInSearch: true,
   width: 120,
-  render: (_: any) => <div>{_ ? '官方' : '否'}</div>,
+  render: (_: any) => <>{_ ? <Tag color="red">官方</Tag> : <Tag color="default">非官方</Tag>}</>,
 };
+
 export const TEXT: ProColumns = {
   title: '发布内容',
   dataIndex: 'text',
   hideInSearch: true,
   width: 400,
+  render: (_: any) => <Unfold text={_} limit={50}></Unfold>,
 };
-
-// export const PHOTOS: ProColumns = {
-//   title: '图片',
-//   dataIndex: 'photos',
-//   hideInSearch: true,
-//   width: 200,
-//   render: (_: any) => (
-//     <Space>
-//       <PhotoAlbum photos={_}/>
-//       <div>共 {_?.length ?? ''} 张</div>
-//     </Space>
-//   ),
-// };
 
 export const POSTS_COLUMNS = [
   {
@@ -54,8 +44,4 @@ export const POSTS_COLUMNS = [
     order: MAX_ORDER + 4,
     ...TEXT,
   },
-  // {
-  //   order: MAX_ORDER + 2,
-  //   ...PHOTOS,
-  // },
 ];
