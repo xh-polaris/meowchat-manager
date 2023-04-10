@@ -63,7 +63,7 @@ const Login: React.FC = () => {
   const code: string = queryString.parse(location.search).code as string;
   if (code) {
     handleSubmit('weixin', code);
-    return <div className={styles.center}>登陆中...</div>;
+    return <div className={styles.center}>登录中...</div>;
   } else {
     return (
       <div className={styles.container}>
