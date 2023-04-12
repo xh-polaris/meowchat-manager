@@ -74,3 +74,16 @@ export async function weixinLogin(code: string, options?: Record<string, any>) {
     ...(options || {}),
   });
 }
+
+/**
+ * 修改密码
+ * @param params
+ * @returns
+ */
+export const changePassword = async (data: any) =>
+  request(`${DEFAULT_URL}/auth/set_password`, {
+    method: 'POST',
+    data: {
+      ...data,
+    },
+  }).catch((e) => console.error(e));
