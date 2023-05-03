@@ -11,6 +11,7 @@ import Delete from './components/Delete';
 import Edit from './components/Edit';
 import View from './components/View';
 import { MOMENTS_COLUMNS } from './settings';
+import CommentView from '@/components/CommentView';
 
 const Moments = () => {
   const actionRef = useRef<ActionType>();
@@ -20,6 +21,7 @@ const Moments = () => {
   const [createVisible, setCreateVisible] = useState(false);
   const [deleteVisible, setDeleteVisible] = useState(false);
   const [editVisible, setEditVisible] = useState(false);
+  const [commentVisible, setCommentVisible] = useState(false);
 
   const requestTable = async (
     params: any & {
@@ -44,7 +46,7 @@ const Moments = () => {
     ...MOMENTS_COLUMNS,
     {
       ...OPERATIONS,
-      width: 200,
+      width: 400,
       render: (_, record) => (
         <>
           <Button
@@ -80,6 +82,17 @@ const Moments = () => {
             }}
           >
             删除
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            key="comment_view"
+            onClick={() => {
+              setCurrentMoment(record.id);
+              setCommentVisible(true);
+            }}
+          >
+            查看评论
           </Button>
         </>
       ),
@@ -133,6 +146,11 @@ const Moments = () => {
         setEditVisible={setEditVisible}
         actionRef={actionRef}
         currentMoment={currentMoment}
+      />
+      <CommentView
+        open={commentVisible}
+        setCommentVisible={setCommentVisible}
+        currentId={currentMoment}
       />
       {/* {selectedRowsState?.length > 0 && (
         <FooterToolbar

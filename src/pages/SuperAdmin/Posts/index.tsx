@@ -11,6 +11,7 @@ import Delete from '@/pages/SuperAdmin/Posts/components/Delete';
 import Edit from '@/pages/SuperAdmin/Posts/components/Edit';
 import ToggleOfficial from '@/pages/SuperAdmin/Posts/components/ToggleOfficial';
 import { getPostPreviews } from '@/services/posts';
+import CommentView from '@/components/CommentView';
 
 const Post = () => {
   const actionRef = useRef<ActionType>();
@@ -21,6 +22,7 @@ const Post = () => {
   const [editVisible, setEditVisible] = useState(false);
   const [toggleOfficialVisible, setToggleOfficialVisible] = useState(false);
   const [data, setData] = useState({});
+  const [commentVisible, setCommentVisible] = useState(false);
 
   const requestTable = async (
     params: any & {
@@ -96,6 +98,17 @@ const Post = () => {
           >
             删除
           </Button>
+          <Button
+            type="link"
+            size="small"
+            key="comment_view"
+            onClick={() => {
+              setCurrentPost(record.id);
+              setCommentVisible(true);
+            }}
+          >
+            查看评论
+          </Button>
         </>
       ),
     },
@@ -146,6 +159,12 @@ const Post = () => {
         actionRef={actionRef}
         currentPost={currentPost}
         data={data}
+      />
+      <CommentView
+        open={commentVisible}
+        setCommentVisible={setCommentVisible}
+        currentId={currentPost}
+        scope="post"
       />
     </PageContainer>
   );

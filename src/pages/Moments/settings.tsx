@@ -1,7 +1,7 @@
 import PhotoAlbum from '@/components/PhotoAlbum';
 import { ProColumns } from '@ant-design/pro-components';
 import { Space } from 'antd';
-import { USER } from '../commonSettings';
+import { TEXT, USER } from '../commonSettings';
 
 const MAX_ORDER = 10;
 
@@ -11,18 +11,11 @@ export const TITLE: ProColumns = {
   width: 120,
 };
 
-export const TEXT: ProColumns = {
-  title: '发布内容',
-  dataIndex: 'text',
-  hideInSearch: true,
-  width: 400,
-};
-
 export const PHOTOS: ProColumns = {
   title: '图片',
   dataIndex: 'photos',
   hideInSearch: true,
-  width: 200,
+  width: 300,
   render: (_: any) => (
     <Space>
       <PhotoAlbum photos={_} />

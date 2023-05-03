@@ -14,6 +14,7 @@ const PersonalDataModal = ({ isSettingsOpen, setIsSettingsOpen }: any) => {
     const success = await changePassword(value);
     if (success) {
       setIsSettingsOpen(false);
+      localStorage.clear();
       history.replace({
         pathname: '/login',
       });

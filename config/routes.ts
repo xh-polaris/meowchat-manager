@@ -78,14 +78,14 @@ export default [
         component: './SuperAdmin/Community',
       },
       {
-        name: '社区轮播图管理',
-        path: '/super-admin/carousel',
-        component: './Carousel',
-      },
-      {
         name: '帖子管理',
         path: '/super-admin/post',
         component: './SuperAdmin/Posts',
+      },
+      {
+        name: '社区轮播图管理',
+        path: '/super-admin/carousel',
+        component: './Carousel',
       },
       // {
       //   name: '管理员管理',

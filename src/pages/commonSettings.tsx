@@ -1,6 +1,7 @@
 import type { ProColumns } from '@ant-design/pro-table';
 import { formatTime } from '@/scripts/utils';
 import { Avatar, Space } from 'antd';
+import Unfold from '@/components/Unfold';
 
 export const OPERATIONS: ProColumns = {
   title: '操作',
@@ -39,4 +40,12 @@ export const AVATAR_IMG: ProColumns = {
   dataIndex: 'avatarUrl',
   hideInSearch: true,
   render: (_) => <Avatar src={_} size={40}></Avatar>,
+};
+
+export const TEXT: ProColumns = {
+  title: '发布内容',
+  dataIndex: 'text',
+  hideInSearch: true,
+  width: 400,
+  render: (_: any) => <Unfold text={_} limit={50}></Unfold>,
 };

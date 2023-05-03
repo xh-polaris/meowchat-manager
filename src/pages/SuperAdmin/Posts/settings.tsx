@@ -1,7 +1,6 @@
-import Unfold from '@/components/Unfold';
 import type { ProColumns } from '@ant-design/pro-components';
 import { Tag } from 'antd';
-import { USER } from '../../commonSettings';
+import { TEXT, USER } from '../../commonSettings';
 
 const MAX_ORDER = 10;
 
@@ -17,14 +16,6 @@ export const IS_OFFICIAL: ProColumns = {
   hideInSearch: true,
   width: 120,
   render: (_: any) => <>{_ ? <Tag color="red">官方</Tag> : <Tag color="default">非官方</Tag>}</>,
-};
-
-export const TEXT: ProColumns = {
-  title: '发布内容',
-  dataIndex: 'text',
-  hideInSearch: true,
-  width: 400,
-  render: (_: any) => <Unfold text={_} limit={50}></Unfold>,
 };
 
 export const POSTS_COLUMNS = [
