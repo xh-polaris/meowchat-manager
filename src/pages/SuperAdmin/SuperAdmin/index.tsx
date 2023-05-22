@@ -4,39 +4,33 @@ import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { Button } from 'antd';
 import { useRef, useState } from 'react';
 import { OPERATIONS } from '@/pages/commonSettings';
-// import { fetchSuperAdminList } from '@/services/super-admin';
+import { fetchSuperAdminList } from '@/services/super-admin';
 import { SUPER_ADMIN_COLUMNS } from './settings';
 import Create from './components/Create';
-// import DeleteUniversity from './components/DeleteUniversity';
+import Delete from './components/Delete';
 
 const Notice: React.FC = () => {
   const actionRef = useRef<ActionType>();
   const [createVisible, setCreateVisible] = useState(false);
-  // const [deleteVisible, setDeleteVisible] = useState(false);
+  const [deleteVisible, setDeleteVisible] = useState(false);
+  const [currentId, setCurrentId] = useState('');
 
-  // const requestTable = async (
-  //     params: any & {
-  //         pageSize: number;
-  //         current: number;
-  //     },
-  // ) => {
-  //     const msg = await fetchSuperAdminList({
-  //         ...params,
-  //         current: params.current,
-  //         pageSize: params.pageSize,
-  //     });
-  //     return {
-  //         data: msg.notices,
-  //         success: true,
-  //         total: msg.notices.length,
-  //     };
-  // };
+  const requestTable = async (params: any) => {
+    const msg = await fetchSuperAdminList({
+      ...params,
+    });
+    return {
+      data: msg.users,
+      success: true,
+      total: msg.users.length,
+    };
+  };
 
   const columns: ProColumns[] = [
     ...SUPER_ADMIN_COLUMNS,
     {
       ...OPERATIONS,
-      render: () => (
+      render: (_, record) => (
         <>
           <Button
             type="link"
@@ -44,10 +38,11 @@ const Notice: React.FC = () => {
             danger
             key="delete"
             onClick={() => {
-              // setDeleteVisible(true);
+              setCurrentId(record.id);
+              setDeleteVisible(true);
             }}
           >
-            删除
+            取消超级管理员
           </Button>
         </>
       ),
@@ -70,10 +65,10 @@ const Notice: React.FC = () => {
             }}
           >
             <PlusOutlined />
-            新建
+            添加
           </Button>,
         ]}
-        // request={requestTable}
+        request={requestTable}
         columns={columns}
         pagination={{
           pageSize: 20,
@@ -81,12 +76,12 @@ const Notice: React.FC = () => {
         }}
       />
       <Create open={createVisible} setCreateVisible={setCreateVisible} actionRef={actionRef} />
-      {/* <DeleteUniversity
+      <Delete
         open={deleteVisible}
         setDeleteVisible={setDeleteVisible}
         actionRef={actionRef}
-        currentNotice={currentNotice}
-      /> */}
+        currentId={currentId}
+      />
     </PageContainer>
   );
 };

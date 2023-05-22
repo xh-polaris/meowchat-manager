@@ -6,20 +6,14 @@ import { DEFAULT_URL } from '.';
  * @param params
  * @returns
  */
-export const fetchSuperAdminList = async (
-  params: {
-    current?: number;
-    pageSize?: number;
-  },
-  options?: { [key: string]: any },
-) =>
-  request(`${DEFAULT_URL}/role/get_super_admin`, {
+export const fetchSuperAdminList = async (params: any) =>
+  request(`${DEFAULT_URL}/role/get_user_by_role`, {
     method: 'GET',
     params: {
       ...params,
-      page: (params.current || 1) - 1,
+      roleType: 'superAdmin',
+      communityId: '1',
     },
-    ...(options || {}),
   });
 
 /**
@@ -27,12 +21,26 @@ export const fetchSuperAdminList = async (
  * @param params
  * @returns
  */
-export const createSuperAdmin = async (data: any, options?: { [key: string]: any }) => {
+export const createSuperAdmin = async (data: any) => {
   return request(`${DEFAULT_URL}/role/update_super_admin`, {
     method: 'POST',
     data: {
       ...data,
     },
-    ...(options || {}),
+  });
+};
+
+/**
+ * 删除管理员
+ * @param params
+ * @returns
+ */
+export const deleteSuperAdmin = async (data: any) => {
+  return request(`${DEFAULT_URL}/role/update_super_admin`, {
+    method: 'POST',
+    data: {
+      userId: data.id,
+      isRemove: true,
+    },
   });
 };
