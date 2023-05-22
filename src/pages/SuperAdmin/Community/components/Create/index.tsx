@@ -1,6 +1,6 @@
 import UserList from '@/components/UserList';
 import UserSearch from '@/components/UserSearch';
-import { createSuperAdmin } from '@/services/super-admin';
+import { createCommunityAdmin } from '@/services/community-admin';
 import { Modal } from 'antd';
 import { useState } from 'react';
 
@@ -15,8 +15,9 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
   const handleCreate = async (userId: string) => {
     const data = {
       userId: userId,
+      communityId: localStorage.getItem('communityId'),
     };
-    const success = await createSuperAdmin(data);
+    const success = await createCommunityAdmin(data);
     if (success) {
       setCreateVisible(false);
       if (actionRef.current) {
@@ -26,9 +27,9 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
   };
 
   return (
-    <Modal title="新增超级管理员" width="600px" open={open} footer={null} onCancel={handleCancel}>
+    <Modal title="新增社区管理员" width="600px" open={open} footer={null} onCancel={handleCancel}>
       <UserSearch setUsers={setUsers} />
-      <UserList users={users} handleCreate={handleCreate} type={'超级'} />
+      <UserList users={users} handleCreate={handleCreate} type={'社区'} />
     </Modal>
   );
 };

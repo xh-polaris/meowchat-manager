@@ -1,10 +1,12 @@
-import { deleteCommunity } from '@/services/community';
+import { deleteCommunityAdmin } from '@/services/community-admin';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Modal, Space } from 'antd';
 
-const DeleteUniversity = ({ open, setDeleteVisible, actionRef, currentUniversity }: any) => {
+const Delete = ({ open, setDeleteVisible, actionRef, currentId }: any) => {
   const handleDelete = async () => {
-    const success = await deleteCommunity({ id: currentUniversity.id });
+    const success = await deleteCommunityAdmin({
+      id: currentId,
+    });
     if (success) {
       setDeleteVisible(false);
       if (actionRef.current) {
@@ -22,7 +24,7 @@ const DeleteUniversity = ({ open, setDeleteVisible, actionRef, currentUniversity
       title={
         <Space>
           <ExclamationCircleOutlined />
-          删除学校
+          取消超级管理员
         </Space>
       }
       open={open}
@@ -33,9 +35,9 @@ const DeleteUniversity = ({ open, setDeleteVisible, actionRef, currentUniversity
       onOk={handleDelete}
       onCancel={handleCancel}
     >
-      确定删除该学校吗？
+      确定取消其超级管理员身份吗？
     </Modal>
   );
 };
 
-export default DeleteUniversity;
+export default Delete;

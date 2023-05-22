@@ -25,7 +25,7 @@ const switchRoleTag = (roleType = '', communityId = '') => {
 };
 
 const UserList = (props: any) => {
-  const { users: data = [], handleCreate } = props;
+  const { users: data = [], handleCreate, type } = props;
 
   return (
     <>
@@ -45,7 +45,7 @@ const UserList = (props: any) => {
                 onClick={() => handleCreate(item?.id)}
                 disabled={item?.roles?.[0]?.roleType === 'superAdmin'}
               >
-                添加为超级管理员
+                添加为{type}管理员
               </Button>,
             ]}
           >

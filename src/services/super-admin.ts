@@ -17,7 +17,7 @@ export const fetchSuperAdminList = async (params: any) =>
   });
 
 /**
- * 新增管理员
+ * 新增超级管理员
  * @param params
  * @returns
  */
@@ -31,7 +31,7 @@ export const createSuperAdmin = async (data: any) => {
 };
 
 /**
- * 删除管理员
+ * 删除超级管理员
  * @param params
  * @returns
  */

@@ -93,12 +93,11 @@ export default [
       //   path: '/super-admin/admin',
       //   component: './SuperAdmin/Community',
       // },
-      // {
-      //   name: '社区管理员管理',
-      //   icon: 'bank',
-      //   path: '/super-admin/community-admin',
-      //   component: './SuperAdmin/Community',
-      // },
+      {
+        name: '社区管理员管理',
+        path: '/super-admin/community-admin',
+        component: './SuperAdmin/Community',
+      },
       {
         name: '超级管理员管理',
         path: '/super-admin/super-admin',

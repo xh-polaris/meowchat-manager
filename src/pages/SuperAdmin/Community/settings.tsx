@@ -1,13 +1,12 @@
-import type { ProColumns } from '@ant-design/pro-components';
+import { AVATAR_IMG, NAME } from '@/pages/commonSettings';
 
-export const UNIVERSITY: ProColumns = {
-  title: '学校',
-  dataIndex: 'university',
-};
-
-export const COMMUNITY_COLUMNS = [
+export const COMMUNITY_ADMIN_COLUMNS = [
   {
-    order: 1,
-    ...UNIVERSITY,
+    ...AVATAR_IMG,
+    title: '头像',
+  },
+  {
+    ...NAME,
+    dataIndex: 'nickname',
   },
 ];
