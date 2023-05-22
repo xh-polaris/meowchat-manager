@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 const { Text } = Typography;
 
+// 遍历社区列表，生成级联选择器 options
 const forEachCommunity = (community: any, options: any[]) => {
   const children: any[] = [];
   community.children.forEach((child: any) => {
@@ -20,6 +21,7 @@ const forEachCommunity = (community: any, options: any[]) => {
   });
 };
 
+// 生成不同权限用户的级联选择器 options
 const getOptions = (communityList: any, access: string) => {
   const options: any[] = [];
   if (access === 'communityAdmin') {
@@ -59,7 +61,6 @@ const CommunitySelector = (props: any) => {
   const onChange = (value: any[]) => {
     const length = value.length;
     let name = '';
-    localStorage.setItem('communityId', value[length - 1]);
     if (length === 1) {
       for (let i = 0; i < options.length; i++) {
         const parent = options[i];
@@ -68,6 +69,7 @@ const CommunitySelector = (props: any) => {
         }
       }
     } else if (length === 2) {
+      localStorage.setItem('communityId', value[length - 1]);
       for (let i = 0; i < options.length; i++) {
         const parent = options[i];
         if (parent.value === value[length - 1]) {
@@ -84,7 +86,7 @@ const CommunitySelector = (props: any) => {
       }
     }
     setCurrentCommunity(name);
-    if (actionRef.current) {
+    if (length === 2 && actionRef.current) {
       actionRef.current.reload();
     }
   };
