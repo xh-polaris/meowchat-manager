@@ -1,5 +1,30 @@
 
 
+## [1.7.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.6.0...v1.7.0) (2023-08-13)
+
+
+### ⚡ Performance Improvements | 优化
+
+* 隐藏布局调整按钮 ([195b20f](https://github.com/xh-polaris/meowchat-manager/commit/195b20f9c8ae9cf2014d83d126ebc4cc3a6c5981))
+
+
+### ✨ Features | 新功能
+
+* 超级管理员管理 ([017d211](https://github.com/xh-polaris/meowchat-manager/commit/017d2117e4f3ba1fe7e8fdb1190adbd4b91b79de))
+* 调整社区选择交互,选择一级校区无效 ([49a1fa5](https://github.com/xh-polaris/meowchat-manager/commit/49a1fa5e8fdc0bba6eb0fa6a7f7705081d56de0b))
+* 动态帖子查看评论 ([5d3ca74](https://github.com/xh-polaris/meowchat-manager/commit/5d3ca74764366b97530114c078c7944f0fd826f6))
+* 社区管理员管理 ([5da6182](https://github.com/xh-polaris/meowchat-manager/commit/5da61824d9fc25d0494219fc99cedcd025fb6494))
+* 实现微信登录功能 ([#18](https://github.com/xh-polaris/meowchat-manager/issues/18)) ([49cebcc](https://github.com/xh-polaris/meowchat-manager/commit/49cebcc7ce61ef42b3f66c0023bf194d5f2e2719))
+* 添加修改管理员头像功能 ([f16d3f6](https://github.com/xh-polaris/meowchat-manager/commit/f16d3f6cbc09beef86cb2255916c19bcbbcb65c3))
+* 帖子管理功能优化 ([ac7a83a](https://github.com/xh-polaris/meowchat-manager/commit/ac7a83a8cf0225708f61d929acf1ed00ecd1968c))
+* 微信登录样式调整 ([af451f2](https://github.com/xh-polaris/meowchat-manager/commit/af451f2d45509be5e93bc1442571adbea1788bdb))
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 错别字修改 ([e3a782a](https://github.com/xh-polaris/meowchat-manager/commit/e3a782a8f8e8e1e8bd6ea21c86279d27c06e5e03))
+* 修复管理端登录问题 ([b706c83](https://github.com/xh-polaris/meowchat-manager/commit/b706c83da985b194f576e818ee9df87d0d966cd0))
+
 ## [1.6.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.5.2...v1.6.0) (2023-03-16)
 
 ### ✨ Features | 新功能
