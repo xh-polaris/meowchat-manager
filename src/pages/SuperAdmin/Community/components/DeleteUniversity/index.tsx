@@ -2,9 +2,9 @@ import { deleteCommunity } from '@/services/community';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Modal, Space } from 'antd';
 
-const DeleteCampus = ({ open, setDeleteVisible, actionRef, currentCampus }: any) => {
+const DeleteUniversity = ({ open, setDeleteVisible, actionRef, currentUniversity }: any) => {
   const handleDelete = async () => {
-    const success = await deleteCommunity({ id: currentCampus.id });
+    const success = await deleteCommunity({ id: currentUniversity.id });
     if (success) {
       setDeleteVisible(false);
       if (actionRef.current) {
@@ -22,7 +22,7 @@ const DeleteCampus = ({ open, setDeleteVisible, actionRef, currentCampus }: any)
       title={
         <Space>
           <ExclamationCircleOutlined />
-          删除校区
+          删除学校
         </Space>
       }
       open={open}
@@ -33,9 +33,9 @@ const DeleteCampus = ({ open, setDeleteVisible, actionRef, currentCampus }: any)
       onOk={handleDelete}
       onCancel={handleCancel}
     >
-      确定删除该校区吗？
+      确定删除该学校吗？
     </Modal>
   );
 };
 
-export default DeleteCampus;
+export default DeleteUniversity;

@@ -41,7 +41,7 @@ const Login: React.FC = () => {
         return;
       }
       // @ts-ignore
-      if (msg.code === 0) {
+      if (!msg.code) {
         // @ts-ignore
         localStorage.setItem('accessToken', `${msg.accessToken}`);
         const defaultLoginSuccessMessage = '登录成功！';

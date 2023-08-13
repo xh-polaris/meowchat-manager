@@ -11,7 +11,7 @@ export const fetchSuperAdminList = async (params: any) =>
     method: 'GET',
     params: {
       ...params,
-      roleType: 'superAdmin',
+      roleType: 3,
       communityId: '1',
     },
   });

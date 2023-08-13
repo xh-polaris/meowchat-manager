@@ -96,7 +96,7 @@ export default [
       {
         name: '社区管理员管理',
         path: '/super-admin/community-admin',
-        component: './SuperAdmin/Community',
+        component: './SuperAdmin/CommunityAdmin',
       },
       {
         name: '超级管理员管理',

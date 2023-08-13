@@ -14,6 +14,12 @@ import { fetchCommunityList } from './services/community';
 
 const loginPath = '/login';
 
+const adminMap = new Map([
+  [1, 'admin'],
+  [2, 'communityAdmin'],
+  [3, 'superAdmin'],
+]);
+
 function setDefaultCommunityId(communityList: any[]) {
   for (let i = communityList.length - 1; i >= 0; i--) {
     const community = communityList[i];
@@ -69,12 +75,12 @@ export async function getInitialState(): Promise<{
       const userAccess = await queryCurrentUserAccess();
       const roles = userAccess.roles[0];
       const communityList = (await fetchCommunityList({})).communities;
-      if (roles.roleType === 'superAdmin') {
+      if (roles.roleType === 3) {
         setDefaultCommunityId(communityList);
       } else {
         localStorage.setItem('communityId', roles.communityId);
       }
-      localStorage.setItem('access', roles.roleType);
+      localStorage.setItem('access', adminMap.get(roles.roleType) || '');
       localStorage.setItem('communityList', JSON.stringify(arrayToTree(communityList)));
       const user = {
         ...msg.user,

@@ -11,7 +11,7 @@ export const fetchCommunityAdminList = async (params: any) =>
     method: 'GET',
     params: {
       ...params,
-      roleType: 'communityAdmin',
+      roleType: 2,
     },
   });
 
