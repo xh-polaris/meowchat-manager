@@ -11,8 +11,7 @@ const UserSearch = (props: any) => {
 
   const handleSearch = async (value: string) => {
     setLoading(true);
-    const data = await searchUserInfo({ keyword: value, paginationOption: { limit: 10, page: 0 } });
-    // const data = await searchUserInfo({ keyword: value, limit: 10, page: 0 });
+    const data = await searchUserInfo({ keyword: value, limit: 10, page: 0 });
     setLoading(false);
     setUsers(data?.users);
     if (data?.users?.length === 0) {
