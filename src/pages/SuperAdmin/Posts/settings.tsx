@@ -15,7 +15,9 @@ export const IS_OFFICIAL: ProColumns = {
   dataIndex: 'isOfficial',
   hideInSearch: true,
   width: 120,
-  render: (_: any) => <>{_ ? <Tag color="red">官方</Tag> : <Tag color="default">非官方</Tag>}</>,
+  render: (_: any) => (
+    <>{_ === true ? <Tag color="red">官方</Tag> : <Tag color="default">非官方</Tag>}</>
+  ),
 };
 
 export const POSTS_COLUMNS = [

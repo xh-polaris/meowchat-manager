@@ -32,9 +32,11 @@ const Post = () => {
   ) => {
     const msg = await getPostPreviews({
       ...params,
-      current: params.current,
-      pageSize: params.pageSize,
-      offset: (params.current - 1) * params.pageSize,
+      paginationOption: {
+        current: params.current,
+        pageSize: params.pageSize,
+        offset: (params.current - 1) * params.pageSize,
+      },
     });
     return {
       data: msg.posts,
