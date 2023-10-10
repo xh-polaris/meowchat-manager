@@ -38,6 +38,7 @@ export async function accountLogin(body: API.LoginParams, options?: Record<strin
     data: {
       ...body,
       authType: 'email',
+      appId: 2,
     },
     ...(options || {}),
   });
@@ -68,8 +69,9 @@ export async function weixinLogin(code: string, options?: Record<string, any>) {
     method: 'POST',
     data: {
       authType: 'wechat',
-      params: [code, 'manager'],
-      authId: 'authId', //这个随便填 没用的
+      verifyCode: code,
+      authId: 'wx40ab73e6ebd6e636', // 填wx的appid
+      appId: 2,
     },
     ...(options || {}),
   });

@@ -42,7 +42,7 @@ const UserList = (props: any) => {
               <Button
                 type="primary"
                 key="super-admin"
-                onClick={() => handleCreate(item?.id)}
+                onClick={() => handleCreate(item?.user.id)}
                 disabled={item?.roles?.[0]?.roleType === 'superAdmin'}
               >
                 添加为{type}管理员
@@ -50,14 +50,14 @@ const UserList = (props: any) => {
             ]}
           >
             <List.Item.Meta
-              avatar={<Avatar src={item?.avatarUrl} />}
+              avatar={<Avatar src={item?.user.avatarUrl} />}
               title={
                 <Space>
-                  <div>{item?.nickname}</div>
+                  <div>{item?.user.nickname}</div>
                   {switchRoleTag(item?.roles?.[0]?.roleType)}
                 </Space>
               }
-              description={<>用户ID: {item?.id}</>}
+              description={<>用户ID: {item?.user.id}</>}
             />
           </List.Item>
         )}
