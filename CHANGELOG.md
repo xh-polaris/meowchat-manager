@@ -1,5 +1,12 @@
 
 
+### [1.7.2](https://github.com/xh-polaris/meowchat-manager/compare/v1.7.1...v1.7.2) (2023-10-10)
+
+
+### ✨ Features | 新功能
+
+* 完成微信登陆功能 ([814bedf](https://github.com/xh-polaris/meowchat-manager/commit/814bedffe5275eee1849238d4e71a427e74cf4e1))
+
 ### [1.7.1](https://github.com/xh-polaris/meowchat-manager/compare/v1.7.0...v1.7.1) (2023-10-10)
 
 
