@@ -1,5 +1,12 @@
 
 
+### [1.7.3](https://github.com/xh-polaris/meowchat-manager/compare/v1.7.2...v1.7.3) (2023-10-11)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 社区管理员不再能修改全局轮播图 ([dca0c64](https://github.com/xh-polaris/meowchat-manager/commit/dca0c64821d73f0eebc23ed1ae90175178de732b))
+
 ### [1.7.2](https://github.com/xh-polaris/meowchat-manager/compare/v1.7.1...v1.7.2) (2023-10-10)
 
 
