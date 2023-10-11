@@ -73,18 +73,32 @@ export async function getInitialState(): Promise<{
         skipErrorHandler: true,
       });
       const userAccess = await queryCurrentUserAccess();
-      const roles = userAccess.roles[0];
+      let role: any;
+      userAccess.roles?.forEach((r: { roleType: number }) => {
+        if (!adminMap.has(r.roleType)) {
+          return;
+        }
+        if (!role?.roleType || r.roleType > role.roleType) {
+          role = r;
+        }
+      });
+      if (!role) {
+        throw new TypeError();
+      }
       const communityList = (await fetchCommunityList({})).communities;
-      if (roles.roleType === 3) {
+      if (role.roleType === 3) {
         setDefaultCommunityId(communityList);
       } else {
-        localStorage.setItem('communityId', roles.communityId);
+        localStorage.setItem('communityId', role.communityId);
       }
-      localStorage.setItem('access', adminMap.get(roles.roleType) || '');
+      if (!adminMap.get(role.roleType)) {
+        throw new TypeError();
+      }
+      localStorage.setItem('access', adminMap.get(role.roleType) || '');
       localStorage.setItem('communityList', JSON.stringify(arrayToTree(communityList)));
       const user = {
         ...msg.user,
-        ...roles,
+        ...role,
       };
       return user;
     } catch (error) {

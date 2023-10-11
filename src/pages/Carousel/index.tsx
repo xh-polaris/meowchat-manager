@@ -37,42 +37,45 @@ const Carousel: React.FC = () => {
     };
   };
 
+  const access = localStorage.getItem('access');
+
   const columns: ProColumns[] = [
     ...CAROUSEL_COLUMNS,
     {
       ...OPERATIONS,
       width: 100,
-      render: (_, record) => (
-        <>
-          <Button
-            type="link"
-            size="small"
-            key="edit"
-            onClick={() => {
-              setCurrentCarousel(record);
-              setEditVisible(true);
-            }}
-          >
-            编辑
-          </Button>
-          <Button
-            type="link"
-            size="small"
-            danger
-            key="delete"
-            onClick={() => {
-              setCurrentCarousel(record);
-              setDeleteVisible(true);
-            }}
-          >
-            删除
-          </Button>
-        </>
-      ),
+      render: (_, record) =>
+        !record.isPublic || access === 'superAdmin' ? (
+          <>
+            <Button
+              type="link"
+              size="small"
+              key="edit"
+              onClick={() => {
+                setCurrentCarousel(record);
+                setEditVisible(true);
+              }}
+            >
+              编辑
+            </Button>
+            <Button
+              type="link"
+              size="small"
+              danger
+              key="delete"
+              onClick={() => {
+                setCurrentCarousel(record);
+                setDeleteVisible(true);
+              }}
+            >
+              删除
+            </Button>
+          </>
+        ) : (
+          <></>
+        ),
     },
   ];
-
-  const access = localStorage.getItem('access');
 
   return (
     <PageContainer>

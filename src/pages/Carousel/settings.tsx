@@ -1,5 +1,5 @@
-import { ProColumns } from '@ant-design/pro-components';
-import { Image } from 'antd';
+import type { ProColumns } from '@ant-design/pro-components';
+import { Image, Tag } from 'antd';
 
 const MAX_ORDER = 10;
 
@@ -41,6 +41,16 @@ export const LINK_URL: ProColumns = {
   ),
 };
 
+export const IS_PUBLIC: ProColumns = {
+  title: '发布方',
+  dataIndex: 'isPublic',
+  hideInSearch: true,
+  width: 120,
+  render: (_: any) => (
+    <>{_ === 1 ? <Tag color="red">系统</Tag> : <Tag color="default">社区</Tag>}</>
+  ),
+};
+
 export const TYPE: ProColumns = {
   title: '公示类型',
   dataIndex: 'type',
@@ -61,6 +71,10 @@ export const CAROUSEL_COLUMNS = [
   },
   {
     order: MAX_ORDER + 4,
+    ...IS_PUBLIC,
+  },
+  {
+    order: MAX_ORDER + 2,
     ...TYPE,
   },
 ];
