@@ -24,7 +24,7 @@ const Delete = ({ open, setDeleteVisible, actionRef, currentId }: any) => {
       title={
         <Space>
           <ExclamationCircleOutlined />
-          取消超级管理员
+          取消社区管理员
         </Space>
       }
       open={open}
@@ -35,7 +35,7 @@ const Delete = ({ open, setDeleteVisible, actionRef, currentId }: any) => {
       onOk={handleDelete}
       onCancel={handleCancel}
     >
-      确定取消其超级管理员身份吗？
+      确定取消其社区管理员身份吗？
     </Modal>
   );
 };
