@@ -1,13 +1,35 @@
 import { findCommunityName } from '@/scripts/utils';
 import { Avatar, Button, List, Space, Tag } from 'antd';
 
-const switchRoleTag = (roleType = '', communityId = '') => {
+interface Roles {
+  roleType?: number;
+  communityId?: string;
+}
+
+const switchRoleTag = (roles: Roles) => {
+  let roleType = 1,
+    communityId = '';
   let tag;
+
+  if (roles) {
+    if (roles?.[0].roleType === 4) {
+      roleType = roles?.[1]?.roleType;
+      if (roleType === 2) {
+        communityId = roles?.[1]?.communityId;
+      }
+    } else {
+      roleType = roles?.[0]?.roleType;
+      if (roleType === 2) {
+        communityId = roles?.[0]?.communityId;
+      }
+    }
+  }
+
   switch (roleType) {
-    case 'superAdmin':
+    case 3:
       tag = <Tag color="red">超级管理员</Tag>;
       break;
-    case 'communityAdmin':
+    case 2:
       tag = (
         <>
           <Tag color="green">社区管理员</Tag>
@@ -15,7 +37,7 @@ const switchRoleTag = (roleType = '', communityId = '') => {
         </>
       );
       break;
-    case '':
+    case 1:
       tag = <Tag color="blue">普通用户</Tag>;
       break;
     default:
@@ -42,22 +64,25 @@ const UserList = (props: any) => {
               <Button
                 type="primary"
                 key="super-admin"
-                onClick={() => handleCreate(item?.user.id)}
-                disabled={item?.roles?.[0]?.roleType === 'superAdmin'}
+                onClick={() => handleCreate(item?.id)}
+                disabled={
+                  (type === '超级' && item?.roles?.find((value: any) => value.roleType === 3)) ||
+                  (type === '社区' && item?.roles?.find((value: any) => value.roleType === 2))
+                }
               >
                 添加为{type}管理员
               </Button>,
             ]}
           >
             <List.Item.Meta
-              avatar={<Avatar src={item?.user.avatarUrl} />}
+              avatar={<Avatar src={item?.avatarUrl} />}
               title={
                 <Space>
-                  <div>{item?.user.nickname}</div>
-                  {switchRoleTag(item?.roles?.[0]?.roleType)}
+                  <div>{item?.nickname}</div>
+                  {switchRoleTag(item?.roles)}
                 </Space>
               }
-              description={<>用户ID: {item?.user.id}</>}
+              description={<>用户ID: {item?.id}</>}
             />
           </List.Item>
         )}

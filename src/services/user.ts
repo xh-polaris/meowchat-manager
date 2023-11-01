@@ -7,7 +7,7 @@ import { DEFAULT_URL } from '.';
  * @returns
  */
 export const searchUserInfo = async (params: any, options?: { [key: string]: any }) =>
-  request(`${DEFAULT_URL}/user/search_user_for_admin`, {
+  request(`${DEFAULT_URL}/user/search_user`, {
     method: 'GET',
     params: {
       keyword: '',
