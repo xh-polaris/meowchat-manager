@@ -1,5 +1,18 @@
 
 
+## [1.8.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.7.3...v1.8.0) (2023-11-02)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 兼容性调整 ([0923023](https://github.com/xh-polaris/meowchat-manager/commit/0923023343c24cb822c065ae7760594ba730e679))
+* 文案问题 ([987a612](https://github.com/xh-polaris/meowchat-manager/commit/987a612e7c44b9b4ab2077c05248902e3b723e61))
+
+
+### ✨ Features | 新功能
+
+* 新增管理员优化 ([9401b37](https://github.com/xh-polaris/meowchat-manager/commit/9401b374620d918d078e1a22c5e4f6d01d7f262f))
+
 ### [1.7.3](https://github.com/xh-polaris/meowchat-manager/compare/v1.7.2...v1.7.3) (2023-10-11)
 
 
