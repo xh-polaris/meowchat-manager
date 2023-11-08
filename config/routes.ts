@@ -60,6 +60,11 @@ export default [
         path: '/community-admin/carousel',
         component: './Carousel',
       },
+      {
+        name: '小鱼干计划管理',
+        path: '/community-admin/dried-fish',
+        component: './CommunityAdmin/DriedFish',
+      },
     ],
   },
   {
@@ -102,6 +107,11 @@ export default [
         name: '超级管理员管理',
         path: '/super-admin/super-admin',
         component: './SuperAdmin/SuperAdmin',
+      },
+      {
+        name: '小鱼干计划管理',
+        path: '/super-admin/dried-fish',
+        component: './CommunityAdmin/DriedFish',
       },
     ],
   },

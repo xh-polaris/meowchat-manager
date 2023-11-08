@@ -1,8 +1,18 @@
 import { PageContainer } from '@ant-design/pro-components';
-import { Card } from 'antd';
+import { Button, Card, Space } from 'antd';
 import React from 'react';
 
 const Welcome: React.FC = () => {
+  const access = localStorage.getItem('access') || '';
+
+  const redirectProd = () => {
+    localStorage.removeItem('environment');
+  };
+
+  const redirectTest = () => {
+    localStorage.setItem('environment', 'test');
+  };
+
   return (
     <PageContainer>
       <Card
@@ -33,6 +43,20 @@ const Welcome: React.FC = () => {
           </div>
         </div>
       </Card>
+      {access === 'superAdmin' && (
+        <>
+          <Card>
+            <Space>
+              <Button onClick={redirectProd} type="primary">
+                生产环境
+              </Button>
+              <Button onClick={redirectTest} type="primary">
+                测试环境
+              </Button>
+            </Space>
+          </Card>
+        </>
+      )}
     </PageContainer>
   );
 };

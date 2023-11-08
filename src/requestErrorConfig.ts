@@ -94,7 +94,13 @@ export const errorConfig: RequestConfig = {
   requestInterceptors: [
     (config: RequestOptions) => {
       // 拦截请求配置，进行个性化处理。
-      const headers = { ...config?.headers, Authorization: getAccessToken() }
+      const headers = { ...config?.headers, Authorization: getAccessToken() };
+      if (location.search === '?environment=test') {
+        localStorage.setItem('environment', 'test');
+      }
+      if (localStorage.getItem('environment') === 'test') {
+        headers['x-xh-env'] = 'test';
+      }
       return { ...config, headers };
     },
   ],
