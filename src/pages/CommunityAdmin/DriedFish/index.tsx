@@ -4,19 +4,21 @@ import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { Button } from 'antd';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { OPERATIONS } from '@/pages/commonSettings';
 // import Create from './components/Create';
 // import Delete from './components/Delete';
 // import Edit from './components/Edit';
+import View from './components/View';
 import { CAROUSEL_COLUMNS } from './settings';
 
 const DriedFish: React.FC = () => {
   const actionRef = useRef<ActionType>();
-  //   const [currentCarousel, setCurrentCarousel] = useState({});
+  const [currentDriedFish, setCurrentDriedFish] = useState({});
   //   const [createVisible, setCreateVisible] = useState(false);
   //   const [deleteVisible, setDeleteVisible] = useState(false);
   //   const [editVisible, setEditVisible] = useState(false);
+  const [viewVisible, setViewVisible] = useState(false);
 
   const requestTable = async (
     params: any & {
@@ -42,7 +44,7 @@ const DriedFish: React.FC = () => {
     {
       ...OPERATIONS,
       width: 200,
-      render: () => (
+      render: (_, record) => (
         <>
           <Button
             type="link"
@@ -60,8 +62,8 @@ const DriedFish: React.FC = () => {
             size="small"
             key="detail"
             onClick={() => {
-              // setCurrentCarousel(record);
-              // setEditVisible(true);
+              setCurrentDriedFish(record.id);
+              setViewVisible(true);
             }}
           >
             详情
@@ -71,8 +73,8 @@ const DriedFish: React.FC = () => {
             size="small"
             key="edit"
             onClick={() => {
-              // setCurrentCarousel(record);
-              // setEditVisible(true);
+              //   setCurrentCarousel(record);
+              //   setEditVisible(true);
             }}
           >
             编辑
@@ -133,6 +135,11 @@ const DriedFish: React.FC = () => {
         actionRef={actionRef}
         currentCarousel={currentCarousel}
       /> */}
+      <View
+        open={viewVisible}
+        setViewVisible={setViewVisible}
+        currentDriedFish={currentDriedFish}
+      />
     </PageContainer>
   );
 };

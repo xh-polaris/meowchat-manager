@@ -64,3 +64,23 @@ export const fetchDriedFishList = async (
 //     ...(options || {}),
 //   });
 // };
+
+/**
+ * 获取小鱼干计划具体信息
+ * @param params
+ * @returns
+ */
+export const fetchCurrentDriedFish = async (
+  params: {
+    planId: string;
+  },
+  options?: { [key: string]: any },
+) => {
+  return request(`${DEFAULT_URL}/plan/get_plan_detail`, {
+    method: 'GET',
+    params: {
+      ...params,
+    },
+    ...(options || {}),
+  });
+};

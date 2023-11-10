@@ -4,7 +4,7 @@ import { Progress, Tag } from 'antd';
 
 const MAX_ORDER = 10;
 
-const transferType = (type: number) => {
+export const transferType = (type: number) => {
   let newType;
   switch (type) {
     case 0:
@@ -25,7 +25,7 @@ const transferType = (type: number) => {
   return newType;
 };
 
-const PLAN_COLOR = new Map([
+export const PLAN_COLOR = new Map([
   [0, '#108ee9'],
   [1, '#f50'],
   [2, '#87d068'],
