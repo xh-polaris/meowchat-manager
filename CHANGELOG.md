@@ -1,5 +1,14 @@
 
 
+## [1.9.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.8.0...v1.9.0) (2023-11-10)
+
+
+### ✨ Features | 新功能
+
+* 小鱼干列表/测试环境 ([808d339](https://github.com/xh-polaris/meowchat-manager/commit/808d3392fdd30e0bcfc5fc5e98aa37204221f02c))
+* 小鱼干详情 ([70312e8](https://github.com/xh-polaris/meowchat-manager/commit/70312e8cf3b7c8139949168691bb7934f9e466a4))
+* config ([83cca58](https://github.com/xh-polaris/meowchat-manager/commit/83cca58d00fc0f7c32fe343446c302ddaccc3782))
+
 ## [1.8.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.7.3...v1.8.0) (2023-11-02)
 
 
