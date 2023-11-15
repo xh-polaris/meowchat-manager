@@ -1,5 +1,12 @@
 
 
+## [1.10.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.9.0...v1.10.0) (2023-11-15)
+
+
+### ✨ Features | 新功能
+
+* 删除人气值 ([e61d972](https://github.com/xh-polaris/meowchat-manager/commit/e61d9727ca2bd37747f3e8409ca9585a552a7419))
+
 ## [1.9.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.8.0...v1.9.0) (2023-11-10)
 
 
