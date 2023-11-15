@@ -19,6 +19,7 @@ const DriedFish: React.FC = () => {
   //   const [deleteVisible, setDeleteVisible] = useState(false);
   //   const [editVisible, setEditVisible] = useState(false);
   const [viewVisible, setViewVisible] = useState(false);
+  const [includeGlobalPlan, setIncludeGlobalPlan] = useState(0);
 
   const requestTable = async (
     params: any & {
@@ -29,6 +30,8 @@ const DriedFish: React.FC = () => {
     const data = await fetchDriedFishList({
       ...params,
       page: params.current - 1,
+      communityId: localStorage.getItem('communityId'),
+      includeGlobal: includeGlobalPlan,
     });
     return {
       data: data.plans,
@@ -105,6 +108,22 @@ const DriedFish: React.FC = () => {
         rowKey="id"
         search={false}
         toolBarRender={() => [
+          <>
+            {access === 'superAdmin' ? (
+              <Button
+                type="primary"
+                key="primary"
+                onClick={() => {
+                  setIncludeGlobalPlan(includeGlobalPlan === 0 ? 1 : 0);
+                  actionRef?.current?.reload();
+                }}
+              >
+                {includeGlobalPlan === 0 ? '展示全局计划' : '隐藏全局计划'}
+              </Button>
+            ) : (
+              <></>
+            )}
+          </>,
           <Button
             type="primary"
             key="primary"

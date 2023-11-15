@@ -3,7 +3,7 @@ import { fetchCurrentCat } from '@/services/cat';
 import { fetchCurrentDriedFish } from '@/services/dried-fish';
 import { Avatar, Button, Descriptions, Modal, Space, Tag } from 'antd';
 import { useEffect, useState } from 'react';
-import { PLAN_COLOR, transferType } from '../../settings';
+import { PLAN_COLOR, PLAN_STATE_MAP, transferType } from '../../settings';
 import { formatTime } from '@/scripts/utils';
 
 const View = ({ open, setViewVisible, currentDriedFish }: any) => {
@@ -34,6 +34,7 @@ const View = ({ open, setViewVisible, currentDriedFish }: any) => {
     maxFish,
     nowFish,
     summary,
+    planState,
   } = plan;
   const { nickname, avatarUrl } = user;
   const { cat = {} } = catInfo;
@@ -79,10 +80,13 @@ const View = ({ open, setViewVisible, currentDriedFish }: any) => {
         <Descriptions.Item label="开始时间">{formatTime(startTime ?? '')}</Descriptions.Item>
         <Descriptions.Item label="结束时间">{formatTime(endTime ?? '')}</Descriptions.Item>
         <Descriptions.Item label="创建时间">{formatTime(createAt ?? '')}</Descriptions.Item>
-        <Descriptions.Item label="任务进度">
+        <Descriptions.Item label="小鱼干进度">
           <span style={{ color: 'red' }}>
             {nowFish ?? ''}/{maxFish ?? ''}
           </span>
+        </Descriptions.Item>
+        <Descriptions.Item label="计划状态" span={2}>
+          {PLAN_STATE_MAP.get(planState) ?? ''}
         </Descriptions.Item>
         <Descriptions.Item label="任务详情" span={2}>
           {description ?? ''}

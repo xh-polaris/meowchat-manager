@@ -1,4 +1,10 @@
 import { NAME, USER } from '@/pages/commonSettings';
+import {
+  CheckCircleOutlined,
+  ClockCircleOutlined,
+  ExclamationCircleOutlined,
+  SyncOutlined,
+} from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-components';
 import { Progress, Tag } from 'antd';
 
@@ -8,7 +14,7 @@ export const transferType = (type: number) => {
   let newType;
   switch (type) {
     case 0:
-      newType = '加餐';
+      newType = '其他';
       break;
     case 1:
       newType = '绝育';
@@ -17,7 +23,7 @@ export const transferType = (type: number) => {
       newType = '治病';
       break;
     case 3:
-      newType = '其他';
+      newType = '加餐';
       break;
     default:
       newType = '';
@@ -32,6 +38,33 @@ export const PLAN_COLOR = new Map([
   [3, 'default'],
 ]);
 
+export const PLAN_STATE_MAP = new Map([
+  [
+    0,
+    <Tag color="warning" icon={<ExclamationCircleOutlined />}>
+      未知
+    </Tag>,
+  ],
+  [
+    1,
+    <Tag color="default" icon={<ClockCircleOutlined />}>
+      募集中
+    </Tag>,
+  ],
+  [
+    2,
+    <Tag color="processing" icon={<SyncOutlined spin />}>
+      实施中
+    </Tag>,
+  ],
+  [
+    3,
+    <Tag color="success" icon={<CheckCircleOutlined />}>
+      已完成
+    </Tag>,
+  ],
+]);
+
 export const PLAN_TYPE: ProColumns = {
   title: '计划类型',
   dataIndex: 'planType',
@@ -40,7 +73,7 @@ export const PLAN_TYPE: ProColumns = {
 };
 
 export const PLAN_PROGRESS: ProColumns = {
-  title: '计划进度',
+  title: '小鱼干进度',
   dataIndex: 'planType',
   hideInSearch: true,
   render: (_, record) => (
@@ -48,6 +81,13 @@ export const PLAN_PROGRESS: ProColumns = {
       <Progress percent={record.nowFish / record.maxFish} size="small" />
     </div>
   ),
+};
+
+export const PLAN_STATE: ProColumns = {
+  title: '计划状态',
+  dataIndex: 'planState',
+  hideInSearch: true,
+  render: (_: any) => PLAN_STATE_MAP.get(_),
 };
 
 export const CAROUSEL_COLUMNS = [
@@ -60,7 +100,7 @@ export const CAROUSEL_COLUMNS = [
   {
     order: MAX_ORDER + 6,
     ...PLAN_TYPE,
-    width: 50,
+    width: 80,
   },
   {
     order: MAX_ORDER + 4,
@@ -69,6 +109,11 @@ export const CAROUSEL_COLUMNS = [
   },
   {
     order: MAX_ORDER + 2,
+    ...PLAN_STATE,
+    width: 180,
+  },
+  {
+    order: MAX_ORDER,
     ...USER,
     width: 100,
   },
