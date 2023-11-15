@@ -21,8 +21,7 @@ const View = ({ open, setViewVisible, currentCat }: any) => {
   }, [open]);
 
   const { cat = {} } = data;
-  const { age, area, avatars, color, details, isSnipped, isSterilized, name, popularity, sex } =
-    cat;
+  const { age, area, avatars, color, details, isSnipped, isSterilized, name, sex } = cat;
 
   const footer = [
     <Button key="ok" type="primary" onClick={handleOk}>
@@ -44,7 +43,6 @@ const View = ({ open, setViewVisible, currentCat }: any) => {
         <Descriptions.Item label="年龄">{age ?? ''}</Descriptions.Item>
         <Descriptions.Item label="性别">{sex ?? ''}</Descriptions.Item>
         <Descriptions.Item label="出没区域">{area ?? ''}</Descriptions.Item>
-        <Descriptions.Item label="人气值">{popularity ?? ''}</Descriptions.Item>
         <Descriptions.Item label="是否绝育">{isSterilized ?? '' ? '是' : '否'}</Descriptions.Item>
         <Descriptions.Item label="是否剪耳">{isSnipped ?? '' ? '是' : '否'}</Descriptions.Item>
         <Descriptions.Item label="介绍">{details ?? ''}</Descriptions.Item>

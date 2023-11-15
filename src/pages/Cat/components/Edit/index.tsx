@@ -2,7 +2,6 @@ import UploadImagesFormItem from '@/components/UploadImagesFormItem';
 import { editCat, fetchCurrentCat } from '@/services/cat';
 import {
   DrawerForm,
-  ProFormDigit,
   ProFormRadio,
   ProFormSelect,
   ProFormText,
@@ -98,16 +97,6 @@ const Edit = ({ open, setEditVisible, actionRef, currentCat }: any) => {
         ]}
         name="area"
         label="出没区域"
-      />
-      <ProFormDigit
-        rules={[
-          {
-            required: true,
-            message: '此条必填',
-          },
-        ]}
-        label="人气值"
-        name="popularity"
       />
       <ProFormRadio.Group
         rules={[
