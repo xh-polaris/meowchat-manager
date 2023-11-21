@@ -1,36 +1,17 @@
 import UploadImagesFormItem from '@/components/UploadImagesFormItem';
 import { fetchCatList } from '@/services/cat';
-import { createPlan } from '@/services/dried-fish';
+import { editPlan, fetchCurrentDriedFish } from '@/services/dried-fish';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { DrawerForm, ProFormRadio, ProFormText, ProFormTextArea } from '@ant-design/pro-components';
 import { Form, InputNumber, Select, Tooltip, DatePicker } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import moment from 'moment';
 
 const { RangePicker } = DatePicker;
 
-const Create = ({ open, setCreateVisible, actionRef }: any) => {
+const Edit = ({ open, setEditVisible, actionRef, currentDriedFish }: any) => {
+  const [form] = Form.useForm();
   const [catInfo, setCatInfo] = useState([]);
-  const handleCreate = async (value: any) => {
-    const startTime = moment(value?.planTime?.[0])?.startOf('day')?.valueOf();
-    const endTime = moment(value?.planTime?.[1])?.startOf('day')?.valueOf();
-    delete value?.planTime;
-    const data = {
-      ...value,
-      id: '',
-      communityId: localStorage.getItem('communityId'),
-      coverUrl: value?.coverUrl?.[0],
-      startTime,
-      endTime,
-    };
-    const success = await createPlan(data);
-    if (success) {
-      setCreateVisible(false);
-      if (actionRef.current) {
-        actionRef.current.reload();
-      }
-    }
-  };
 
   const handleSearch = async (value: any) => {
     const msg = await fetchCatList({
@@ -42,16 +23,47 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
     setCatInfo(msg.cats);
   };
 
+  const handleEdit = async (value: any) => {
+    const startTime = moment(value?.planTime?.[0])?.startOf('day')?.valueOf();
+    const endTime = moment(value?.planTime?.[1])?.startOf('day')?.valueOf();
+    delete value?.planTime;
+    const data = {
+      ...value,
+      id: currentDriedFish,
+      communityId: localStorage.getItem('communityId'),
+      coverUrl: value?.coverUrl?.[0],
+      startTime,
+      endTime,
+    };
+    const success = await editPlan(data);
+    if (success) {
+      setEditVisible(false);
+      if (actionRef.current) {
+        actionRef.current.reload();
+      }
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      if (currentDriedFish) {
+        const data = await fetchCurrentDriedFish({ planId: currentDriedFish });
+        form.setFieldsValue(data?.plan);
+      }
+    })();
+  }, [currentDriedFish]);
+
   return (
     <DrawerForm
-      title="新增小鱼干计划"
+      title="编辑小鱼干计划"
       width="600px"
       open={open}
-      onOpenChange={setCreateVisible}
+      onOpenChange={setEditVisible}
       layout="horizontal"
       labelCol={{ span: 4 }}
       wrapperCol={{ span: 19 }}
-      onFinish={handleCreate}
+      onFinish={handleEdit}
+      form={form}
     >
       <ProFormText
         rules={[
@@ -140,4 +152,4 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
   );
 };
 
-export default Create;
+export default Edit;

@@ -8,7 +8,7 @@ import { useRef, useState } from 'react';
 import { OPERATIONS } from '@/pages/commonSettings';
 import Create from './components/Create';
 // import Delete from './components/Delete';
-// import Edit from './components/Edit';
+import Edit from './components/Edit';
 import View from './components/View';
 import { CAROUSEL_COLUMNS } from './settings';
 
@@ -17,7 +17,7 @@ const DriedFish: React.FC = () => {
   const [currentDriedFish, setCurrentDriedFish] = useState({});
   const [createVisible, setCreateVisible] = useState(false);
   //   const [deleteVisible, setDeleteVisible] = useState(false);
-  //   const [editVisible, setEditVisible] = useState(false);
+  const [editVisible, setEditVisible] = useState(false);
   const [viewVisible, setViewVisible] = useState(false);
   const [includeGlobalPlan, setIncludeGlobalPlan] = useState(0);
 
@@ -52,17 +52,6 @@ const DriedFish: React.FC = () => {
           <Button
             type="link"
             size="small"
-            key="complete"
-            onClick={() => {
-              // setCurrentCarousel(record);
-              // setEditVisible(true);
-            }}
-          >
-            完成计划
-          </Button>
-          <Button
-            type="link"
-            size="small"
             key="detail"
             onClick={() => {
               setCurrentDriedFish(record.id);
@@ -76,8 +65,8 @@ const DriedFish: React.FC = () => {
             size="small"
             key="edit"
             onClick={() => {
-              //   setCurrentCarousel(record);
-              //   setEditVisible(true);
+              setCurrentDriedFish(record.id);
+              setEditVisible(true);
             }}
           >
             编辑
@@ -149,12 +138,13 @@ const DriedFish: React.FC = () => {
         actionRef={actionRef}
         currentCarousel={currentCarousel}
       />
+       */}
       <Edit
         open={editVisible}
         setEditVisible={setEditVisible}
         actionRef={actionRef}
-        currentCarousel={currentCarousel}
-      /> */}
+        currentDriedFish={currentDriedFish}
+      />
       <View
         open={viewVisible}
         setViewVisible={setViewVisible}

@@ -55,15 +55,15 @@ export const createPlan = async (data: any, options?: { [key: string]: any }) =>
  * @param params
  * @returns
  */
-// export const editCarousel = async (data: any, options?: { [key: string]: any }) => {
-//   return request(`${DEFAULT_URL}/notice/new_news`, {
-//     method: 'POST',
-//     data: {
-//       ...data,
-//     },
-//     ...(options || {}),
-//   });
-// };
+export const editPlan = async (data: any, options?: { [key: string]: any }) => {
+  return request(`${DEFAULT_URL}/plan/new_plan`, {
+    method: 'POST',
+    data: {
+      ...data,
+    },
+    ...(options || {}),
+  });
+};
 
 /**
  * 获取小鱼干计划具体信息
