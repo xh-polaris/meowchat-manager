@@ -7,7 +7,7 @@ import { Button } from 'antd';
 import { useRef, useState } from 'react';
 import { OPERATIONS } from '@/pages/commonSettings';
 import Create from './components/Create';
-// import Delete from './components/Delete';
+import Delete from './components/Delete';
 import Edit from './components/Edit';
 import View from './components/View';
 import { CAROUSEL_COLUMNS } from './settings';
@@ -16,7 +16,7 @@ const DriedFish: React.FC = () => {
   const actionRef = useRef<ActionType>();
   const [currentDriedFish, setCurrentDriedFish] = useState({});
   const [createVisible, setCreateVisible] = useState(false);
-  //   const [deleteVisible, setDeleteVisible] = useState(false);
+  const [deleteVisible, setDeleteVisible] = useState(false);
   const [editVisible, setEditVisible] = useState(false);
   const [viewVisible, setViewVisible] = useState(false);
   const [includeGlobalPlan, setIncludeGlobalPlan] = useState(0);
@@ -77,8 +77,8 @@ const DriedFish: React.FC = () => {
             danger
             key="delete"
             onClick={() => {
-              // setCurrentCarousel(record);
-              // setDeleteVisible(true);
+              setCurrentDriedFish(record.id);
+              setDeleteVisible(true);
             }}
           >
             删除
@@ -131,14 +131,12 @@ const DriedFish: React.FC = () => {
         }}
       />
       <Create open={createVisible} setCreateVisible={setCreateVisible} actionRef={actionRef} />
-      {/* 
       <Delete
         open={deleteVisible}
         setDeleteVisible={setDeleteVisible}
         actionRef={actionRef}
-        currentCarousel={currentCarousel}
+        currentDriedFish={currentDriedFish}
       />
-       */}
       <Edit
         open={editVisible}
         setEditVisible={setEditVisible}

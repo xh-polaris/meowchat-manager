@@ -40,15 +40,15 @@ export const createPlan = async (data: any, options?: { [key: string]: any }) =>
  * @param params
  * @returns
  */
-// export const deleteCarousel = async (data: any, options?: { [key: string]: any }) => {
-//   return request(`${DEFAULT_URL}/notice/remove_news`, {
-//     method: 'POST',
-//     data: {
-//       ...data,
-//     },
-//     ...(options || {}),
-//   });
-// };
+export const deletePlan = async (data: any, options?: { [key: string]: any }) => {
+  return request(`${DEFAULT_URL}/plan/delete_plan`, {
+    method: 'POST',
+    data: {
+      ...data,
+    },
+    ...(options || {}),
+  });
+};
 
 /**
  * 编辑小鱼干计划
