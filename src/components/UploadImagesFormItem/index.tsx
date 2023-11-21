@@ -27,9 +27,9 @@ const UploadImagesFormItem = ({ value = [], onChange, limit = 1 }: any) => {
   const [contentType, setContentType] = useState<string>('');
 
   useEffect(() => {
-    if (value.length) {
+    if (value?.length) {
       const newFileList: any = [];
-      value.map((item: string) => {
+      value?.map((item: string) => {
         newFileList.push({
           uid: item,
           url: item,

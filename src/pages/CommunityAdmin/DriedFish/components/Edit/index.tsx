@@ -48,7 +48,11 @@ const Edit = ({ open, setEditVisible, actionRef, currentDriedFish }: any) => {
     (async () => {
       if (currentDriedFish) {
         const data = await fetchCurrentDriedFish({ planId: currentDriedFish });
-        form.setFieldsValue(data?.plan);
+        if (data) {
+          const { plan = {} } = data;
+          plan.coverUrl = [plan?.coverUrl];
+          form.setFieldsValue(plan);
+        }
       }
     })();
   }, [currentDriedFish]);

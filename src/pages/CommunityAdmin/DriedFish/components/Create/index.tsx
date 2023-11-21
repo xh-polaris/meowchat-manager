@@ -12,9 +12,12 @@ const { RangePicker } = DatePicker;
 const Create = ({ open, setCreateVisible, actionRef }: any) => {
   const [catInfo, setCatInfo] = useState([]);
   const handleCreate = async (value: any) => {
-    const startTime = moment(value?.planTime?.[0])?.startOf('day')?.valueOf();
-    const endTime = moment(value?.planTime?.[1])?.startOf('day')?.valueOf();
-    delete value?.planTime;
+    let startTime, endTime;
+    if (value.planTime) {
+      startTime = moment(value?.planTime?.[0])?.startOf('day')?.valueOf();
+      endTime = moment(value?.planTime?.[1])?.startOf('day')?.valueOf();
+      delete value.planTime;
+    }
     const data = {
       ...value,
       id: '',
