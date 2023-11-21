@@ -2,7 +2,7 @@ import { request } from '@umijs/max';
 import { DEFAULT_URL } from '.';
 
 /**
- * 获取轮播图列表
+ * 获取小鱼干计划列表
  * @param params
  * @returns
  */
@@ -21,22 +21,22 @@ export const fetchDriedFishList = async (
   });
 
 /**
- * 新增轮播图
+ * 新增小鱼干计划
  * @param params
  * @returns
  */
-// export const createCarousel = async (data: any, options?: { [key: string]: any }) => {
-//   return request(`${DEFAULT_URL}/notice/new_news`, {
-//     method: 'POST',
-//     data: {
-//       ...data,
-//     },
-//     ...(options || {}),
-//   });
-// };
+export const createPlan = async (data: any, options?: { [key: string]: any }) => {
+  return request(`${DEFAULT_URL}/plan/new_plan`, {
+    method: 'POST',
+    data: {
+      ...data,
+    },
+    ...(options || {}),
+  });
+};
 
 /**
- * 删除轮播图
+ * 删除小鱼干计划
  * @param params
  * @returns
  */
@@ -51,7 +51,7 @@ export const fetchDriedFishList = async (
 // };
 
 /**
- * 编辑轮播图
+ * 编辑小鱼干计划
  * @param params
  * @returns
  */

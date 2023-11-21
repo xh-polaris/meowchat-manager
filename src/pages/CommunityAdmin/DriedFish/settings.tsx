@@ -78,7 +78,7 @@ export const PLAN_PROGRESS: ProColumns = {
   hideInSearch: true,
   render: (_, record) => (
     <div style={{ paddingRight: 20 }}>
-      <Progress percent={record.nowFish / record.maxFish} size="small" />
+      <Progress percent={(record.nowFish / record.maxFish) * 100} size="small" />
     </div>
   ),
 };

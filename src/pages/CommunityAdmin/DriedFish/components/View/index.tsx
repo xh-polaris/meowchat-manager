@@ -88,16 +88,16 @@ const View = ({ open, setViewVisible, currentDriedFish }: any) => {
         <Descriptions.Item label="计划状态" span={2}>
           {PLAN_STATE_MAP.get(planState) ?? ''}
         </Descriptions.Item>
-        <Descriptions.Item label="任务详情" span={2}>
+        <Descriptions.Item label="计划详情" span={2}>
           {description ?? ''}
         </Descriptions.Item>
-        <Descriptions.Item label="任务封面图" span={2}>
+        <Descriptions.Item label="计划封面图" span={2}>
           <PhotoAlbum photos={[coverUrl]} />
         </Descriptions.Item>
         <Descriptions.Item label="执行说明" span={2}>
           {instruction ?? ''}
         </Descriptions.Item>
-        <Descriptions.Item label="任务返图" span={2}>
+        <Descriptions.Item label="计划返图" span={2}>
           <Space>
             <PhotoAlbum photos={imageUrls} />
             <div>共 {imageUrls?.length ?? ''} 张</div>

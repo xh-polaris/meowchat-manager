@@ -6,7 +6,7 @@ import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { Button } from 'antd';
 import { useRef, useState } from 'react';
 import { OPERATIONS } from '@/pages/commonSettings';
-// import Create from './components/Create';
+import Create from './components/Create';
 // import Delete from './components/Delete';
 // import Edit from './components/Edit';
 import View from './components/View';
@@ -15,7 +15,7 @@ import { CAROUSEL_COLUMNS } from './settings';
 const DriedFish: React.FC = () => {
   const actionRef = useRef<ActionType>();
   const [currentDriedFish, setCurrentDriedFish] = useState({});
-  //   const [createVisible, setCreateVisible] = useState(false);
+  const [createVisible, setCreateVisible] = useState(false);
   //   const [deleteVisible, setDeleteVisible] = useState(false);
   //   const [editVisible, setEditVisible] = useState(false);
   const [viewVisible, setViewVisible] = useState(false);
@@ -128,7 +128,7 @@ const DriedFish: React.FC = () => {
             type="primary"
             key="primary"
             onClick={() => {
-              //   setCreateVisible(true);
+              setCreateVisible(true);
             }}
           >
             <PlusOutlined />
@@ -141,7 +141,8 @@ const DriedFish: React.FC = () => {
           pageSize: 20,
         }}
       />
-      {/* <Create open={createVisible} setCreateVisible={setCreateVisible} actionRef={actionRef} />
+      <Create open={createVisible} setCreateVisible={setCreateVisible} actionRef={actionRef} />
+      {/* 
       <Delete
         open={deleteVisible}
         setDeleteVisible={setDeleteVisible}
