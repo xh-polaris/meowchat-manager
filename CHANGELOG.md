@@ -1,5 +1,14 @@
 
 
+## [1.12.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.11.0...v1.12.0) (2023-11-21)
+
+
+### ✨ Features | 新功能
+
+* 编辑小鱼干计划 ([80c20e1](https://github.com/xh-polaris/meowchat-manager/commit/80c20e1b38b9b9884489d9241b4e012537536484))
+* 删除小鱼干计划 ([4e7e838](https://github.com/xh-polaris/meowchat-manager/commit/4e7e838be0139b8eb84b53cae8facbd2ad091688))
+* 新增小鱼干计划 ([401a81a](https://github.com/xh-polaris/meowchat-manager/commit/401a81aaa0e38133b9193ee8247735e35567d349))
+
 ## [1.11.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.10.0...v1.11.0) (2023-11-15)
 
 
