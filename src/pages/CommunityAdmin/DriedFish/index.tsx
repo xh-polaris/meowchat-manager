@@ -14,7 +14,7 @@ import { CAROUSEL_COLUMNS } from './settings';
 
 const DriedFish: React.FC = () => {
   const actionRef = useRef<ActionType>();
-  const [currentDriedFish, setCurrentDriedFish] = useState({});
+  const [currentDriedFish, setCurrentDriedFish] = useState('');
   const [createVisible, setCreateVisible] = useState(false);
   const [deleteVisible, setDeleteVisible] = useState(false);
   const [editVisible, setEditVisible] = useState(false);
