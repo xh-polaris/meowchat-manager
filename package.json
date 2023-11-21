@@ -1,6 +1,6 @@
 {
   "name": "meowchat-manager",
-  "version": "1.12.1",
+  "version": "1.12.2",
   "private": true,
   "scripts": {
     "analyze": "cross-env ANALYZE=1 max build",

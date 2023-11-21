@@ -1,5 +1,12 @@
 
 
+### [1.12.2](https://github.com/xh-polaris/meowchat-manager/compare/v1.12.1...v1.12.2) (2023-11-21)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 初始值 ([96ab217](https://github.com/xh-polaris/meowchat-manager/commit/96ab217881077f27d386b95ee28eef0b84ddc7ae))
+
 ### [1.12.1](https://github.com/xh-polaris/meowchat-manager/compare/v1.12.0...v1.12.1) (2023-11-21)
 
 
