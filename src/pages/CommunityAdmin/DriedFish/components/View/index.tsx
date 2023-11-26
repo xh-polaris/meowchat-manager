@@ -77,9 +77,9 @@ const View = ({ open, setViewVisible, currentDriedFish }: any) => {
             {catName ?? ''}
           </Space>
         </Descriptions.Item>
-        <Descriptions.Item label="开始时间">{formatTime(startTime ?? '')}</Descriptions.Item>
-        <Descriptions.Item label="结束时间">{formatTime(endTime ?? '')}</Descriptions.Item>
-        <Descriptions.Item label="创建时间">{formatTime(createAt ?? '')}</Descriptions.Item>
+        <Descriptions.Item label="开始时间">{formatTime(startTime) ?? ''}</Descriptions.Item>
+        <Descriptions.Item label="结束时间">{formatTime(endTime) ?? ''}</Descriptions.Item>
+        <Descriptions.Item label="创建时间">{formatTime(createAt) ?? ''}</Descriptions.Item>
         <Descriptions.Item label="小鱼干进度">
           <span style={{ color: 'red' }}>
             {nowFish ?? ''}/{maxFish ?? ''}

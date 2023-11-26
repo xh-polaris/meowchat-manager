@@ -14,8 +14,8 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
   const handleCreate = async (value: any) => {
     let startTime, endTime;
     if (value.planTime) {
-      startTime = moment(value?.planTime?.[0])?.startOf('day')?.valueOf();
-      endTime = moment(value?.planTime?.[1])?.startOf('day')?.valueOf();
+      startTime = moment(value?.planTime?.[0])?.startOf('day')?.valueOf() / 1000;
+      endTime = moment(value?.planTime?.[1])?.startOf('day')?.valueOf() / 1000;
       delete value.planTime;
     }
     const data = {

@@ -102,4 +102,5 @@ export default defineConfig({
   },
   favicons: ['https://static.xhpolaris.com/cat_world.jpg'],
   title: 'Meowchat 管理面板',
+  publicPath: '/',
 });
