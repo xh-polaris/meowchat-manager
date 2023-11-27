@@ -1,5 +1,17 @@
 
 
+## [1.13.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.12.2...v1.13.0) (2023-11-27)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 起止时间调整 ([4630c3f](https://github.com/xh-polaris/meowchat-manager/commit/4630c3f1ac4baf4bd9820fc43e3fec5a2fd432ce))
+
+
+### ✨ Features | 新功能
+
+* 新增/编辑小鱼干计划优化 ([6e0ada2](https://github.com/xh-polaris/meowchat-manager/commit/6e0ada233119f1ec477443f255626bd6a712544b))
+
 ### [1.12.2](https://github.com/xh-polaris/meowchat-manager/compare/v1.12.1...v1.12.2) (2023-11-21)
 
 
