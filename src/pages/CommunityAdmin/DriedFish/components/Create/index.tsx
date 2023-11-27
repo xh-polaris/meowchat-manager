@@ -2,8 +2,8 @@ import UploadImagesFormItem from '@/components/UploadImagesFormItem';
 import { fetchCatList } from '@/services/cat';
 import { createPlan } from '@/services/dried-fish';
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import { DrawerForm, ProFormRadio, ProFormText, ProFormTextArea } from '@ant-design/pro-components';
-import { Form, InputNumber, Select, Tooltip, DatePicker } from 'antd';
+import { DrawerForm, ProFormText, ProFormTextArea } from '@ant-design/pro-components';
+import { Form, InputNumber, Select, Tooltip, DatePicker, Radio } from 'antd';
 import { useState } from 'react';
 import moment from 'moment';
 
@@ -11,6 +11,7 @@ const { RangePicker } = DatePicker;
 
 const Create = ({ open, setCreateVisible, actionRef }: any) => {
   const [catInfo, setCatInfo] = useState([]);
+  const access = localStorage.getItem('access');
   const handleCreate = async (value: any) => {
     let startTime, endTime;
     if (value.planTime) {
@@ -68,6 +69,12 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
       />
       <Form.Item
         name="catId"
+        rules={[
+          {
+            required: access !== 'superAdmin',
+            message: '此条必填',
+          },
+        ]}
         label={
           <Tooltip title="仅支持搜索当前区域猫咪">
             目标猫咪 <QuestionCircleOutlined />
@@ -88,52 +95,108 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
           }))}
         ></Select>
       </Form.Item>
-      <ProFormRadio.Group
+      <Form.Item
         name="planType"
         label="计划类型"
-        options={[
+        rules={[
           {
-            label: '绝育',
-            value: 1,
-          },
-          {
-            label: '治病',
-            value: 2,
-          },
-          {
-            label: '加餐',
-            value: 3,
+            required: true,
+            message: '此条必填',
           },
         ]}
-      />
-      <ProFormRadio.Group
+      >
+        <Radio.Group
+          options={[
+            {
+              label: '绝育',
+              value: 1,
+            },
+            {
+              label: '治病',
+              value: 2,
+            },
+            {
+              label: '加餐',
+              value: 3,
+            },
+          ]}
+          defaultValue={1}
+        ></Radio.Group>
+      </Form.Item>
+      <Form.Item
         name="planState"
         label="计划状态"
-        options={[
+        rules={[
           {
-            label: '募集中',
-            value: 1,
+            required: true,
+            message: '此条必填',
           },
+        ]}
+      >
+        <Radio.Group
+          options={[
+            {
+              label: '募集中',
+              value: 1,
+            },
+            {
+              label: '实施中',
+              value: 2,
+            },
+            {
+              label: '已完成',
+              value: 3,
+            },
+          ]}
+          defaultValue={1}
+        ></Radio.Group>
+      </Form.Item>
+      <Form.Item
+        name="maxFish"
+        label="小鱼干数量"
+        rules={[
           {
-            label: '实施中',
-            value: 2,
+            required: true,
+            message: '此条必填',
           },
+        ]}
+      >
+        <InputNumber precision={0} />
+      </Form.Item>
+      <Form.Item
+        name="planTime"
+        label="计划时间"
+        rules={[
           {
-            label: '已完成',
-            value: 3,
+            required: true,
+            message: '此条必填',
+          },
+        ]}
+      >
+        <RangePicker />
+      </Form.Item>
+      <Form.Item
+        name="coverUrl"
+        label="计划封面图"
+        rules={[
+          {
+            required: true,
+            message: '此条必填',
+          },
+        ]}
+      >
+        <UploadImagesFormItem limit={1} />
+      </Form.Item>
+      <ProFormTextArea
+        name="description"
+        label="详细介绍"
+        rules={[
+          {
+            required: true,
+            message: '此条必填',
           },
         ]}
       />
-      <Form.Item name="maxFish" label="小鱼干数量">
-        <InputNumber precision={0} />
-      </Form.Item>
-      <Form.Item name="planTime" label="计划时间">
-        <RangePicker />
-      </Form.Item>
-      <Form.Item name="coverUrl" label="计划封面图">
-        <UploadImagesFormItem limit={1} />
-      </Form.Item>
-      <ProFormTextArea name="description" label="详细介绍" />
       <ProFormTextArea name="instruction" label="执行说明" />
       <ProFormTextArea name="summary" label="计划总结" />
       <Form.Item name="imageUrls" label="结束返图">
