@@ -30,7 +30,7 @@ const DriedFish: React.FC = () => {
     const data = await fetchDriedFishList({
       ...params,
       page: params.current - 1,
-      communityId: localStorage.getItem('communityId'),
+      onlyCommunityId: localStorage.getItem('communityId'),
       includeGlobal: includeGlobalPlan,
     });
     return {

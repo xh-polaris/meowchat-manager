@@ -22,7 +22,7 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
     const data = {
       ...value,
       id: '',
-      communityId: localStorage.getItem('communityId'),
+      onlyCommunityId: localStorage.getItem('communityId'),
       coverUrl: value?.coverUrl?.[0],
       startTime,
       endTime,

@@ -17,7 +17,7 @@ const Edit = ({ open, setEditVisible, actionRef, currentDriedFish }: any) => {
   const handleSearch = async (value: any) => {
     const msg = await fetchCatList({
       // @ts-ignore
-      communityId: localStorage.getItem('communityId'),
+      onlyCommunityId: localStorage.getItem('communityId'),
       page: 0,
       keyword: value,
     });
