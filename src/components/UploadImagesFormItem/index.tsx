@@ -6,8 +6,6 @@ import { useEffect, useState } from 'react';
 import { applySignedUrl } from '@/services/cos';
 import { request } from '@umijs/max';
 
-const CDN = 'static.xhpolaris.com';
-
 const getBase64 = (file: RcFile): Promise<string> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -58,8 +56,6 @@ const UploadImagesFormItem = ({ value = [], onChange, limit = 1 }: any) => {
         if (item?.status === 'done' || item?.status === 'uploading') {
           // 去除url内的param
           let newUrl = url.substring(0, url.lastIndexOf('?'));
-          // 将url的host替换为CDN域名
-          newUrl = newUrl.replace(/(https:\/\/|http:\/\/)(.*?)(\/.*)/, `$1${CDN}$3`);
           urlList.push(newUrl);
         }
       } else {
