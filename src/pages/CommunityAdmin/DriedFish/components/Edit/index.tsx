@@ -3,9 +3,9 @@ import { fetchCatList } from '@/services/cat';
 import { editPlan, fetchCurrentDriedFish } from '@/services/dried-fish';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { DrawerForm, ProFormText, ProFormTextArea } from '@ant-design/pro-components';
-import { Form, InputNumber, Select, Tooltip, DatePicker, Radio } from 'antd';
-import { useEffect, useState } from 'react';
+import { DatePicker, Form, InputNumber, Radio, Select, Tooltip } from 'antd';
 import moment from 'moment';
+import { useEffect, useState } from 'react';
 
 const { RangePicker } = DatePicker;
 
@@ -25,8 +25,8 @@ const Edit = ({ open, setEditVisible, actionRef, currentDriedFish }: any) => {
   };
 
   const handleEdit = async (value: any) => {
-    const startTime = moment(value?.planTime?.[0])?.startOf('day')?.valueOf();
-    const endTime = moment(value?.planTime?.[1])?.startOf('day')?.valueOf();
+    const startTime = moment(value?.planTime?.[0])?.startOf('day')?.valueOf() / 1000;
+    const endTime = moment(value?.planTime?.[1])?.startOf('day')?.valueOf() / 1000;
     delete value?.planTime;
     const data = {
       ...value,
