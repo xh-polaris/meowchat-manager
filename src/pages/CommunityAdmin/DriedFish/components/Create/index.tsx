@@ -120,8 +120,7 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
               value: 3,
             },
           ]}
-          defaultValue={1}
-        ></Radio.Group>
+        />
       </Form.Item>
       <Form.Item
         name="planState"
@@ -148,8 +147,7 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
               value: 3,
             },
           ]}
-          defaultValue={1}
-        ></Radio.Group>
+        />
       </Form.Item>
       <Form.Item
         name="maxFish"

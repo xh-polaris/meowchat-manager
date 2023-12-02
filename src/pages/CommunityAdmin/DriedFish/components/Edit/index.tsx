@@ -1,4 +1,5 @@
 import UploadImagesFormItem from '@/components/UploadImagesFormItem';
+import { formatTime } from '@/scripts/utils';
 import { fetchCatList } from '@/services/cat';
 import { editPlan, fetchCurrentDriedFish } from '@/services/dried-fish';
 import { QuestionCircleOutlined } from '@ant-design/icons';
@@ -52,6 +53,10 @@ const Edit = ({ open, setEditVisible, actionRef, currentDriedFish }: any) => {
         if (data) {
           const { plan = {} } = data;
           plan.coverUrl = [plan?.coverUrl];
+          plan.planTime = [
+            moment(formatTime(plan?.startTime * 1000)),
+            moment(formatTime(plan?.endTime * 1000)),
+          ];
           form.setFieldsValue(plan);
         }
       }
@@ -133,8 +138,7 @@ const Edit = ({ open, setEditVisible, actionRef, currentDriedFish }: any) => {
               value: 3,
             },
           ]}
-          defaultValue={1}
-        ></Radio.Group>
+        />
       </Form.Item>
       <Form.Item
         name="planState"
@@ -161,8 +165,7 @@ const Edit = ({ open, setEditVisible, actionRef, currentDriedFish }: any) => {
               value: 3,
             },
           ]}
-          defaultValue={1}
-        ></Radio.Group>
+        />
       </Form.Item>
       <Form.Item
         name="maxFish"
