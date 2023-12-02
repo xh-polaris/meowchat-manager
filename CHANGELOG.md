@@ -1,5 +1,17 @@
 
 
+## [1.14.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.13.0...v1.14.0) (2023-12-02)
+
+
+### ✨ Features | 新功能
+
+* onlyCommunityId ([2735e7d](https://github.com/xh-polaris/meowchat-manager/commit/2735e7d8a81d6605d15a127478eb6fc36fd39a00))
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 修复测试环境CDN问题 ([610bcae](https://github.com/xh-polaris/meowchat-manager/commit/610bcaeaf997d9bcb2b7b8e2669b1e77045d3e58))
+
 ## [1.13.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.12.2...v1.13.0) (2023-11-27)
 
 
