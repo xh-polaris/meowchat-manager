@@ -1,5 +1,12 @@
 
 
+### [1.14.1](https://github.com/xh-polaris/meowchat-manager/compare/v1.14.0...v1.14.1) (2023-12-02)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 小鱼干计划的时间戳问题 ([e276bc9](https://github.com/xh-polaris/meowchat-manager/commit/e276bc9eb0ebebba205b43d6a063044e011d9be2))
+
 ## [1.14.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.13.0...v1.14.0) (2023-12-02)
 
 
