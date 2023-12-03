@@ -3,9 +3,9 @@ import { fetchCatList } from '@/services/cat';
 import { createPlan } from '@/services/dried-fish';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { DrawerForm, ProFormText, ProFormTextArea } from '@ant-design/pro-components';
-import { Form, InputNumber, Select, Tooltip, DatePicker, Radio } from 'antd';
-import { useState } from 'react';
+import { DatePicker, Form, InputNumber, Radio, Select, Tooltip } from 'antd';
 import moment from 'moment';
+import { useState } from 'react';
 
 const { RangePicker } = DatePicker;
 
@@ -22,7 +22,7 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
     const data = {
       ...value,
       id: '',
-      onlyCommunityId: localStorage.getItem('communityId'),
+      communityId: localStorage.getItem('communityId'),
       coverUrl: value?.coverUrl?.[0],
       startTime,
       endTime,
