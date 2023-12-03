@@ -108,16 +108,20 @@ const Create = ({ open, setCreateVisible, actionRef }: any) => {
         <Radio.Group
           options={[
             {
-              label: '绝育',
+              label: '绝育计划',
               value: 1,
             },
             {
-              label: '治病',
+              label: '生理健康',
               value: 2,
             },
             {
-              label: '加餐',
+              label: '零食奖励',
               value: 3,
+            },
+            {
+              label: '物资补给',
+              value: 4,
             },
           ]}
         />

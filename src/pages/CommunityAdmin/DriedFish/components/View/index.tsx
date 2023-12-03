@@ -1,5 +1,4 @@
 import PhotoAlbum from '@/components/PhotoAlbum';
-import { fetchCurrentCat } from '@/services/cat';
 import { fetchCurrentDriedFish } from '@/services/dried-fish';
 import { Avatar, Button, Descriptions, Modal, Space, Tag } from 'antd';
 import { useEffect, useState } from 'react';
@@ -8,7 +7,6 @@ import { formatTime } from '@/scripts/utils';
 
 const View = ({ open, setViewVisible, currentDriedFish }: any) => {
   const [data, setData] = useState<any>({});
-  const [catInfo, setCatInfo] = useState<any>({});
 
   const handleOk = () => {
     setViewVisible(false);
@@ -27,7 +25,7 @@ const View = ({ open, setViewVisible, currentDriedFish }: any) => {
     instruction,
     startTime,
     endTime,
-    catId,
+    cat,
     user = {},
     imageUrls,
     createAt,
@@ -37,20 +35,13 @@ const View = ({ open, setViewVisible, currentDriedFish }: any) => {
     planState,
   } = plan;
   const { nickname, avatarUrl } = user;
-  const { cat = {} } = catInfo;
-  const { avatars: catAvatar = [], name: catName } = cat;
+  const { avatars: catAvatar, name: catName } = cat || {};
 
   useEffect(() => {
     if (open) {
       fetchCurrentDriedFish({ planId: currentDriedFish }).then((res) => setData(res));
     }
   }, [open]);
-
-  useEffect(() => {
-    if (catId) {
-      fetchCurrentCat({ catId }).then((res) => setCatInfo(res));
-    }
-  }, [catId]);
 
   const footer = [
     <Button key="ok" type="primary" onClick={handleOk}>
@@ -72,10 +63,14 @@ const View = ({ open, setViewVisible, currentDriedFish }: any) => {
           {<Tag color={PLAN_COLOR.get(planType)}>{transferType(planType)}</Tag> ?? ''}
         </Descriptions.Item>
         <Descriptions.Item label="目标猫咪">
-          <Space>
-            <Avatar src={catAvatar?.[0] ?? ''} size={30}></Avatar>
-            {catName ?? ''}
-          </Space>
+          {catName ? (
+            <Space>
+              <Avatar src={catAvatar?.[0] ?? ''} size={30}></Avatar>
+              {catName ?? ''}
+            </Space>
+          ) : (
+            <>暂无</>
+          )}
         </Descriptions.Item>
         <Descriptions.Item label="开始时间">{formatTime(startTime) ?? ''}</Descriptions.Item>
         <Descriptions.Item label="结束时间">{formatTime(endTime) ?? ''}</Descriptions.Item>
@@ -95,16 +90,20 @@ const View = ({ open, setViewVisible, currentDriedFish }: any) => {
           <PhotoAlbum photos={[coverUrl]} />
         </Descriptions.Item>
         <Descriptions.Item label="执行说明" span={2}>
-          {instruction ?? ''}
+          {instruction ? instruction : <>暂无</>}
         </Descriptions.Item>
-        <Descriptions.Item label="计划返图" span={2}>
-          <Space>
-            <PhotoAlbum photos={imageUrls} />
-            <div>共 {imageUrls?.length ?? ''} 张</div>
-          </Space>
+        <Descriptions.Item label="执行返图" span={2}>
+          {imageUrls?.length ? (
+            <Space>
+              <PhotoAlbum photos={imageUrls} />
+              <div>共 {imageUrls?.length ?? ''} 张</div>
+            </Space>
+          ) : (
+            <>暂无</>
+          )}
         </Descriptions.Item>
-        <Descriptions.Item label="执行总结" span={2}>
-          {summary ?? ''}
+        <Descriptions.Item label="计划总结" span={2}>
+          {summary ? summary : <>暂无</>}
         </Descriptions.Item>
       </Descriptions>
     </Modal>

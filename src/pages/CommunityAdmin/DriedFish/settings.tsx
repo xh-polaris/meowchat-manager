@@ -17,13 +17,16 @@ export const transferType = (type: number) => {
       newType = '其他';
       break;
     case 1:
-      newType = '绝育';
+      newType = '绝育计划';
       break;
     case 2:
-      newType = '治病';
+      newType = '生理健康';
       break;
     case 3:
-      newType = '加餐';
+      newType = '零食奖励';
+      break;
+    case 4:
+      newType = '物资补给';
       break;
     default:
       newType = '';
@@ -54,7 +57,7 @@ export const PLAN_STATE_MAP = new Map([
   [
     2,
     <Tag color="processing" icon={<SyncOutlined spin />}>
-      实施中
+      执行中
     </Tag>,
   ],
   [
@@ -78,7 +81,8 @@ export const PLAN_PROGRESS: ProColumns = {
   hideInSearch: true,
   render: (_, record) => (
     <div style={{ paddingRight: 20 }}>
-      <Progress percent={(record.nowFish / record.maxFish) * 100} size="small" />
+      <Progress percent={(record.nowFish / record.maxFish) * 100} size="small" showInfo={false} />
+      {`${record.nowFish} / ${record.maxFish}`}
     </div>
   ),
 };
