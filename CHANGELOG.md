@@ -1,5 +1,12 @@
 
 
+## [1.15.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.14.3...v1.15.0) (2023-12-03)
+
+
+### ✨ Features | 新功能
+
+* 计划类型+展示调整 ([ffbc742](https://github.com/xh-polaris/meowchat-manager/commit/ffbc7424daf58065d0ed61d796ab5760220e8c37))
+
 ### [1.14.3](https://github.com/xh-polaris/meowchat-manager/compare/v1.14.2...v1.14.3) (2023-12-03)
 
 
