@@ -21,7 +21,7 @@ export const searchUserInfo = async (params: any, options?: { [key: string]: any
  * @param params
  * @returns
  */
-export const changeAvatar = async (data: any) =>
+export const changeNicknameOrAvatar = async (data: any) =>
   request(`${DEFAULT_URL}/user/update_user_info`, {
     method: 'POST',
     data: {

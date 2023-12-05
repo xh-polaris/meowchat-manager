@@ -1,5 +1,5 @@
 import { changePassword } from '@/services/auth';
-import { changeAvatar } from '@/services/user';
+import { changeNicknameOrAvatar } from '@/services/user';
 import { ProForm, ProFormText } from '@ant-design/pro-components';
 import { Col, Divider, Form, Modal, Row, Space } from 'antd';
 import UploadImagesFormItem from '../UploadImagesFormItem';
@@ -8,6 +8,17 @@ import { history } from '@umijs/max';
 const PersonalDataModal = ({ isSettingsOpen, setIsSettingsOpen }: any) => {
   const handleCancel = () => {
     setIsSettingsOpen(false);
+  };
+
+  const handleChangeNickname = async (value: any) => {
+    const success = await changeNicknameOrAvatar(value);
+    if (success) {
+      setIsSettingsOpen(false);
+      localStorage.clear();
+      history.replace({
+        pathname: '/login',
+      });
+    }
   };
 
   const handleChangePassword = async (value: any) => {
@@ -26,7 +37,7 @@ const PersonalDataModal = ({ isSettingsOpen, setIsSettingsOpen }: any) => {
     const data = {
       avatarUrl: avatarUrl[0],
     };
-    const success = await changeAvatar(data);
+    const success = await changeNicknameOrAvatar(data);
     if (success) {
       setIsSettingsOpen(false);
       location.reload();
@@ -35,6 +46,37 @@ const PersonalDataModal = ({ isSettingsOpen, setIsSettingsOpen }: any) => {
 
   return (
     <Modal title="修改个人信息" open={isSettingsOpen} onCancel={handleCancel} footer={null}>
+      <Divider plain style={{ margin: '0 0 16px 0' }}>
+        <span>修改昵称</span>
+      </Divider>
+      <ProForm
+        layout="horizontal"
+        labelCol={{ span: 4 }}
+        wrapperCol={{ span: 19 }}
+        submitter={{
+          render: (props, doms) => {
+            return (
+              <Row justify="center">
+                <Col span={8} style={{ display: 'flex', justifyContent: 'center' }}>
+                  <Space>{doms}</Space>
+                </Col>
+              </Row>
+            );
+          },
+        }}
+        onFinish={handleChangeNickname}
+      >
+        <ProFormText
+          rules={[
+            {
+              required: true,
+              message: '此条必填',
+            },
+          ]}
+          name="nickname"
+          label="新昵称"
+        />
+      </ProForm>
       <Divider plain style={{ margin: '0 0 16px 0' }}>
         <span>修改密码</span>
       </Divider>
