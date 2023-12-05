@@ -1,5 +1,12 @@
 
 
+## [1.16.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.15.0...v1.16.0) (2023-12-05)
+
+
+### ✨ Features | 新功能
+
+* 支持修改用户名 ([c788b93](https://github.com/xh-polaris/meowchat-manager/commit/c788b931e84f8725855ee9a1bc2c45dd11959e6b))
+
 ## [1.15.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.14.3...v1.15.0) (2023-12-03)
 
 
