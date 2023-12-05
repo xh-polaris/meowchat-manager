@@ -29,6 +29,13 @@ jobs:
           cos_region: ap-shanghai
           local_path: dist
           clean: true
+      - name: Refresh CDN
+        uses: TencentCloud/cli-action@v1
+        with:
+          secret_id: ${{ secrets.SECRET_ID }}
+          secret_key: ${{ secrets.SECRET_KEY }}
+          region: ap-shanghai
+          command: cdn PurgePathCache --cli-unfold-argument --Paths http://manager.meowchat.cn/ --FlushType delete
       - name: Send Change Log
         if: startsWith(github.ref, 'refs/tags')
         uses: xh-polaris/send-changelog@v1
