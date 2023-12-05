@@ -35,7 +35,8 @@ jobs:
           secret_id: ${{ secrets.SECRET_ID }}
           secret_key: ${{ secrets.SECRET_KEY }}
           region: ap-shanghai
-          command: cdn PurgePathCache --cli-unfold-argument --Paths http://manager.meowchat.cn/ --FlushType delete
+          commands: 'cdn PurgePathCache --cli-unfold-argument --Paths https://manager.meowchat.cn/ --FlushType delete'
+          output_format: json
       - name: Send Change Log
         if: startsWith(github.ref, 'refs/tags')
         uses: xh-polaris/send-changelog@v1
