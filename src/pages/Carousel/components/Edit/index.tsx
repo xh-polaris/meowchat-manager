@@ -1,11 +1,12 @@
 import UploadImagesFormItem from '@/components/UploadImagesFormItem';
 import { editCarousel } from '@/services/carousel';
 import { DrawerForm, ProFormSelect, ProFormText } from '@ant-design/pro-components';
-import { Form } from 'antd';
+import { Form, Radio } from 'antd';
 import { useEffect } from 'react';
 
 const Edit = ({ open, setEditVisible, actionRef, currentCarousel }: any) => {
   const [form] = Form.useForm();
+  const access = localStorage.getItem('access');
 
   const handleEdit = async (value: any) => {
     const data = {
@@ -46,7 +47,16 @@ const Edit = ({ open, setEditVisible, actionRef, currentCarousel }: any) => {
       onFinish={handleEdit}
       form={form}
     >
-      <ProFormText name="linkUrl" label="跳转链接" />
+      <ProFormText
+        rules={[
+          {
+            required: true,
+            message: '此条必填',
+          },
+        ]}
+        name="linkUrl"
+        label="跳转链接"
+      />
       <ProFormSelect
         rules={[
           {
@@ -62,6 +72,31 @@ const Edit = ({ open, setEditVisible, actionRef, currentCarousel }: any) => {
         name="type"
         label="公示类型"
       />
+      {access === 'superAdmin' && (
+        <Form.Item
+          name="isPublic"
+          label="是否全局"
+          rules={[
+            {
+              required: true,
+              message: '此条必填',
+            },
+          ]}
+        >
+          <Radio.Group
+            options={[
+              {
+                label: '是',
+                value: 1,
+              },
+              {
+                label: '否',
+                value: 0,
+              },
+            ]}
+          />
+        </Form.Item>
+      )}
       <Form.Item
         name="imageUrl"
         label="图片"
