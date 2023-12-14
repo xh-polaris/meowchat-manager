@@ -12,7 +12,7 @@ const switchRoleTag = (roles: Roles) => {
   let tag;
 
   if (roles) {
-    if (roles?.[0].roleType === 4) {
+    if (roles?.[0]?.roleType === 4) {
       roleType = roles?.[1]?.roleType;
       if (roleType === 2) {
         communityId = roles?.[1]?.communityId;
