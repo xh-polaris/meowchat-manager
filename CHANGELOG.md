@@ -1,5 +1,17 @@
 
 
+## [1.17.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.16.0...v1.17.0) (2023-12-14)
+
+
+### 🐛 Bug Fixes | Bug 修复
+
+* 修复添加管理员失败问题 ([12b20c1](https://github.com/xh-polaris/meowchat-manager/commit/12b20c184edbcfdbfd33b3f4741d787832ac6c43))
+
+
+### ✨ Features | 新功能
+
+* 支持发布全局轮播图 ([026e4a6](https://github.com/xh-polaris/meowchat-manager/commit/026e4a61f8f01de5442ede67a5482fa5d4cf2cca))
+
 ## [1.16.0](https://github.com/xh-polaris/meowchat-manager/compare/v1.15.0...v1.16.0) (2023-12-05)
 
 
